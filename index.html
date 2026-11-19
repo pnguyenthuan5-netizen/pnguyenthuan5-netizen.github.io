@@ -1,0 +1,2398 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ăn Chưa 🤬? - 38 Món Ngon, Đặc Sản & Đồ Uống Hà Nội</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                            700: '#be123c',
+                            800: '#9f1239',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+   <style>
+        body.custom-bg {
+            background-image:
+                linear-gradient(rgba(248, 250, 252, 0.90), rgba(248, 250, 252, 0.94)),
+                url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzUuT010QV8m9wwovG-v0GxI1d2i2jat-GrvaLMYoHyQ&s=10");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col selection:bg-rose-500 selection:text-white">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo & Brand -->
+           <!-- Logo & Brand -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="filterDishes('all'); document.getElementById('search-input').value=''; document.getElementById('district-filter').value='all'; handleSearch();">
+                <img 
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQProNW5zCbwDdTXENWM5hO84s26bpQesf272wJt4qFcA&s=10" 
+                    alt="Logo Hôm Nay Ăn Gì?" 
+                    class="w-12 h-12 rounded-2xl object-cover shadow-lg shadow-rose-500/20 border border-slate-200 bg-white transform hover:rotate-6 transition-transform"
+                    onerror="this.onerror=null; this.src='https://placehold.co/96x96/e11d48/ffffff?text=HNAG';"
+                >
+                <div>
+                    <h1 class="text-xl font-extrabold bg-gradient-to-r from-rose-600 to-amber-600 bg-clip-text text-transparent">Ăn Chưa ?</h1>
+                    <p class="text-xs font-semibold text-slate-500 tracking-wider">38 ĐẶC SẢN & ĐỒ UỐNG HÀ NỘI</p>
+                </div>
+            </div>
+
+            <!-- Location & GPS Bar -->
+            <div class="hidden md:flex items-center space-x-2 bg-slate-100 px-4 py-2 rounded-2xl border border-slate-200">
+                <i class="fa-solid fa-location-dot text-rose-600"></i>
+                <div class="flex flex-col">
+                    <span class="text-[10px] uppercase font-bold text-slate-400">Điểm xuất phát</span>
+                    <input type="text" id="user-location-input" value="Hồ Hoàn Kiếm, Hà Nội" class="bg-transparent text-xs font-semibold text-slate-700 outline-none w-44" placeholder="Nhập địa chỉ của bạn...">
+                </div>
+                <button onclick="getCurrentLocation()" title="Lấy vị trí GPS hiện tại" class="text-rose-600 hover:text-rose-700 p-1 rounded-lg hover:bg-rose-50 transition-colors">
+                    <i class="fa-solid fa-crosshairs text-sm"></i>
+                </button>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                <a href="#media-hub-section" class="hidden lg:flex items-center space-x-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-3.5 py-2.5 rounded-2xl transition-colors text-xs">
+                    <i class="fa-brands fa-tiktok text-slate-900"></i>
+                    <span>Báo Chí & TikTok</span>
+                </a>
+                <button onclick="openAiModal()" class="flex items-center space-x-2 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white font-bold px-4 py-2.5 rounded-2xl shadow-lg shadow-indigo-500/25 transition-all transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i>
+                    <span class="text-sm">Đầu Bếp AI</span>
+                </button>
+                <button onclick="openWheelModal()" class="flex items-center space-x-2 bg-gradient-to-r from-rose-500 to-amber-500 hover:from-rose-600 hover:to-amber-600 text-white font-bold px-4 py-2.5 rounded-2xl shadow-lg shadow-rose-500/25 transition-all transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-dharmachakra text-amber-200 animate-spin-slow"></i>
+                    <span class="text-sm">Vòng Quay May Mắn</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION & SEARCH -->
+   <!-- HERO SECTION & SEARCH -->
+    <section class="relative bg-slate-900 text-white py-14 px-4 overflow-hidden">
+        <!-- Ảnh nền Hero -->
+        <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzUuT010QV8m9wwovG-v0GxI1d2i2jat-GrvaLMYoHyQ&s=10"
+            alt="Background Ẩm Thực Hà Nội"
+            class="absolute inset-0 w-full h-full object-cover opacity-40"
+            onerror="this.style.display='none';"
+        >
+        <!-- Lớp phủ gradient giúp chữ và ô tìm kiếm luôn rõ nét -->
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-rose-950/60 to-slate-900/90"></div>
+        <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#f43f5e_1px,transparent_1px)] [background-size:16px_16px]"></div>
+
+        <div class="max-w-4xl mx-auto text-center relative z-10 space-y-6">
+            <!-- Giữ nguyên toàn bộ nội dung bên trong Hero như cũ -->
+                <span>Khám phá trọn vẹn 38 đặc sản & đồ uống tinh hoa Hà Nội</span>
+            </span>
+            <h2 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+                Hôm nay bạn muốn đớp <span class="bg-gradient-to-r from-amber-300 to-rose-300 bg-clip-text text-transparent">món gì ngon?</span>
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto">
+                Từ phở bún truyền thống, đồ ăn vặt phố cổ, các món nhậu đặc sắc đến 14 thức uống trứ danh kèm bài báo giới thiệu, video review TikTok và chỉ đường chi tiết.
+            </p>
+
+            <!-- Quick Lucky Wheel CTA -->
+            <div class="pt-1">
+                <button onclick="openWheelModal()" class="inline-flex items-center space-x-2.5 bg-amber-400 hover:bg-amber-300 text-slate-900 font-black px-6 py-3 rounded-2xl shadow-xl shadow-amber-500/30 transition-all transform hover:scale-105 text-sm">
+                    <i class="fa-solid fa-dharmachakra text-rose-600 text-lg animate-spin-slow"></i>
+                    <span>Khó chọn quá? Quay Vòng Quay May Mắn Ngay!</span>
+                </button>
+            </div>
+
+            <!-- Search Bar & District Filter -->
+            <div class="bg-white p-3 rounded-3xl shadow-2xl max-w-2xl mx-auto flex flex-col sm:flex-row items-center gap-3">
+                <div class="flex items-center flex-1 w-full px-3 py-2 bg-slate-50 rounded-2xl border border-slate-200">
+                    <i class="fa-solid fa-magnifying-glass text-slate-400 mr-3"></i>
+                    <input type="text" id="search-input" oninput="handleSearch()" placeholder="Tìm món ăn, đồ uống, nguyên liệu (ví dụ: Phở, trà chanh, thịt chó...)" class="bg-transparent w-full text-slate-800 text-sm font-medium outline-none placeholder:text-slate-400">
+                </div>
+                <div class="w-full sm:w-48">
+                    <select id="district-filter" onchange="handleSearch()" class="w-full bg-slate-50 text-slate-700 text-sm font-semibold px-4 py-3 rounded-2xl border border-slate-200 outline-none cursor-pointer">
+                        <option value="all">Tất cả quận Hà Nội</option>
+                        <option value="Hoàn Kiếm">Quận Hoàn Kiếm</option>
+                        <option value="Đống Đa">Quận Đống Đa</option>
+                        <option value="Cầu Giấy">Quận Cầu Giấy</option>
+                        <option value="Hai Bà Trưng">Quận Hai Bà Trưng</option>
+                        <option value="Ba Đình">Quận Ba Đình</option>
+                        <option value="Tây Hồ">Quận Tây Hồ</option>
+                        <option value="Thanh Xuân">Quận Thanh Xuân</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATEGORIES / TABS -->
+    <div class="sticky top-20 z-30 bg-slate-50/95 backdrop-blur-md border-b border-slate-200 py-3 px-4 shadow-sm">
+        <div class="max-w-7xl mx-auto flex items-center space-x-2 overflow-x-auto hide-scrollbar" id="categories-container">
+            <!-- Dynamic categories rendered by JS -->
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT: DISH GRID -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full space-y-16">
+        <!-- SECTION 1: 38 DISHES & DRINKS -->
+        <section>
+            <div class="flex items-center justify-between mb-6">
+                <h3 id="section-title" class="text-xl font-black text-slate-800 flex items-center space-x-2">
+                    <i class="fa-solid fa-bowl-food text-rose-600"></i>
+                    <span>Danh Sách 38 Món Ngon & Đồ Uống Hà Nội</span>
+                </h3>
+                <span id="dish-count" class="text-xs font-bold bg-rose-100 text-rose-700 px-3 py-1.5 rounded-full">38 món</span>
+            </div>
+
+            <!-- Dishes Grid -->
+            <div id="dishes-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Rendered by JS -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="empty-state" class="hidden text-center py-16">
+                <div class="w-20 h-20 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+                    <i class="fa-solid fa-face-frown"></i>
+                </div>
+                <h4 class="text-lg font-bold text-slate-800">Không tìm thấy món ăn hoặc đồ uống phù hợp</h4>
+                <p class="text-slate-500 text-sm mt-1">Hãy thử tìm với từ khóa khác hoặc nhờ Vòng Quay May Mắn chọn nhé!</p>
+                <button onclick="resetFilters()" class="mt-4 bg-rose-600 text-white font-bold px-5 py-2.5 rounded-xl shadow-md hover:bg-rose-700 transition-colors text-sm">
+                    Xem tất cả 38 món
+                </button>
+            </div>
+        </section>
+
+        <!-- SECTION 2: BÁO CHÍ & TIKTOK ẨM THỰC HÀ NỘI -->
+        <section id="media-hub-section" class="pt-10 border-t border-slate-200 space-y-10">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <span class="inline-flex items-center space-x-2 bg-rose-100 text-rose-700 text-xs font-extrabold px-3.5 py-1 rounded-full uppercase tracking-wider mb-2">
+                        <i class="fa-solid fa-newspaper"></i>
+                        <span>Góc Truyền Thông & Xu Hướng</span>
+                    </span>
+                    <h3 class="text-2xl sm:text-3xl font-black text-slate-900">Báo Chí & TikTok Ẩm Thực Hà Nội</h3>
+                    <p class="text-slate-500 text-sm mt-1">Tổng hợp bài viết chuyên sâu từ các trang báo uy tín và video review triệu view trên TikTok.</p>
+                </div>
+                <button onclick="refreshMediaHub()" class="self-start md:self-auto inline-flex items-center space-x-2 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 font-bold text-xs px-4 py-2.5 rounded-2xl shadow-sm transition-colors">
+                    <i class="fa-solid fa-rotate text-rose-600"></i>
+                    <span>Đổi Gợi Ý Mới</span>
+                </button>
+            </div>
+
+            <!-- Featured TikTok Strip -->
+            <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <h4 class="text-lg font-extrabold text-slate-800 flex items-center space-x-2">
+                        <span class="w-8 h-8 rounded-xl bg-slate-900 text-white flex items-center justify-center text-sm shadow">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </span>
+                        <span>Video Review Hot Trên TikTok</span>
+                    </h4>
+                    <span class="text-xs font-semibold text-slate-400">Bấm vào thẻ để xem món ăn hoặc mở TikTok</span>
+                </div>
+                <div id="hub-tiktok-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+
+            <!-- Featured Press Articles -->
+            <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <h4 class="text-lg font-extrabold text-slate-800 flex items-center space-x-2">
+                        <span class="w-8 h-8 rounded-xl bg-rose-600 text-white flex items-center justify-center text-sm shadow">
+                            <i class="fa-solid fa-book-open"></i>
+                        </span>
+                        <span>Bài Báo Giới Thiệu Đặc Sản Hà Thành</span>
+                    </h4>
+                </div>
+                <div id="hub-articles-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- LUCKY WHEEL MODAL (VÒNG QUAY MAY MẮN) -->
+    <div id="wheel-modal" class="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-md hidden items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl space-y-5 text-center relative transform transition-all scale-95 opacity-0 duration-300" id="wheel-modal-content">
+            <!-- Close Button -->
+            <button onclick="closeWheelModal()" class="absolute top-4 right-4 w-10 h-10 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="space-y-1">
+                <span class="inline-flex items-center space-x-1.5 bg-amber-100 text-amber-800 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+                    <i class="fa-solid fa-sparkles text-amber-600"></i>
+                    <span>Vòng Quay Định Mệnh</span>
+                </span>
+                <h3 class="text-2xl font-black text-slate-900 pt-1">Hôm Nay Ăn Gì? Uống Gì?</h3>
+                <p class="text-xs text-slate-500">Chọn danh mục hoặc quay ngẫu nhiên 10 món ngon & đồ uống Hà Nội trên vòng quay!</p>
+            </div>
+
+            <!-- Category Filter for Wheel -->
+            <div class="flex items-center justify-center gap-2 flex-wrap">
+                <select id="wheel-category-select" onchange="prepareWheelDishes()" class="bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold px-3.5 py-2 rounded-xl outline-none cursor-pointer">
+                    <option value="all">🎲 Ngẫu nhiên từ 38 món</option>
+                    <option value="soup">🍜 Chỉ Món Nước</option>
+                    <option value="lunch">🍛 Chỉ Món Cơm & Bún</option>
+                    <option value="snack">🍢 Chỉ Món Ăn Vặt</option>
+                    <option value="fast">🥖 Chỉ Món Nhanh Gọn</option>
+                    <option value="special">🍻 Chỉ Đặc Sản Nhậu</option>
+                    <option value="drink">🧋 Chỉ Đồ Uống & Tráng Miệng (14 món)</option>
+                </select>
+                <button onclick="prepareWheelDishes()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold px-3.5 py-2 rounded-xl transition-colors flex items-center space-x-1.5">
+                    <i class="fa-solid fa-shuffle text-rose-600"></i>
+                    <span>Đổi danh sách trên vòng</span>
+                </button>
+            </div>
+
+            <!-- Wheel Canvas & Pointer Container -->
+            <div class="relative w-72 h-72 sm:w-80 sm:h-80 mx-auto flex items-center justify-center my-2">
+                <!-- Pointer (Kim chỉ hướng 12 giờ) -->
+                <div class="absolute -top-3.5 z-20 flex flex-col items-center drop-shadow-md">
+                    <div class="w-4 h-4 rounded-full bg-slate-900 border-2 border-white"></div>
+                    <div class="w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[22px] border-t-rose-600 -mt-1"></div>
+                </div>
+                
+                <!-- Outer Ring Glow -->
+                <div class="absolute inset-0 rounded-full border-8 border-amber-400/40 pointer-events-none"></div>
+
+                <!-- Canvas Vòng Quay -->
+                <canvas id="lucky-wheel-canvas" width="340" height="340" class="w-full h-full rounded-full shadow-2xl border-4 border-slate-900 wheel-transition"></canvas>
+                
+                <!-- Nút Quay Giữa Tâm -->
+                <button onclick="startSpinning()" id="spin-center-btn" class="absolute z-10 w-16 h-16 bg-gradient-to-tr from-slate-900 to-slate-800 hover:from-rose-600 hover:to-amber-500 text-white rounded-full font-black text-xs shadow-2xl flex items-center justify-center uppercase tracking-wider border-4 border-white transform hover:scale-105 transition-all cursor-pointer">
+                    QUAY
+                </button>
+            </div>
+
+            <!-- Kết quả quay -->
+            <div id="wheel-result-box" class="hidden bg-gradient-to-r from-rose-50 to-amber-50 border border-rose-200 rounded-2xl p-4 space-y-2.5">
+                <p class="text-xs font-extrabold text-rose-600 uppercase tracking-wide">🎉 Chúc mừng! Hôm nay lựa chọn của bạn là:</p>
+                <h4 id="wheel-result-name" class="text-xl font-black text-slate-900">Tên Món Ăn</h4>
+                <p id="wheel-result-meta" class="text-xs text-slate-600 font-semibold"></p>
+                <div class="pt-1 flex items-center justify-center gap-2">
+                    <button id="wheel-view-btn" onclick="" class="bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-md transition-colors flex items-center space-x-1.5">
+                        <i class="fa-solid fa-utensils"></i>
+                        <span>Xem chi tiết, TikTok & Chỉ đường</span>
+                    </button>
+                </div>
+            </div>
+
+            <button onclick="startSpinning()" id="spin-main-btn" class="w-full bg-gradient-to-r from-rose-600 to-amber-500 hover:from-rose-700 hover:to-amber-600 text-white font-extrabold py-3.5 rounded-2xl shadow-lg shadow-rose-500/25 transition-all text-sm flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-dharmachakra text-amber-200"></i>
+                <span>Quay Vòng Quay Ngay</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- DISH DETAIL, MEDIA & MAP MODAL -->
+    <div id="dish-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl transform transition-all scale-95 opacity-0 duration-300" id="dish-modal-content">
+            <!-- Modal Header with Image -->
+            <div class="relative h-72 sm:h-80 w-full overflow-hidden bg-slate-900">
+                <img id="modal-image" src="" alt="" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/800x500/e11d48/ffffff?text=Mon+Ngon+Ha+Noi';">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+                <button onclick="closeDishModal()" class="absolute top-4 right-4 w-10 h-10 bg-slate-900/60 hover:bg-slate-900 text-white rounded-full flex items-center justify-center backdrop-blur-md transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+                <div class="absolute bottom-6 left-6 right-6 text-white">
+                    <span id="modal-category" class="bg-rose-600 text-white text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">Món Nước</span>
+                    <h2 id="modal-name" class="text-2xl sm:text-4xl font-black mt-2">Tên Món Ăn</h2>
+                    <div class="flex items-center space-x-4 mt-2 text-xs sm:text-sm text-slate-300">
+                        <span><i class="fa-solid fa-clock text-amber-400 mr-1.5"></i><span id="modal-time">15 phút</span></span>
+                        <span><i class="fa-solid fa-tag text-emerald-400 mr-1.5"></i><span id="modal-price">35.000đ - 55.000đ</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6 sm:p-8 space-y-7">
+                <!-- Flavor Profile Description -->
+                <div>
+                    <h4 class="text-sm font-black uppercase text-slate-400 tracking-wider mb-2">Mô Tả Hương Vị</h4>
+                    <p id="modal-desc" class="text-slate-700 text-base leading-relaxed font-medium bg-slate-50 p-4 rounded-2xl border border-slate-100"></p>
+                </div>
+
+                <!-- Flavor Chart / Metrics -->
+                <div>
+                    <h4 class="text-sm font-black uppercase text-slate-400 tracking-wider mb-3">Chỉ Số Vị Giác</h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="modal-flavors">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+
+                <!-- Ingredients -->
+                <div>
+                    <h4 class="text-sm font-black uppercase text-slate-400 tracking-wider mb-2">Nguyên Liệu Chính</h4>
+                    <div id="modal-ingredients" class="flex flex-wrap gap-2">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+
+                <!-- BÀI BÁO GIỚI THIỆU MÓN ĂN -->
+                <div class="border-t border-slate-100 pt-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="text-lg font-extrabold text-slate-800 flex items-center space-x-2">
+                            <i class="fa-solid fa-newspaper text-rose-600"></i>
+                            <span>Góc Báo Chí & Review Ẩm Thực</span>
+                        </h4>
+                        <span class="text-xs font-bold text-slate-400">Bài viết chọn lọc</span>
+                    </div>
+                    <div id="modal-articles" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+
+                <!-- BÀI ĐĂNG & VIDEO TIKTOK LIÊN QUAN -->
+                <div class="border-t border-slate-100 pt-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="text-lg font-extrabold text-slate-800 flex items-center space-x-2">
+                            <span class="w-7 h-7 rounded-lg bg-slate-900 text-white flex items-center justify-center text-xs">
+                                <i class="fa-brands fa-tiktok"></i>
+                            </span>
+                            <span>Video & Bài Đăng TikTok Liên Quan</span>
+                        </h4>
+                        <a id="modal-tiktok-all-link" href="#" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-rose-600 hover:text-rose-700 flex items-center space-x-1">
+                            <span>Xem thêm trên TikTok</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                    <div id="modal-tiktoks" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+
+                <!-- Locations & Route Guidance -->
+                <div class="border-t border-slate-100 pt-6">
+                    <h4 class="text-lg font-extrabold text-slate-800 mb-4 flex items-center space-x-2">
+                        <i class="fa-solid fa-map-location-dot text-rose-600"></i>
+                        <span>Địa Điểm & Chỉ Đường Tại Hà Nội</span>
+                    </h4>
+                    <div id="modal-locations" class="space-y-4">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI CHEF MODAL -->
+    <div id="ai-modal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-black text-slate-800">Đầu Bếp AI Thông Minh</h3>
+                        <p class="text-xs text-slate-500 font-semibold">Gợi ý món ăn & đồ uống chuẩn gu theo tâm trạng, thời tiết</p>
+                    </div>
+                </div>
+                <button onclick="closeAiModal()" class="w-8 h-8 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-400 mb-1.5">Thời tiết / Tâm trạng / Món đang thèm?</label>
+                    <input type="text" id="ai-prompt" onkeydown="if(event.key==='Enter') askAiChef()" placeholder="Ví dụ: Trời se lạnh thèm thịt chó, hay nắng nóng muốn uống trà chanh..." class="w-full bg-slate-50 border border-slate-200 rounded-2xl px-4 py-3 text-sm font-medium text-slate-800 outline-none focus:border-indigo-500">
+                </div>
+
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="setAiPrompt('Trời se lạnh, thèm món nhậu ấm cúng')" class="text-xs bg-slate-100 hover:bg-indigo-50 hover:text-indigo-600 text-slate-600 font-semibold px-3 py-1.5 rounded-xl transition-colors">🍻 Trời se lạnh thèm nhậu</button>
+                    <button onclick="setAiPrompt('Hôm nay đói bụng, cần ăn cơm no')" class="text-xs bg-slate-100 hover:bg-indigo-50 hover:text-indigo-600 text-slate-600 font-semibold px-3 py-1.5 rounded-xl transition-colors">🍛 Đói bụng ăn cơm</button>
+                    <button onclick="setAiPrompt('Nắng nóng khát nước, muốn uống đồ giải nhiệt')" class="text-xs bg-slate-100 hover:bg-indigo-50 hover:text-indigo-600 text-slate-600 font-semibold px-3 py-1.5 rounded-xl transition-colors">🧋 Khát nước giải nhiệt</button>
+                    <button onclick="setAiPrompt('Thèm món thanh đạm, ít dầu mỡ')" class="text-xs bg-slate-100 hover:bg-indigo-50 hover:text-indigo-600 text-slate-600 font-semibold px-3 py-1.5 rounded-xl transition-colors">🥗 Thanh đạm nhẹ nhàng</button>
+                </div>
+
+                <button onclick="askAiChef()" id="ai-submit-btn" class="w-full bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white font-bold py-3.5 rounded-2xl shadow-lg shadow-indigo-500/25 transition-all flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-sparkles text-amber-300"></i>
+                    <span>AI Gợi Ý Ngay</span>
+                </button>
+            </div>
+
+            <!-- AI Result Box -->
+            <div id="ai-result" class="hidden bg-indigo-50/70 border border-indigo-100 rounded-2xl p-5 space-y-4">
+                <div class="flex items-center space-x-2 text-indigo-700 font-black text-sm">
+                    <i class="fa-solid fa-hat-chef text-lg"></i>
+                    <span>Đầu Bếp AI Đề Xuất:</span>
+                </div>
+                <div id="ai-result-content" class="text-slate-700 text-sm leading-relaxed space-y-2">
+                    <!-- Dynamic content -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NOTIFICATION TOAST -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center space-x-3 text-sm font-semibold">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400"></i>
+        <span id="toast-msg">Thông báo thành công</span>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-slate-200 py-8 px-4 text-center text-slate-500 text-xs sm:text-sm mt-auto">
+        <div class="max-w-7xl mx-auto space-y-2">
+            <p class="font-bold text-slate-700">Hôm Nay Ăn Gì? - 38 Món Ngon, Đặc Sản & Đồ Uống Hà Nội Cùng Vòng Quay May Mắn</p>
+            <p>© 2026 Bản quyền thuộc về Bạn. Chúc bạn có những trải nghiệm ẩm thực tuyệt vời nhất!</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // 38 Món Ăn & Đồ Uống Đặc Sản Hà Nội Đầy Đủ Ảnh & Địa Điểm
+        const dishes = [
+            {
+                id: 1,
+                name: "Phở Bò Tái Chín",
+                category: "soup",
+                categoryName: "Món Nước",
+                district: "Hoàn Kiếm",
+                image: "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?auto=format&fit=crop&w=800&q=80",
+                fallbackImage: "https://placehold.co/800x500/e11d48/ffffff?text=Pho+Bo+Ha+Noi",
+                time: "15 phút",
+                price: "45.000đ - 65.000đ",
+                description: "Quốc hồn quốc túy ẩm thực Hà Thành. Nước dùng ninh từ xương ống và sá sụn trong veo, ngọt thanh tự nhiên đậm mùi quế hồi thảo quả. Bánh phở mềm dai quyện cùng thịt bò tái chín ngọt thịt và hành hoa thơm phức.",
+                flavors: { sweet: 70, rich: 85, spicy: 30, fresh: 90 },
+                ingredients: ["Bánh phở tươi", "Thịt bò tái/chín", "Xương ống bò", "Hành hoa", "Quế, hồi, thảo quả"],
+                locations: [
+                    { name: "Phở Bát Đàn (Gia truyền)", address: "49 Bát Đàn, Cửa Đông, Hoàn Kiếm, Hà Nội", rating: "4.7", hours: "06:00 - 10:30", price: "50.000đ - 77.000đ" },
+                    { name: "Phở Lý Quốc Sư", address: "10 Lý Quốc Sư, Hàng Trống, Hoàn Kiếm, Hà Nội", rating: "4.6", hours: "06:30 - 22:00", price: "50.000đ - 88.000đ" }
+                ]
+            },
+            {
+                id: 2,
+                name: "Bún Chả Quạt Than Hoa",
+                category: "lunch",
+                categoryName: "Món Cơm & Bún",
+                district: "Hoàn Kiếm",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuZmfuZwbL-tvu7mPyRgFmRjJwhcZG5X33IRVEHRrbww&s=10",
+                fallbackImage: "https://placehold.co/800x500/f59e0b/ffffff?text=Bun+Cha+Ha+Noi",
+                time: "20 phút",
+                price: "40.000đ - 60.000đ",
+                description: "Món ăn từng làm say lòng cố đầu bếp Anthony Bourdain và Tổng thống Obama. Chả viên và chả miếng được kẹp tre tươi nướng trên bếp than hoa thơm lừng khói, ăn kèm nước chấm chua ngọt ấm và đĩa bún lá cùng rau sống tươi mát.",
+                flavors: { sweet: 80, rich: 75, spicy: 40, fresh: 85 },
+                ingredients: ["Thịt ba chỉ", "Thịt nạc vai", "Bún tươi", "Nước mắm pha", "Đu đủ xanh, cà rốt", "Rau sống các loại"],
+                locations: [
+                    { name: "Bún Chả Hàng Mành (Đắc Kim)", address: "1 Hàng Mành, Hàng Gai, Hoàn Kiếm, Hà Nội", rating: "4.5", hours: "09:00 - 21:00", price: "60.000đ - 90.000đ" },
+                    { name: "Bún Chả Sinh Từ", address: "57 Nguyễn Khuyến, Văn Miếu, Đống Đa, Hà Nội", rating: "4.4", hours: "07:00 - 21:00", price: "45.000đ - 70.000đ" }
+                ]
+            },
+            {
+                id: 3,
+                name: "Bún Đậu Mắm Tôm Mẹt",
+                category: "snack",
+                categoryName: "Món Ăn Vặt",
+                district: "Hoàn Kiếm",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcElEGkTy5hkFoSQz3uhu4mVUZ1A0h2EQG5KuZ6mYMaw&s=10",
+                fallbackImage: "https://placehold.co/800x500/10b981/ffffff?text=Bun+Dau+Mam+Tom",
+                time: "15 phút",
+                price: "35.000đ - 60.000đ",
+                description: "Mẹt bún đầy đặn gồm bún lá cắt miếng, đậu hũ rán giòn rụm ngoài mềm trong béo, chả cốm dẻo thơm, thịt chân giò luộc thái mỏng và lòng rán. Chấm ngập chén mắm tôm đánh sủi bọt thơm nức mũi với quất và ớt tươi.",
+                flavors: { sweet: 30, rich: 95, spicy: 70, fresh: 80 },
+                ingredients: ["Bún lá", "Đậu hũ mơ", "Chả cốm", "Thịt chân giò", "Mắm tôm nguyên chất", "Rau kinh giới, tía tô"],
+                locations: [
+                    { name: "Bún Đậu Ngõ Trạm", address: "1/1 Ngõ Trạm, Hàng Bông, Hoàn Kiếm, Hà Nội", rating: "4.7", hours: "10:00 - 14:00", price: "40.000đ - 70.000đ" },
+                    { name: "Bún Đậu Hàng Khay (Cây Đa)", address: "Ngõ 31 Hàng Khay, Tràng Tiền, Hoàn Kiếm, Hà Nội", rating: "4.6", hours: "10:00 - 18:00", price: "45.000đ - 80.000đ" }
+                ]
+            },
+            {
+                id: 4,
+                name: "Bún Riêu Cua Sườn Sụn",
+                category: "soup",
+                categoryName: "Món Nước",
+                district: "Hai Bà Trưng",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO9eDDKBB6Sc_XQJpCuFdAuH5YO21qPFjAFS-LshrOOA&s=10",
+                fallbackImage: "https://placehold.co/800x500/ef4444/ffffff?text=Bun+Rieu+Cua",
+                time: "15 phút",
+                price: "40.000đ - 60.000đ",
+                description: "Nước dùng chua thanh đậm vị giấm bỗng và cà chua chưng gạch cua béo ngậy. Bát bún ngập tràn riêu cua đồng thơm phức, đậu phụ rán giòn, sườn sụn ninh nhừ sần sật và giò tai giòn sần sật.",
+                flavors: { sweet: 60, rich: 80, spicy: 50, fresh: 95 },
+                ingredients: ["Bún tươi", "Gạch cua đồng", "Sườn sụn non", "Cà chua", "Giấm bỗng", "Hành phi, rau muống chẻ"],
+                locations: [
+                    { name: "Bún Riêu Cua Sườn Sụn Quang Trung", address: "41 Quang Trung, Trần Hưng Đạo, Hoàn Kiếm, Hà Nội", rating: "4.6", hours: "06:30 - 14:00", price: "45.000đ - 65.000đ" },
+                    { name: "Bún Riêu Ngõ Thọ Xương", address: "14 Ngõ Thọ Xương, Hàng Trống, Hoàn Kiếm, Hà Nội", rating: "4.5", hours: "07:00 - 15:00", price: "40.000đ - 60.000đ" }
+                ]
+            },
+            {
+                id: 5,
+                name: "Bánh Mì Chảo Hòa Mã",
+                category: "fast",
+                categoryName: "Món Nhanh Gọn",
+                district: "Hai Bà Trưng",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrvDyvEUhRFQcbP_ENcgC3c0ZFfcU9E-ubHATrnQ0_eA&s=10",
+                fallbackImage: "https://placehold.co/800x500/d97706/ffffff?text=Banh+Mi+Chao",
+                time: "10 phút",
+                price: "45.000đ - 70.000đ",
+                description: "Món ăn sáng kinh điển giữ nguyên vị chảo gang nóng hổi với trứng ốp la lòng đào, pate gan thơm béo, xúc xích Đức, thịt nguội và sốt cà chua đậm đà, chấm cùng bánh mì đặc ruột giòn rụm.",
+                flavors: { sweet: 40, rich: 90, spicy: 40, fresh: 70 },
+                ingredients: ["Bánh mì nóng giòn", "Trứng ốp la", "Pate gan", "Xúc xích, thịt nguội", "Sốt cà chua bơ"],
+                locations: [
+                    { name: "Bánh Mì Chảo Hòa Mã", address: "53 Cửa Đông, Hoàn Kiếm, Hà Nội", rating: "4.5", hours: "06:00 - 11:30", price: "50.000đ - 80.000đ" },
+                    { name: "Bánh Mì Chảo Cột Điện Quán", address: "71 Đặng Văn Ngữ, Đống Đa, Hà Nội", rating: "4.4", hours: "07:00 - 21:00", price: "40.000đ - 65.000đ" }
+                ]
+            },
+            {
+                id: 6,
+                name: "Cơm Tấm Sườn Bì Chả",
+                category: "lunch",
+                categoryName: "Món Cơm & Bún",
+                district: "Đống Đa",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbEqgR3k6WTSMqqYT0oBvseNzbV_dlNjnleBNoAGzJKQ&s=10",
+                fallbackImage: "https://placehold.co/800x500/84cc16/ffffff?text=Com+Tam+Ha+Noi",
+                time: "15 phút",
+                price: "50.000đ - 80.000đ",
+                description: "Đĩa cơm tấm hạt vỡ dẻo thơm ăn kèm sườn cốt lết nướng mật ong thơm lừng đậm đà, bì thính sần sật, chả trứng hấp béo ngậy và bát nước mắm chua ngọt sánh kẹo cùng mỡ hành.",
+                flavors: { sweet: 65, rich: 85, spicy: 40, fresh: 80 },
+                ingredients: ["Gạo tấm", "Sườn cốt lết", "Bì heo thái sợi", "Chả trứng", "Nước mắm mỡ hành"],
+                locations: [
+                    { name: "Cơm Tấm S vị Sài Gòn", address: "10 Đào Duy Từ, Hàng Buồm, Hoàn Kiếm, Hà Nội", rating: "4.5", hours: "10:00 - 21:00", price: "55.000đ - 85.000đ" },
+                    { name: "Cơm Tấm Ali", address: "304 Phố Huế, Hai Bà Trưng, Hà Nội", rating: "4.4", hours: "09:00 - 21:00", price: "50.000đ - 75.000đ" }
+                ]
+            },
+            {
+                id: 7,
+                name: "Mì Vằn Thắn Sủi Cảo",
+                category: "soup",
+                categoryName: "Món Nước",
+                district: "Hoàn Kiếm",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5FwTIQPZLLJz2lr4PdLQHImG5lNnpCtYYSrIXyXk49g&s=10",
+                fallbackImage: "https://placehold.co/800x500/06b6d4/ffffff?text=Mi+Van+Than",
+                time: "15 phút",
+                price: "45.000đ - 65.000đ",
+                description: "Món mì gốc Hoa với nước dùng ngọt đậm đà từ xương hầm và tôm khô. Sợi mì trứng vàng dai giòn đặc trưng, ăn kèm hoành thánh (vằn thắn) nhân thịt tôm thơm ngọt, xá xíu thái mỏng, trứng cút và cải ngọt.",
+                flavors: { sweet: 60, rich: 80, spicy: 20, fresh: 85 },
+                ingredients: ["Sợi mì trứng", "Hoành thánh nhân tôm thịt", "Thịt xá xíu", "Trứng cút", "Xương hầm, tôm khô"],
+                locations: [
+                    { name: "Mì Vằn Thắn Đinh Liệt", address: "9 Đinh Liệt, Hàng Đào, Hoàn Kiếm, Hà Nội", rating: "4.6", hours: "07:00 - 22:00", price: "45.000đ - 70.000đ" },
+                    { name: "Mì Vằn Thắn Hòa Mã", address: "48 Hàng Chiếu, Hoàn Kiếm, Hà Nội", rating: "4.5", hours: "07:00 - 13:00", price: "50.000đ - 75.000đ" }
+                ]
+            },
+            {
+                id: 8,
+                name: "Bánh Cuốn Nóng Chả Quế",
+                category: "fast",
+                categoryName: "Món Nhanh Gọn",
+                district: "Hoàn Kiếm",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYng8K_vWwi-4PimqYWktzbC5u4-ocf0sn82XXULK8aw&s=10",
+                fallbackImage: "https://placehold.co/800x500/8b5cf6/ffffff?text=Banh+Cuon+Nong",
+                time: "10 phút",
+                price: "35.000đ - 50.000đ",
+                description: "Lớp bánh cuốn tráng mỏng tang mướt mịn bọc nhân thịt mộc nhĩ băm nhỏ, rắc hành phi vàng ruộm thơm phức. Ăn kèm chả quế thơm mùi quế tiêu, giò lụa và chén nước chấm mắm mặn ấm có giọt tinh dầu cà cuống.",
+                flavors: { sweet: 50, rich: 70, spicy: 30, fresh: 90 },
+                ingredients: ["Bột gạo tẻ tráng mỏng", "Thịt băm, mộc nhĩ", "Chả quế, giò lụa", "Hành phi giòn", "Nước mắm cà cuống"],
+                locations: [
+                    { name: "Bánh Cuốn Gia An", address: "25 Thái Hà, Trung Liệt, Đống Đa, Hà Nội", rating: "4.5", hours: "06:00 - 21:00", price: "40.000đ - 65.000đ" },
+                    { name: "Bánh Cuốn Hàng Gà", address: "14 Hàng Gà, Hàng Bồ, Hoàn Kiếm, Hà Nội", rating: "4.6", hours: "06:00 - 13:00", price: "35.000đ - 55.000đ" }
+                ]
+            },
+            {
+                id: 9,
+                name: "Xôi Xéo Hành Phi",
+                category: "fast",
+                categoryName: "Món Nhanh Gọn",
+                district: "Hoàn Kiếm",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0XHJXgbRKWzLOTOsiUsBVHzk8p3hGUp-cFidGAFiLMA&s=10",
+                fallbackImage: "https://placehold.co/800x500/f59e0b/ffffff?text=Xoi+Xeo+Ha+Noi",
+                time: "5 phút",
+                price: "20.000đ - 35.000đ",
+                description: "Món xôi sáng truyền thống vàng óng màu nghệ tươi, hạt nếp dẻo thơm vị mỡ gà. Phủ bên trên là lớp đậu xanh đánh nhuyễn mịn thơm bùi, hành phi giòn tan tự làm và ruốc thịt đậm đà.",
+                flavors: { sweet: 40, rich: 85, spicy: 10, fresh: 70 },
+                ingredients: ["Gạo nếp cái hoa vàng", "Đậu xanh giã nhuyễn", "Hành phi vàng giòn", "Mỡ gà ta", "Ruốc heo"],
+                locations: [
+                    { name: "Xôi Xéo Cô Mây", address: "35 Lý Thường Kiệt, Hàng Bài, Hoàn Kiếm, Hà Nội", rating: "4.8", hours: "06:00 - 09:00", price: "20.000đ - 35.000đ" },
+                    { name: "Xôi Yến", address: "35B Nguyễn Hữu Huân, Lý Thái Tổ, Hoàn Kiếm, Hà Nội", rating: "4.4", hours: "06:00 - 00:00", price: "35.000đ - 65.000đ" }
+                ]
+            },
+            {
+                id: 10,
+                name: "Nem Chua Rán & Khoai Lắc",
+                category: "snack",
+                categoryName: "Món Ăn Vặt",
+                district: "Hoàn Kiếm",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-IyTS5wT1ldTYQ-j-TmaIJeMv16bA2Qce4aoE421rgg&s=10",
+                fallbackImage: "https://placehold.co/800x500/ec4899/ffffff?text=Nem+Chua+Ran",
+                time: "10 phút",
+                price: "30.000đ - 55.000đ",
+                description: "Món ăn vặt bất hủ của tuổi học trò Hà Nội. Nem chua tẩm bột mì rán giòn rụm bên ngoài, bên trong dẻo quánh thơm ngon. Chấm cùng tương ớt cay ngọt và ăn kèm dưa chuột tươi mát.",
+                flavors: { sweet: 50, rich: 80, spicy: 60, fresh: 75 },
+                ingredients: ["Nem chua", "Bột chiên xù", "Tương ớt đặc biệt", "Dưa chuột tươi"],
+                locations: [
+                    { name: "Nem Chua Rán Tạm Thương", address: "Ngõ Tạm Thương, Hàng Gai, Hoàn Kiếm, Hà Nội", rating: "4.5", hours: "14:00 - 23:00", price: "40.000đ - 70.000đ" },
+                    { name: "Nem Chua Rán Ngõ Huyện", address: "10 Ngõ Huyện, Hàng Trống, Hoàn Kiếm, Hà Nội", rating: "4.4", hours: "15:00 - 22:00", price: "35.000đ - 60.000đ" }
+                ]
+            },
+            {
+                id: 11,
+                name: "Cháo Sườn Sụn Quẩy Giòn",
+                category: "snack",
+                categoryName: "Món Ăn Vặt",
+                district: "Hoàn Kiếm",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBbU4QTGhkuTgqmD_ieswm2-QpiUUhye-28LWmZcmVWw&s=10",
+                fallbackImage: "https://placehold.co/800x500/14b8a6/ffffff?text=Chao+Suon+Ha+Noi",
+                time: "10 phút",
+                price: "25.000đ - 45.000đ",
+                description: "Cháo xay nhuyễn mịn như bột kem sánh đặc thơm mùi gạo mới, nấu cùng nước hầm sườn non và sụn sần sật. Rắc thêm ruốc heo mặn ngọt và quẩy giòn cắt nhỏ cùng chút tiêu bắc.",
+                flavors: { sweet: 30, rich: 75, spicy: 30, fresh: 80 },
+                ingredients: ["Gạo tẻ xay nhuyễn", "Sườn sụn non", "Quẩy giòn", "Ruốc thịt", "Hạt tiêu bắc"],
+                locations: [
+                    { name: "Cháo Sườn Sụn Đồng Xuân", address: "Đầu ngõ chợ Đồng Xuân, Hoàn Kiếm, Hà Nội", rating: "4.6", hours: "18:00 - 00:00", price: "30.000đ - 50.000đ" },
+                    { name: "Cháo Sườn Hàng Bồ", address: "32 Hàng Bồ, Hoàn Kiếm, Hà Nội", rating: "4.5", hours: "06:30 - 10:00", price: "25.000đ - 40.000đ" }
+                ]
+            },
+            {
+                id: 12,
+                name: "Cà Phê Trứng Giảng",
+                category: "drink",
+                categoryName: "Đồ Uống & Tráng Miệng",
+                district: "Hoàn Kiếm",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQomdctAjdV8dYMof_OcWj0B72rv-o_8L7iFVYRadGwA&s=10",
+                fallbackImage: "https://placehold.co/800x500/d97706/ffffff?text=Ca+Phe+Trung",
+                time: "10 phút",
+                price: "30.000đ - 50.000đ",
+                description: "Thức uống độc đáo sáng tạo bởi người Hà Nội. Lớp lòng đỏ trứng gà đánh bông kem mịn màng, béo ngậy quyện hoàn hảo với cà phê phin đậm đà ấm nóng bên dưới.",
+                flavors: { sweet: 80, rich: 95, spicy: 10, fresh: 60 },
+                ingredients: ["Cà phê robusta phin", "Lòng đỏ trứng gà ta", "Sữa đặc có đường", "Bột cacao trang trí"],
+                locations: [
+                    { name: "Cà Phê Giảng", address: "39 Nguyễn Hữu Huân, Lý Thái Tổ, Hoàn Kiếm, Hà Nội", rating: "4.8", hours: "07:00 - 22:30", price: "35.000đ - 55.000đ" },
+                    { name: "Cà Phê Đinh", address: "13 Đinh Tiên Hoàng, Hàng Trống, Hoàn Kiếm, Hà Nội", rating: "4.6", hours: "07:00 - 21:30", price: "30.000đ - 50.000đ" }
+                ]
+            },
+            {
+                id: 13,
+                name: "Thịt Chó Đủ Món (Giả Cầy, Luộc, Nướng)",
+                category: "special",
+                categoryName: "Đặc Sản Nhậu",
+                district: "Cầu Giấy",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZ4i2pNqbuvfrzJErVWgx2uvM522YTqSELKDNx5Q6igw&s=10",
+                fallbackImage: "https://placehold.co/800x500/7c2d12/ffffff?text=Thit+Cho+Ha+Noi",
+                time: "30 phút",
+                price: "100.000đ - 250.000đ",
+                description: "Đặc sản nhậu truyền thống lâu đời của người Hà Nội với mẹt thịt đủ món: luộc (thịt ba chỉ kèm mắm tôm sả ớt), chả nướng thơm riềng mẻ, dồi chó béo ngậy và nhựa mận đậm đà ăn kèm rau mơ, húng quế.",
+                flavors: { sweet: 40, rich: 95, spicy: 60, fresh: 90 },
+                ingredients: ["Thịt chó tơ", "Riềng, mẻ, mắm tôm", "Sả, ớt tươi", "Lá mơ, húng chó", "Rượu nếp"],
+                locations: [
+                    { name: "Thịt chó Anh Tú (Nhật Tân)", address: "16 Trịnh Công Sơn, Tây Hồ, Hà Nội", rating: "4.6", hours: "09:00 - 22:00", price: "120.000đ - 250.000đ" },
+                    { name: "Quán Chó Mẹt Cầu Giấy", address: "155 Nguyễn Phong Sắc, Cầu Giấy, Hà Nội", rating: "4.5", hours: "10:00 - 21:30", price: "100.000đ - 200.000đ" }
+                ]
+            },
+            {
+                id: 14,
+                name: "Chả Cá Lã Vọng",
+                category: "special",
+                categoryName: "Đặc Sản Nhậu",
+                district: "Hoàn Kiếm",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXqTJj8Z_0tPUV2j59a3WuLPeSkISY5Sa_LLmyxGGSbw&s=10",
+                fallbackImage: "https://placehold.co/800x500/eab308/ffffff?text=Cha+Ca+La+Vong",
+                time: "25 phút",
+                price: "150.000đ - 250.000đ",
+                description: "Món ăn danh tiếng đất thủ đô. Những miếng cá lăng ướp nghệ tẩm gia vị được kẹp vỉ nướng qua rồi thả vào chảo mỡ sôi sùng sục cùng hành hoa và thì là ngập tràn. Ăn nóng với bún, mắm tôm và lạc rang.",
+                flavors: { sweet: 50, rich: 90, spicy: 40, fresh: 85 },
+                ingredients: ["Cá lăng tươi", "Nghệ, mẻ, mắm tôm", "Thì là, hành hoa", "Bún tươi, lạc rang"],
+                locations: [
+                    { name: "Chả Cá Lã Vọng", address: "14 Chả Cá, Hàng Bồ, Hoàn Kiếm, Hà Nội", rating: "4.5", hours: "11:00 - 21:00", price: "170.000đ - 250.000đ" },
+                    { name: "Chả Cá Thăng Long", address: "19 Đường Thành, Cửa Đông, Hoàn Kiếm, Hà Nội", rating: "4.6", hours: "10:00 - 22:00", price: "150.000đ - 230.000đ" }
+                ]
+            },
+            {
+                id: 15,
+                name: "Bún Thang Hà Nội",
+                category: "soup",
+                categoryName: "Món Nước",
+                district: "Hoàn Kiếm",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYAOUwFv6aAJ5C2-yNoDLmNnkWC7mSsQfU2ajoOt7XgA&s=10",
+                fallbackImage: "https://placehold.co/800x500/f59e0b/ffffff?text=Bun+Thang",
+                time: "15 phút",
+                price: "45.000đ - 65.000đ",
+                description: "Tượng đài sự tinh tế của ẩm thực Tràng An. Bát bún với tạo hình công phu như đóa hoa gồm trứng rán thái chỉ, giò lụa thái mỏng, thịt gà xé phay, nấm hương, củ cải khô và vài giọt tinh dầu cà cuống.",
+                flavors: { sweet: 70, rich: 65, spicy: 20, fresh: 95 },
+                ingredients: ["Bún sợi nhỏ", "Thịt gà ta", "Trứng tráng mỏng", "Giò lụa", "Tinh dầu cà cuống"],
+                locations: [
+                    { name: "Bún Thang Cầu Gỗ", address: "32 Cầu Gỗ, Hàng Bạc, Hoàn Kiếm, Hà Nội", rating: "4.5", hours: "07:00 - 22:00", price: "45.000đ - 70.000đ" },
+                    { name: "Bún Thang Hàng Hòm", address: "2 Hàng Hòm, Hàng Gai, Hoàn Kiếm, Hà Nội", rating: "4.4", hours: "07:00 - 13:00", price: "40.000đ - 60.000đ" }
+                ]
+            },
+            {
+                id: 16,
+                name: "Phở Cuốn Ngũ Xá",
+                category: "lunch",
+                categoryName: "Món Cơm & Bún",
+                district: "Ba Đình",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREnsrf7Fh2CnWXg-lvH2BAWTc2NSTaHW4C0oXs_tOhhQ&s=10",
+                fallbackImage: "https://placehold.co/800x500/10b981/ffffff?text=Pho+Cuon",
+                time: "15 phút",
+                price: "50.000đ - 75.000đ",
+                description: "Lớp bánh phở trắng mịn cuốn chặt thịt bò xào chín tới cùng rau sống, rau mùi và xà lách tươi mát. Chấm đẫm trong bát nước mắm chua ngọt pha tỏi ớt đu đủ xanh giòn rụm.",
+                flavors: { sweet: 60, rich: 60, spicy: 40, fresh: 95 },
+                ingredients: ["Bánh phở tấm", "Thịt bò xào tỏi", "Rau mùi, xà lách", "Nước mắm chua ngọt"],
+                locations: [
+                    { name: "Phở Cuốn Hưng Bền", address: "33 Ngũ Xá, Trúc Bạch, Ba Đình, Hà Nội", rating: "4.5", hours: "09:00 - 22:30", price: "55.000đ - 80.000đ" },
+                    { name: "Phở Cuốn Vinh Dung", address: "40 Ngũ Xá, Trúc Bạch, Ba Đình, Hà Nội", rating: "4.4", hours: "09:00 - 22:00", price: "50.000đ - 75.000đ" }
+                ]
+            },
+            {
+                id: 17,
+                name: "Bánh Tôm Hồ Tây",
+                category: "snack",
+                categoryName: "Món Ăn Vặt",
+                district: "Tây Hồ",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStmpBS02veP2qES3NQ5pJ4bSiV1uqb2ipZm1COIftdVQ&s=10",
+                fallbackImage: "https://placehold.co/800x500/f43f5e/ffffff?text=Banh+Tom+Ho+Tay",
+                time: "15 phút",
+                price: "70.000đ - 120.000đ",
+                description: "Món ăn gắn liền với tuổi thơ người Hà Nội bên hồ Trúc Bạch và Hồ Tây lộng gió. Những con tôm tươi nguyên con đặt trên lớp bột mì pha khoai lang bào sợi rán giòn vàng ruộm.",
+                flavors: { sweet: 50, rich: 85, spicy: 30, fresh: 80 },
+                ingredients: ["Tôm tươi Hồ Tây", "Khoai lang bào sợi", "Bột mì chiên giòn", "Rau sống, nước mắm"],
+                locations: [
+                    { name: "Nhà Hàng Bánh Tôm Hồ Tây", address: "1 Thanh Niên, Trúc Bạch, Ba Đình, Hà Nội", rating: "4.3", hours: "09:00 - 22:00", price: "80.000đ - 150.000đ" }
+                ]
+            },
+            {
+                id: 18,
+                name: "Bún Cá Sốt Chua Cần Đồ",
+                category: "soup",
+                categoryName: "Món Nước",
+                district: "Ba Đình",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8nn49kKW51p0KzFUxD_rkpSGfeM3VLoxMGR5tMB0bAQ&s=10",
+                fallbackImage: "https://placehold.co/800x500/06b6d4/ffffff?text=Bun+Ca",
+                time: "15 phút",
+                price: "40.000đ - 60.000đ",
+                description: "Bát bún cá nóng hổi với những miếng cá rô phi rán giòn rụm hoặc cá dầm ngọt thịt. Nước dùng chua dịu vị cà chua, dọc mùng sần sật và thơm mùi thì là, hành hoa.",
+                flavors: { sweet: 55, rich: 70, spicy: 40, fresh: 90 },
+                ingredients: ["Bún tươi", "Cá rô phi rán/dầm", "Dọc mùng, cà chua", "Thì là, hành lá"],
+                locations: [
+                    { name: "Bún Cá Hàng Đậu", address: "42 Hàng Đậu, Đồng Xuân, Hoàn Kiếm, Hà Nội", rating: "4.6", hours: "06:00 - 14:00", price: "40.000đ - 55.000đ" },
+                    { name: "Bún Cá Sâm Béo", address: "14 Ngõ Trung Yên, Hàng Bạc, Hoàn Kiếm, Hà Nội", rating: "4.5", hours: "07:00 - 17:00", price: "45.000đ - 60.000đ" }
+                ]
+            },
+            {
+                id: 19,
+                name: "Bánh Mì Phố Cổ",
+                category: "fast",
+                categoryName: "Món Nhanh Gọn",
+                district: "Hoàn Kiếm",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcy7lbe7ARNb76k0HEThh1_TnSAAkzNYXcHJ7vNxOYlw&s=10",
+                fallbackImage: "https://placehold.co/800x500/d97706/ffffff?text=Banh+Mi+Pho+Co",
+                time: "5 phút",
+                price: "25.000đ - 45.000đ",
+                description: "Bánh mì kẹp pate gan thơm ngậy, chả lụa, thịt xíu, xúc xích, dưa chuột và sốt bơ trứng đặc trưng. Vỏ bánh giòn rụm ăn một lần nhớ mãi.",
+                flavors: { sweet: 40, rich: 80, spicy: 40, fresh: 75 },
+                ingredients: ["Bánh mì giòn", "Pate gan", "Thịt nguội", "Dưa chuột, rau mùi", "Sốt bơ trứng"],
+                locations: [
+                    { name: "Bánh Mì 25", address: "25 Hàng Cá, Hàng Bồ, Hoàn Kiếm, Hà Nội", rating: "4.7", hours: "07:00 - 21:00", price: "30.000đ - 55.000đ" },
+                    { name: "Bánh Mì Phố Huế", address: "118 Phố Huế, Hai Bà Trưng, Hà Nội", rating: "4.6", hours: "06:00 - 22:00", price: "25.000đ - 50.000đ" }
+                ]
+            },
+            {
+                id: 20,
+                name: "Nộm Bò Khô Hồ Hoàn Kiếm",
+                category: "snack",
+                categoryName: "Món Ăn Vặt",
+                district: "Hoàn Kiếm",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1WhsNJE_brv_5fi5OXUNaY03JkAYAl-W7KIMnv91XbQ&s=10",
+                fallbackImage: "https://placehold.co/800x500/10b981/ffffff?text=Nom+Bo+Kho",
+                time: "10 phút",
+                price: "35.000đ - 50.000đ",
+                description: "Món nộm thanh mát gồm đu đủ xanh bào sợi, thịt bò khô cay ngọt đậm đà, gan sấy, lá gân bò thái mỏng, lạc rang giòn và rau kinh giới thơm phức trộn nước giấm chua ngọt.",
+                flavors: { sweet: 70, rich: 60, spicy: 60, fresh: 95 },
+                ingredients: ["Đu đủ bào sợi", "Thịt bò khô", "Gan sấy, gân bò", "Lạc rang, rau kinh giới", "Nước mắm chua ngọt"],
+                locations: [
+                    { name: "Nộm Long Vi Dung", address: "23 Hồ Đắc Di, Nam Đồng, Đống Đa, Hà Nội", rating: "4.6", hours: "14:00 - 21:30", price: "35.000đ - 55.000đ" },
+                    { name: "Nộm Bò Khô Phố Hồ Tây", address: "55 Mã Mây, Hàng Buồm, Hoàn Kiếm, Hà Nội", rating: "4.5", hours: "15:00 - 22:00", price: "40.000đ - 60.000đ" }
+                ]
+            },
+            {
+                id: 21,
+                name: "Bánh Giò Đông Ba",
+                category: "fast",
+                categoryName: "Món Nhanh Gọn",
+                district: "Ba Đình",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSAO_axffeiGctn7sbbaCY6WsV3LF7z7olACit64alEw&s=10",
+                fallbackImage: "https://placehold.co/800x500/8b5cf6/ffffff?text=Banh+Gio",
+                time: "5 phút",
+                price: "20.000đ - 35.000đ",
+                description: "Bánh giò nóng hổi bọc trong lớp lá chuối xanh. Bột bánh mềm mịn tan chảy trong miệng, bên trong nhân thịt băm mộc nhĩ đầy đặn ăn kèm giò lụa hoặc chả cốm.",
+                flavors: { sweet: 30, rich: 85, spicy: 20, fresh: 70 },
+                ingredients: ["Bột gạo tẻ", "Thịt băm, mộc nhĩ", "Hành phi", "Giò lụa / chả cốm"],
+                locations: [
+                    { name: "Bánh Giò Thụy Khuê", address: "5 Thụy Khuê, Tây Hồ, Hà Nội", rating: "4.6", hours: "06:00 - 03:00", price: "25.000đ - 40.000đ" },
+                    { name: "Bánh Giò Đông Xương", address: "33 Nguyễn Công Trứ, Hai Bà Trưng, Hà Nội", rating: "4.4", hours: "06:30 - 18:00", price: "20.000đ - 35.000đ" }
+                ]
+            },
+            {
+                id: 22,
+                name: "Bún Bò Nam Bộ",
+                category: "lunch",
+                categoryName: "Món Cơm & Bún",
+                district: "Hoàn Kiếm",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7gQk5Pc2OuH6jCvnDqYw5eaP2dMyq-T8Xvllkx64TEQ&s=10",
+                fallbackImage: "https://placehold.co/800x500/ec4899/ffffff?text=Bun+Bo+Nam+Bo",
+                time: "15 phút",
+                price: "55.000đ - 80.000đ",
+                description: "Bún trộn thanh mát không nước dùng nổi tiếng phố Hàng Điếu. Thịt bò xào tỏi thơm lừng đặt trên lớp bún tươi, giá đỗ, rau thơm, đu đủ chua, rắc lạc rang và chan nước mắm chua ngọt đậm đà.",
+                flavors: { sweet: 60, rich: 75, spicy: 50, fresh: 90 },
+                ingredients: ["Bún tươi", "Thịt bò xào tỏi", "Giá đỗ, rau thơm", "Lạc rang, hành phi"],
+                locations: [
+                    { name: "Bún Bò Nam Bộ Bách Phương", address: "67 Hàng Điếu, Cửa Đông, Hoàn Kiếm, Hà Nội", rating: "4.6", hours: "07:30 - 22:30", price: "60.000đ - 90.000đ" }
+                ]
+            },
+            {
+                id: 23,
+                name: "Kem Tràng Tiền",
+                category: "drink",
+                categoryName: "Đồ Uống & Tráng Miệng",
+                district: "Hoàn Kiếm",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRzhEYSZzD6_XEmguAXfzf-uzuYK2cWts1Va_cmEF7uQ&s=10",
+                fallbackImage: "https://placehold.co/800x500/f43f5e/ffffff?text=Kem+Trang+Tien",
+                time: "5 phút",
+                price: "15.000đ - 25.000đ",
+                description: "Thương hiệu kem huyền thoại gắn liền với nhiều thế hệ người Hà Nội. Thưởng thức cây kem dừa, kem đậu xanh hay kem cốm mát lạnh ngay giữa lòng phố cổ.",
+                flavors: { sweet: 90, rich: 70, spicy: 0, fresh: 90 },
+                ingredients: ["Sữa tươi", "Nước cốt dừa", "Đậu xanh / Cốm dẻo", "Đường kính"],
+                locations: [
+                    { name: "Kem Tràng Tiền", address: "35 Tràng Tiền, Hoàn Kiếm, Hà Nội", rating: "4.7", hours: "08:00 - 22:00", price: "15.000đ - 30.000đ" }
+                ]
+            },
+            {
+                id: 24,
+                name: "Bánh Trôi Tàu Tàu Hũ",
+                category: "drink",
+                categoryName: "Đồ Uống & Tráng Miệng",
+                district: "Hoàn Kiếm",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeQb7oRi1N2F45bc5VIEfaLQep-q46f9JRvs5PvX-C4A&s=10",
+                fallbackImage: "https://placehold.co/800x500/d97706/ffffff?text=Banh+Troi+Tau",
+                time: "10 phút",
+                price: "25.000đ - 40.000đ",
+                description: "Món tráng miệng ấm áp lý tưởng cho mùa đông Hà Nội. Bát bánh trôi tàu nhân mè đen, đậu xanh bùi béo ngập trong nước đường gừng cay nồng thơm phức mùi cốt dừa.",
+                flavors: { sweet: 85, rich: 80, spicy: 30, fresh: 50 },
+                ingredients: ["Bột nếp dẻo", "Nhân mè đen, đậu xanh", "Gừng tươi", "Nước cốt dừa"],
+                locations: [
+                    { name: "Bánh Trôi Tàu Hàng Bạc", address: "30 Hàng Bạc, Hoàn Kiếm, Hà Nội", rating: "4.5", hours: "15:00 - 22:00", price: "25.000đ - 40.000đ" },
+                    { name: "Chè Sắn Đội Cấn", address: "240 Đội Cấn, Ba Đình, Hà Nội", rating: "4.4", hours: "14:00 - 21:00", price: "20.000đ - 35.000đ" }
+                ]
+            },
+            {
+                id: 25,
+                name: "Lẩu Riêu Cua Bắp Bò",
+                category: "special",
+                categoryName: "Đặc Sản Nhậu",
+                district: "Đống Đa",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7Mf30wneNWrwVNJQiZeebhZkNRounmTO-Jt5NKmFCew&s=10",
+                fallbackImage: "https://placehold.co/800x500/ef4444/ffffff?text=Lau+Rieu+Cua",
+                time: "30 phút",
+                price: "250.000đ - 450.000đ",
+                description: "Nồi lẩu đồng quê thơm lừng mùi gạch cua béo ngậy, giấm bỗng chua thanh. Nhúng bắp bò hoa giòn sần sật, sườn sụn non, đậu phụ rán kèm đĩa rau nhúng tươi và bún rối.",
+                flavors: { sweet: 60, rich: 90, spicy: 50, fresh: 95 },
+                ingredients: ["Gạch cua đồng", "Bắp bò hoa", "Sườn sụn, đậu phụ", "Giấm bỗng, cà chua", "Rau nhúng lẩu"],
+                locations: [
+                    { name: "Lẩu Riêu Cua Ngõ 66 Hồ Đắc Di", address: "Ngõ 66 Hồ Đắc Di, Nam Đồng, Đống Đa, Hà Nội", rating: "4.6", hours: "10:00 - 23:00", price: "250.000đ - 400.000đ" }
+                ]
+            },
+            {
+                id: 26,
+                name: "Nem Lụi & Bánh Xèo",
+                category: "snack",
+                categoryName: "Món Ăn Vặt",
+                district: "Hoàn Kiếm",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9kTc2wQUX0TikYtPM9YufEbwJEOCHKUzQ4MWSUg-d8w&s=10",
+                fallbackImage: "https://placehold.co/800x500/f59e0b/ffffff?text=Nem+Lui+Banh+Xeo",
+                time: "15 phút",
+                price: "50.000đ - 90.000đ",
+                description: "Nem lụi thịt heo quấn sả nướng xém cạnh thơm nức, ăn kèm bánh xèo giòn rụm cuốn bánh đa nem với xoài xanh, dứa và rau sống, chấm sốt đậu phộng đặc sánh béo ngậy.",
+                flavors: { sweet: 70, rich: 85, spicy: 40, fresh: 90 },
+                ingredients: ["Thịt heo xay quấn sả", "Bánh xèo giòn", "Bánh đa nem, rau sống", "Sốt đậu phộng đặc biệt"],
+                locations: [
+                    { name: "Nem Lụi Cô Tư Đội Cấn", address: "166 Đội Cấn, Ba Đình, Hà Nội", rating: "4.5", hours: "15:00 - 22:00", price: "50.000đ - 80.000đ" },
+                    { name: "Bánh Xèo Hàng Bồ", address: "22 Hàng Bồ, Hoàn Kiếm, Hà Nội", rating: "4.4", hours: "14:00 - 21:00", price: "60.000đ - 100.000đ" }
+                ]
+            },
+            {
+                id: 27,
+                name: "Bánh Mì Sốt Vang",
+                category: "fast",
+                categoryName: "Món Nhanh Gọn",
+                district: "Hoàn Kiếm",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4IxxoSoP1B_QDs9-_HhsgOat8R682e_NVJg2ELWPqag&s=10",
+                fallbackImage: "https://placehold.co/800x500/d97706/ffffff?text=Banh+Mi+Sot+Vang",
+                time: "15 phút",
+                price: "40.000đ - 65.000đ",
+                description: "Bát thịt bò gân dẻo quánh hầm nhừ trong nước sốt vang đỏ thơm phức mùi quế hồi và ngũ vị hương. Chấm ngập bánh mì nóng giòn ăn ấm bụng những ngày trời se lạnh.",
+                flavors: { sweet: 50, rich: 90, spicy: 40, fresh: 75 },
+                ingredients: ["Thịt bò gân hầm", "Rượu vang đỏ", "Quế, hồi, thảo quả", "Bánh mì giòn"],
+                locations: [
+                    { name: "Bánh Mì Sốt Vang Trâm", address: "30 Đình Ngang, Cửa Nam, Hoàn Kiếm, Hà Nội", rating: "4.6", hours: "07:00 - 21:00", price: "45.000đ - 70.000đ" },
+                    { name: "Bánh Mì Sốt Vang Hàng Mã", address: "25 Hàng Mã, Hoàn Kiếm, Hà Nội", rating: "4.4", hours: "16:00 - 23:00", price: "40.000đ - 65.000đ" }
+                ]
+            },
+            {
+                id: 28,
+                name: "Chè Khúc Bạch Phố Cổ",
+                category: "drink",
+                categoryName: "Đồ Uống & Tráng Miệng",
+                district: "Hoàn Kiếm",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYG5WjCS60zvUda10g_dcj-4t_oIMAd-qevB9qa3kMsA&s=10",
+                fallbackImage: "https://placehold.co/800x500/ec4899/ffffff?text=Che+Khuc+Bach",
+                time: "10 phút",
+                price: "30.000đ - 45.000đ",
+                description: "Món chè thanh mát với những viên khúc bạch phô mai béo ngậy thơm mùi sữa, hạnh nhân rang giòn tan ngập trong nước đường phèn thanh nhẹ mát lạnh.",
+                flavors: { sweet: 75, rich: 65, spicy: 0, fresh: 95 },
+                ingredients: ["Khúc bạch phô mai", "Hạnh nhân thái lát", "Nước đường phèn", "Vải thiều / nhãn lồng"],
+                locations: [
+                    { name: "Chè Khúc Bạch Hàng Giấy", address: "33 Hàng Giấy, Đồng Xuân, Hoàn Kiếm, Hà Nội", rating: "4.6", hours: "10:00 - 23:00", price: "30.000đ - 50.000đ" }
+                ]
+            },
+            // --- 10 LOẠI ĐỒ UỐNG MỚI ĐƯỢC BỔ SUNG ---
+            {
+                id: 29,
+                name: "Trà Chanh Nhà Thờ Lớn",
+                category: "drink",
+                categoryName: "Đồ Uống & Tráng Miệng",
+                district: "Hoàn Kiếm",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9xl4EhYhwfYTZcA4_yV0XQ2FmDb_13LDpf-T0h60jvw&s=10",
+                fallbackImage: "https://placehold.co/800x500/84cc16/ffffff?text=Tra+Chanh+Nha+Tho",
+                time: "5 phút",
+                price: "15.000đ - 25.000đ",
+                description: "Nét văn hóa vỉa hè đặc trưng của giới trẻ Hà Thành. Ly trà nhài thanh mát pha chanh tươi thơm lừng, vị chua ngọt hài hòa nhâm nhi cùng đĩa hướng dương dưới tán cây cổ thụ Nhà Thờ Lớn.",
+                flavors: { sweet: 65, rich: 10, spicy: 0, fresh: 100 },
+                ingredients: ["Trà nhài khô", "Chanh tươi", "Mật ong / đường phèn", "Đá viên tinh khiết"],
+                locations: [
+                    { name: "Trà Chanh Nhà Thờ Lớn", address: "16 Ấu Triệu, Hàng Trống, Hoàn Kiếm, Hà Nội", rating: "4.7", hours: "08:00 - 23:30", price: "15.000đ - 25.000đ" },
+                    { name: "Trà Chanh Đào Duy Từ", address: "31 Đào Duy Từ, Hàng Buồm, Hoàn Kiếm, Hà Nội", rating: "4.5", hours: "09:00 - 23:00", price: "15.000đ - 30.000đ" }
+                ]
+            },
+            {
+                id: 30,
+                name: "Nước Sấu Ngâm Đường Đá",
+                category: "drink",
+                categoryName: "Đồ Uống & Tráng Miệng",
+                district: "Ba Đình",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqyq08spu9pltGAN8XWmpjasPlkrbsXQKwxhEQEmv0Dw&s=10",
+                fallbackImage: "https://placehold.co/800x500/65a30d/ffffff?text=Nuoc+Sau+Ha+Noi",
+                time: "5 phút",
+                price: "20.000đ - 30.000đ",
+                description: "Thức uống giải nhiệt mùa hè trứ danh mang đậm hương vị ký ức Hà Nội. Quả sấu bánh tẻ cạo vỏ ngâm đường phèn cùng gừng thái sợi cho vị chua thanh, giòn sần sật và thơm dịu.",
+                flavors: { sweet: 75, rich: 10, spicy: 15, fresh: 98 },
+                ingredients: ["Sấu tươi Hà Nội", "Đường phèn vàng", "Gừng tươi thái chỉ", "Đá bào mát lạnh"],
+                locations: [
+                    { name: "Nước Sấu Phan Đình Phùng", address: "28 Phan Đình Phùng, Quán Thánh, Ba Đình, Hà Nội", rating: "4.7", hours: "08:00 - 22:00", price: "20.000đ - 30.000đ" },
+                    { name: "Quán Nước Bờ Hồ", address: "7 Đinh Tiên Hoàng, Hoàn Kiếm, Hà Nội", rating: "4.5", hours: "07:30 - 22:30", price: "20.000đ - 35.000đ" }
+                ]
+            },
+            {
+                id: 31,
+                name: "Cà Phê Cốt Dừa Cộng",
+                category: "drink",
+                categoryName: "Đồ Uống & Tráng Miệng",
+                district: "Hoàn Kiếm",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJisgIU88JMlDSU8FNymxFIh8iS6J-5Z0UMGTDByKf2A&s=10",
+                fallbackImage: "https://placehold.co/800x500/78350f/ffffff?text=Ca+Phe+Cot+Dua",
+                time: "8 phút",
+                price: "45.000đ - 60.000đ",
+                description: "Sự kết hợp hoàn hảo giữa cà phê phin đắng đậm đà và phần cốt dừa xay đá tuyết béo ngậy, ngọt thanh. Hương thơm dừa quyện cà phê tạo nên thức uống gây nghiện cho cả khách Việt lẫn quốc tế.",
+                flavors: { sweet: 80, rich: 90, spicy: 0, fresh: 85 },
+                ingredients: ["Cà phê phin đậm đặc", "Nước cốt dừa tươi", "Sữa đặc", "Đá xay mịn"],
+                locations: [
+                    { name: "Cộng Cà Phê Nhà Thờ", address: "27 Nhà Thờ, Hàng Trống, Hoàn Kiếm, Hà Nội", rating: "4.7", hours: "07:00 - 23:00", price: "45.000đ - 65.000đ" },
+                    { name: "Cộng Cà Phê Tràng Tiền", address: "54 Tràng Tiền, Hoàn Kiếm, Hà Nội", rating: "4.6", hours: "07:30 - 23:00", price: "45.000đ - 65.000đ" }
+                ]
+            },
+            {
+                id: 32,
+                name: "Trà Sen Tây Hồ",
+                category: "drink",
+                categoryName: "Đồ Uống & Tráng Miệng",
+                district: "Tây Hồ",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFgSJ5KR6s_bXL0wxd8EGGZ-sWqCEwTpOZGnb73RgJkw&s=10",
+                fallbackImage: "https://placehold.co/800x500/10b981/ffffff?text=Tra+Sen+Tay+Ho",
+                time: "10 phút",
+                price: "35.000đ - 70.000đ",
+                description: "Thức uống tao nhã bậc nhất đất Kinh Kỳ. Búp trà Tân Cương hảo hạng được ướp trong bông sen Bách Diệp Hồ Tây qua đêm, cho nước trà vàng óng, tiền chát dịu hậu ngọt sâu cùng hương sen thanh khiết.",
+                flavors: { sweet: 45, rich: 15, spicy: 0, fresh: 95 },
+                ingredients: ["Trà móc câu Tân Cương", "Gạo sen Bách Diệp Tây Hồ", "Nước sôi tinh khiết"],
+                locations: [
+                    { name: "Thưởng Trà Quảng Bá", address: "98 Quảng An, Tây Hồ, Hà Nội", rating: "4.8", hours: "07:00 - 22:00", price: "40.000đ - 80.000đ" },
+                    { name: "Hiên Trà Trường Xuân", address: "13 Ngô Tất Tố, Văn Miếu, Đống Đa, Hà Nội", rating: "4.7", hours: "08:00 - 22:30", price: "35.000đ - 70.000đ" }
+                ]
+            },
+            {
+                id: 33,
+                name: "Sữa Chua Đánh Đá Cà Phê",
+                category: "drink",
+                categoryName: "Đồ Uống & Tráng Miệng",
+                district: "Hoàn Kiếm",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPMAf3MKy9EgDp5w05Uy_91gUVCU8gRR3Bu8GmuUZozQ&s=10",
+                fallbackImage: "https://placehold.co/800x500/f59e0b/ffffff?text=Sua+Chua+Danh+Da",
+                time: "5 phút",
+                price: "25.000đ - 35.000đ",
+                description: "Món giải khát huyền thoại mọi lứa tuổi Hà Nội đều mê. Sữa chua lên men tự nhiên dẻo mịn được đánh nhuyễn cùng đá bào mát lạnh, rưới thêm chút cà phê đen thơm lừng hoặc siro hoa quả.",
+                flavors: { sweet: 75, rich: 65, spicy: 0, fresh: 95 },
+                ingredients: ["Sữa chua nhà làm", "Đá bào mịn", "Cà phê phin / nước cốt chanh leo", "Sữa đặc"],
+                locations: [
+                    { name: "Sữa Chua Đánh Đá Bà Triệu", address: "102 Bà Triệu, Nguyễn Du, Hai Bà Trưng, Hà Nội", rating: "4.6", hours: "09:00 - 23:00", price: "25.000đ - 35.000đ" },
+                    { name: "Cà Phê Lâm", address: "60 Nguyễn Hữu Huân, Hoàn Kiếm, Hà Nội", rating: "4.6", hours: "07:00 - 22:00", price: "25.000đ - 40.000đ" }
+                ]
+            },
+            {
+                id: 34,
+                name: "Nước Mía Trân Châu Cốt Dừa",
+                category: "drink",
+                categoryName: "Đồ Uống & Tráng Miệng",
+                district: "Hoàn Kiếm",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPBGZM6P9c3y6NTNbPPeOCt9DMxp5vRF4Ip4A22TvXcw&s=10",
+                fallbackImage: "https://placehold.co/800x500/22c55e/ffffff?text=Nuoc+Mia+Tran+Chau",
+                time: "5 phút",
+                price: "20.000đ - 30.000đ",
+                description: "Phiên bản nâng cấp đầy hấp dẫn của nước mía truyền thống Hà Nội. Nước mía ép tươi thơm mùi quất quyện cùng nước cốt dừa béo ngậy, dừa khô giòn tan và trân châu dai sần sật.",
+                flavors: { sweet: 85, rich: 60, spicy: 0, fresh: 92 },
+                ingredients: ["Nước mía tươi ép quất", "Nước cốt dừa", "Trân châu trắng/đen", "Dừa khô nạo sợi"],
+                locations: [
+                    { name: "Nước Mía Hàng Vải", address: "77 Hàng Vải, Hàng Bồ, Hoàn Kiếm, Hà Nội", rating: "4.7", hours: "09:00 - 23:00", price: "20.000đ - 30.000đ" },
+                    { name: "Nước Mía Trân Châu Chùa Láng", address: "85 Chùa Láng, Láng Thượng, Đống Đa, Hà Nội", rating: "4.5", hours: "09:30 - 22:30", price: "18.000đ - 28.000đ" }
+                ]
+            },
+            {
+                id: 35,
+                name: "Tào Phớ Thạch Găng Hoa Nhài",
+                category: "drink",
+                categoryName: "Đồ Uống & Tráng Miệng",
+                district: "Đống Đa",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjN0vSRYesLl-XLpwGvrN__itb2sF8FtP4bs3bZiIrzg&s=10",
+                fallbackImage: "https://placehold.co/800x500/14b8a6/ffffff?text=Tao+Pho+Thach+Gang",
+                time: "5 phút",
+                price: "15.000đ - 25.000đ",
+                description: "Bát tào phớ trắng muốt mềm tan như lụa chan nước đường ướp hoa nhài thơm ngát. Ăn kèm thạch găng xanh mướt thanh mát, trân châu nhân dừa và hạt sen bùi bùi giải nhiệt tức thì.",
+                flavors: { sweet: 70, rich: 45, spicy: 0, fresh: 98 },
+                ingredients: ["Đậu tương nguyên chất", "Thạch lá găng rừng", "Nước đường hoa nhài", "Trân châu, dừa tươi"],
+                locations: [
+                    { name: "Tào Phớ Nghĩa Tân", address: "106 C2 Nghĩa Tân, Cầu Giấy, Hà Nội", rating: "4.6", hours: "08:00 - 22:00", price: "15.000đ - 25.000đ" },
+                    { name: "Vua Tào Phớ", address: "192 Hàng Bông, Hoàn Kiếm, Hà Nội", rating: "4.5", hours: "09:00 - 22:30", price: "20.000đ - 35.000đ" }
+                ]
+            },
+            {
+                id: 36,
+                name: "Bia Hơi Hà Nội & Lạc Luộc",
+                category: "drink",
+                categoryName: "Đồ Uống & Tráng Miệng",
+                district: "Hoàn Kiếm",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQk4iTDtS1UqvE-bxf8bsj5rw_-FkNdu7SwzrcMIRKxEg&s=10",
+                fallbackImage: "https://placehold.co/800x500/eab308/ffffff?text=Bia+Hoi+Ha+Noi",
+                time: "5 phút",
+                price: "15.000đ - 25.000đ",
+                description: "Biểu tượng văn hóa giao lưu bình dị mỗi chiều tan tầm ở thủ đô. Cốc bia hơi vại sần mát lạnh bọt trắng xóa, vị nhẹ êm dễ uống nhâm nhi cùng đĩa lạc luộc bùi bùi hay nem chua.",
+                flavors: { sweet: 25, rich: 30, spicy: 0, fresh: 95 },
+                ingredients: ["Bia hơi tươi ủ truyền thống", "Hoa bia, đại mạch", "Lạc luộc nóng"],
+                locations: [
+                    { name: "Bia Hơi Ngã Tư Tạ Hiện", address: "18 Tạ Hiện, Hàng Buồm, Hoàn Kiếm, Hà Nội", rating: "4.6", hours: "11:00 - 01:00", price: "15.000đ - 30.000đ" },
+                    { name: "Bia Hơi Ngọc Hà", address: "183 Hoàng Hoa Thám, Ba Đình, Hà Nội", rating: "4.6", hours: "10:00 - 22:30", price: "15.000đ - 25.000đ" }
+                ]
+            },
+            {
+                id: 37,
+                name: "Trà Đào Cam Sả Phố Cổ",
+                category: "drink",
+                categoryName: "Đồ Uống & Tráng Miệng",
+                district: "Hoàn Kiếm",
+                image: "https://images.unsplash.com/photo-1499638673689-79a0b5115d87?auto=format&fit=crop&w=800&q=80",
+                fallbackImage: "https://placehold.co/800x500/f97316/ffffff?text=Tra+Dao+Cam+Sa",
+                time: "7 phút",
+                price: "35.000đ - 50.000đ",
+                description: "Hương vị trà trái cây tươi mát bùng nổ vị giác với cốt trà đen đậm vị hòa quyện cùng nước cam vàng mọng nước, mùi sả tươi thơm dịu và những miếng đào ngâm giòn ngọt.",
+                flavors: { sweet: 75, rich: 10, spicy: 5, fresh: 96 },
+                ingredients: ["Trà đen hảo hạng", "Đào ngâm giòn", "Cam vàng tươi", "Sả cây đập dập"],
+                locations: [
+                    { name: "The Coffee House Nhà Thờ", address: "23M Hai Bà Trưng, Hoàn Kiếm, Hà Nội", rating: "4.6", hours: "07:00 - 22:30", price: "45.000đ - 55.000đ" },
+                    { name: "Trà Chanh & Trà Trái Cây Bảo Khánh", address: "12 Bảo Khánh, Hoàn Kiếm, Hà Nội", rating: "4.5", hours: "08:30 - 23:00", price: "30.000đ - 45.000đ" }
+                ]
+            },
+            {
+                id: 38,
+                name: "Nước Mơ Ngâm Muối Đường",
+                category: "drink",
+                categoryName: "Đồ Uống & Tráng Miệng",
+                district: "Hai Bà Trưng",
+                image: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80",
+                fallbackImage: "https://placehold.co/800x500/d97706/ffffff?text=Nuoc+Mo+Ha+Noi",
+                time: "5 phút",
+                price: "20.000đ - 30.000đ",
+                description: "Thức uống dân dã đậm chất Hà Nội xưa được ủ từ những trái mơ rừng Chùa Hương vàng ươm. Vị chua thanh, mặn ngọt hài hòa giúp giải khát, tiêu thực và làm dịu cổ họng tức thì.",
+                flavors: { sweet: 70, rich: 10, spicy: 0, fresh: 96 },
+                ingredients: ["Mơ vàng Chùa Hương ngâm lâu năm", "Đường phèn", "Chút muối hạt", "Đá viên"],
+                locations: [
+                    { name: "Nước Mơ Gia Truyền Hàng Đường", address: "45 Hàng Đường, Đồng Xuân, Hoàn Kiếm, Hà Nội", rating: "4.7", hours: "08:00 - 22:00", price: "20.000đ - 30.000đ" },
+                    { name: "Quán Nước Bách Khoa", address: "17 Tạ Quang Bửu, Hai Bà Trưng, Hà Nội", rating: "4.5", hours: "07:30 - 22:00", price: "15.000đ - 25.000đ" }
+                ]
+            }
+        ];
+
+        // Dữ liệu bài báo & TikTok tuyển chọn riêng cho các món tiêu biểu
+        const curatedDishMedia = {
+            1: {
+                articles: [
+                    {
+                        source: "VnExpress Ẩm Thực",
+                        badgeColor: "bg-rose-100 text-rose-700",
+                        date: "Chuyên đề Hà Nội",
+                        title: "Bí quyết tạo nên nồi nước dùng Phở Bò Hà Nội trong veo, ngọt thanh từ xương ống",
+                        summary: "Từ cách nướng gừng hành thơm lừng đến tỷ lệ thảo quả, hoa hồi chuẩn mực giúp bát phở Bát Đàn, Lý Quốc Sư giữ trọn hương vị trăm năm.",
+                        query: "Bí quyết nấu phở bò Hà Nội gia truyền VnExpress"
+                    },
+                    {
+                        source: "Michelin Guide",
+                        badgeColor: "bg-amber-100 text-amber-800",
+                        date: "Bib Gourmand",
+                        title: "Hành trình chinh phục thực khách quốc tế của Phở Bò truyền thống phố cổ",
+                        summary: "Danh sách những quán phở bò trứ danh tại quận Hoàn Kiếm được Michelin vinh danh nhờ chất lượng nguyên liệu tươi mới mỗi sáng.",
+                        query: "Michelin Guide Phở Bò Hà Nội"
+                    }
+                ],
+                tiktoks: [
+                    {
+                        author: "@ninhtito",
+                        views: "1.4M",
+                        likes: "86.2K",
+                        title: "Xếp hàng 30 phút ăn bát Phở Bát Đàn trứ danh sáng sớm Hà Nội có đáng không?",
+                        gradient: "from-rose-600 via-red-700 to-slate-900",
+                        query: "review phở bò bát đàn hà nội"
+                    },
+                    {
+                        author: "@hanoian.food",
+                        views: "890K",
+                        likes: "54.1K",
+                        title: "Top 5 quán Phở Bò tái lăn, tái chín ngon nhất phố cổ người bản địa hay ăn",
+                        gradient: "from-amber-600 via-orange-700 to-slate-900",
+                        query: "top quán phở bò ngon nhất hà nội"
+                    },
+                    {
+                        author: "@eatwithbeo",
+                        views: "620K",
+                        likes: "41.8K",
+                        title: "Cận cảnh bát phở lõi rùa gầu giòn chấm quẩy nóng hổi ngày gió mùa về",
+                        gradient: "from-slate-800 via-rose-900 to-black",
+                        query: "phở bò lõi rùa gầu giòn hà nội"
+                    }
+                ]
+            },
+            2: {
+                articles: [
+                    {
+                        source: "Dân Trí",
+                        badgeColor: "bg-emerald-100 text-emerald-700",
+                        date: "Tinh hoa ẩm thực",
+                        title: "Vì sao Bún Chả quạt than hoa Hà Nội luôn nằm trong top món ngon nhất thế giới?",
+                        summary: "Sự hòa quyện giữa thịt ba chỉ tẩm ướp đậm đà nướng xém cạnh trên than hồng cùng bát nước chấm đu đủ xanh ấm nóng tạo nên sức hút khó cưỡng.",
+                        query: "Bún chả Hà Nội tinh hoa ẩm thực Dân Trí"
+                    },
+                    {
+                        source: "Hà Nội Mới",
+                        badgeColor: "bg-blue-100 text-blue-700",
+                        date: "Ký ức phố cổ",
+                        title: "Chuyện nghề kẹp tre nướng chả ở Hàng Mành: Giữ lửa hương vị xưa giữa phố thị",
+                        summary: "Khám phá nghệ thuật chọn thịt nạc vai và ba chỉ tỷ lệ vàng của các nghệ nhân làm bún chả lâu đời tại Hà Nội.",
+                        query: "Bún chả Hàng Mành Hà Nội Mới"
+                    }
+                ],
+                tiktoks: [
+                    {
+                        author: "@hanoian.food",
+                        views: "1.8M",
+                        likes: "112K",
+                        title: "Khói nướng bún chả kẹp tre thơm nức cả góc phố Hàng Mành giờ trưa!",
+                        gradient: "from-amber-500 via-orange-600 to-slate-900",
+                        query: "bún chả hàng mành hà nội review"
+                    },
+                    {
+                        author: "@trungtuan.review",
+                        views: "740K",
+                        likes: "49.5K",
+                        title: "Bún chả chan nước dùng nóng hổi kèm nem cua bể giòn rụm chuẩn vị Hà Thành",
+                        gradient: "from-rose-600 via-amber-700 to-slate-900",
+                        query: "bún chả nem cua bể hà nội"
+                    },
+                    {
+                        author: "@quynhanh.foodie",
+                        views: "510K",
+                        likes: "33.9K",
+                        title: "100K ăn ngập mặt mẹt Bún Chả quạt than hoa siêu đầy đặn ở Đống Đa",
+                        gradient: "from-slate-800 via-amber-900 to-black",
+                        query: "bún chả ngon đống đa hà nội"
+                    }
+                ]
+            },
+            3: {
+                articles: [
+                    {
+                        source: "Kenh14",
+                        badgeColor: "bg-orange-100 text-orange-700",
+                        date: "Food Tour Hà Nội",
+                        title: "Bản đồ Bún Đậu Mắm Tôm trứ danh từ Ngõ Trạm đến Hàng Khay khiến tín đồ ẩm thực mê mẩn",
+                        summary: "Đậu mơ rán giòn rụm bên ngoài mềm mịn bên trong, chả cốm Vòng dẻo thơm cùng bát mắm tôm đánh bông sủi bọt với quất ớt.",
+                        query: "Bún đậu mắm tôm ngon nhất Hà Nội Kenh14"
+                    },
+                    {
+                        source: "VnExpress",
+                        badgeColor: "bg-rose-100 text-rose-700",
+                        date: "Khám phá",
+                        title: "Sức hấp dẫn của mẹt bún đậu đầy đủ topping: Từ lòng rán đến thịt chân giò luộc",
+                        summary: "Cách pha mắm tôm chuẩn vị Bắc với chút mỡ nóng rưới lên tạo nên hương thơm đặc trưng không thể trộn lẫn.",
+                        query: "Bún đậu mắm tôm Hà Nội VnExpress"
+                    }
+                ],
+                tiktoks: [
+                    {
+                        author: "@eatwithbeo",
+                        views: "2.1M",
+                        likes: "145K",
+                        title: "Mẹt Bún Đậu Mắm Tôm Ngõ Trạm full topping chả cốm, dồi sụn, lòng rán siêu cuốn",
+                        gradient: "from-emerald-600 via-teal-800 to-slate-900",
+                        query: "bún đậu ngõ trạm hà nội"
+                    },
+                    {
+                        author: "@ninhtito",
+                        views: "950K",
+                        likes: "61.4K",
+                        title: "Thử thách ăn Bún Đậu Hàng Khay huyền thoại giữa trưa nắng Hà Nội",
+                        gradient: "from-amber-600 via-emerald-800 to-slate-900",
+                        query: "bún đậu hàng khay hà nội"
+                    },
+                    {
+                        author: "@hanoifood.tour",
+                        views: "680K",
+                        likes: "44.2K",
+                        title: "Bí kíp đánh bát mắm tôm sủi bọt trắng xóa thơm lừng đúng điệu người Hà Nội",
+                        gradient: "from-slate-800 via-emerald-900 to-black",
+                        query: "cách pha mắm tôm bún đậu hà nội"
+                    }
+                ]
+            },
+            12: {
+                articles: [
+                    {
+                        source: "VnExpress",
+                        badgeColor: "bg-rose-100 text-rose-700",
+                        date: "Văn hóa Cà phê",
+                        title: "Cà Phê Trứng Giảng: Hơn 70 năm giữ trọn hương vị kem trứng béo ngậy giữa phố cổ",
+                        summary: "Ra đời từ những năm 1946, ly cà phê trứng nóng hổi đặt trong bát nước ấm đã trở thành biểu tượng sáng tạo của ẩm thực Hà Nội.",
+                        query: "Cà phê trứng Giảng Hà Nội VnExpress"
+                    },
+                    {
+                        source: "CNN Travel",
+                        badgeColor: "bg-indigo-100 text-indigo-700",
+                        date: "World Drinks",
+                        title: "Vì sao Cà Phê Trứng Hà Nội được báo chí quốc tế ca ngợi là 'Tiramisu dạng lỏng'?",
+                        summary: "Sự kết hợp tinh tế giữa vị đắng đậm của cà phê Robusta Việt Nam và lớp kem lòng đỏ trứng đánh bông mịn như nhung.",
+                        query: "Cà phê trứng Hà Nội báo quốc tế"
+                    }
+                ],
+                tiktoks: [
+                    {
+                        author: "@ninhtito",
+                        views: "1.6M",
+                        likes: "108K",
+                        title: "Lần đầu đưa bạn nước ngoài đi uống Cà Phê Giảng 39 Nguyễn Hữu Huân và cái kết!",
+                        gradient: "from-amber-600 via-yellow-800 to-slate-900",
+                        query: "cà phê giảng nguyễn hữu huân review"
+                    },
+                    {
+                        author: "@hanoian.food",
+                        views: "920K",
+                        likes: "67.3K",
+                        title: "Ngồi ban công Cà Phê Đinh ngắm Hồ Gươm nhâm nhi ly cà phê trứng chiều thu",
+                        gradient: "from-orange-700 via-amber-900 to-slate-900",
+                        query: "cà phê đinh đinh tiên hoàng"
+                    },
+                    {
+                        author: "@coffee.saigon.hanoi",
+                        views: "540K",
+                        likes: "38.0K",
+                        title: "So sánh Cà Phê Trứng nóng và lạnh: Cách thưởng thức chuẩn gu người Tràng An",
+                        gradient: "from-slate-800 via-amber-950 to-black",
+                        query: "cà phê trứng hà nội review"
+                    }
+                ]
+            },
+            13: {
+                articles: [
+                    {
+                        source: "Báo Lao Động",
+                        badgeColor: "bg-amber-100 text-amber-800",
+                        date: "Ẩm thực dân gian",
+                        title: "Nét đặc trưng gia vị riềng, mẻ, mắm tôm trong nghệ thuật chế biến ẩm thực truyền thống miền Bắc",
+                        summary: "Tìm hiểu cách kết hợp các loại gia vị tính ấm như riềng, sả, lá mơ lông và mắm tôm tạo nên mâm cỗ nhậu đậm đà ngày mưa lạnh.",
+                        query: "Ẩm thực truyền thống riềng mẻ mắm tôm Hà Nội"
+                    },
+                    {
+                        source: "Tạp chí Ẩm Thực",
+                        badgeColor: "bg-rose-100 text-rose-700",
+                        date: "Khám phá vùng miền",
+                        title: "Từ Nhật Tân đến Cầu Giấy: Điểm danh những quán nhậu đặc sản lâu năm tại Hà Nội",
+                        summary: "Bí quyết tẩm ướp thịt nướng than hoa thơm lừng cùng nồi nhựa mận sánh đậm ăn kèm bún lá và rau thơm.",
+                        query: "Quán thịt chó ngon Nhật Tân Cầu Giấy Hà Nội"
+                    }
+                ],
+                tiktoks: [
+                    {
+                        author: "@amthuc.taybac.hn",
+                        views: "780K",
+                        likes: "46.5K",
+                        title: "Trời mưa gió mùa làm mẹt đủ món hấp, nướng riềng mẻ, dồi chiên nóng hổi tại Hà Nội",
+                        gradient: "from-amber-800 via-stone-800 to-slate-950",
+                        query: "review thịt chó nhật tân hà nội"
+                    },
+                    {
+                        author: "@nhau.hanoi",
+                        views: "530K",
+                        likes: "31.2K",
+                        title: "Bí quyết pha mắm tôm chanh ớt sả ăn kèm thịt luộc và lá mơ chuẩn vị",
+                        gradient: "from-rose-900 via-slate-800 to-black",
+                        query: "thịt chó cầu giấy hà nội review"
+                    },
+                    {
+                        author: "@review.quanngon",
+                        views: "410K",
+                        likes: "24.8K",
+                        title: "Khám phá quán đặc sản nhậu lâu đời đông kín khách mỗi chiều cuối tuần ở Cầu Giấy",
+                        gradient: "from-slate-800 via-amber-900 to-black",
+                        query: "đặc sản nhậu cầu giấy hà nội"
+                    }
+                ]
+            },
+            14: {
+                articles: [
+                    {
+                        source: "Michelin Guide",
+                        badgeColor: "bg-amber-100 text-amber-800",
+                        date: "Di sản Hà Nội",
+                        title: "Chả Cá Lã Vọng: Món ăn duy nhất được đặt tên cho cả một con phố tại Hà Nội",
+                        summary: "Cá lăng tươi ướp nghệ và mẻ nướng trên than hoa, sau đó đảo nóng trên chảo mỡ cùng thì là và hành hoa ngay tại bàn ăn.",
+                        query: "Chả Cá Lã Vọng Hà Nội Michelin"
+                    },
+                    {
+                        source: "VnExpress",
+                        badgeColor: "bg-rose-100 text-rose-700",
+                        date: "Tinh hoa Hà Thành",
+                        title: "Cách ăn Chả Cá đúng điệu của người Hà Nội sành sỏi",
+                        summary: "Sự hòa quyện giữa miếng cá lăng mềm ngọt không xương dăm, thì là xanh mướt, lạc rang bùi bùi và chút mắm tôm đánh bông.",
+                        query: "Cách ăn chả cá Lã Vọng chuẩn Hà Nội VnExpress"
+                    }
+                ],
+                tiktoks: [
+                    {
+                        author: "@ninhtito",
+                        views: "1.3M",
+                        likes: "82.0K",
+                        title: "Tiếng xèo xèo vui tai của chảo Chả Cá Lã Vọng ngập hành thì là giữa lòng phố cổ",
+                        gradient: "from-yellow-600 via-amber-800 to-slate-900",
+                        query: "chả cá lã vọng hà nội review"
+                    },
+                    {
+                        author: "@hanoian.food",
+                        views: "760K",
+                        likes: "48.9K",
+                        title: "Review Chả Cá Thăng Long Đường Thành: Cá lăng tươi ngọt thịt, lòng cá giòn sần sật",
+                        gradient: "from-emerald-700 via-amber-800 to-slate-900",
+                        query: "chả cá thăng long đường thành"
+                    },
+                    {
+                        author: "@eatwithbeo",
+                        views: "590K",
+                        likes: "37.4K",
+                        title: "Món đặc sản nhất định phải mời khách quý khi đến thăm thủ đô Hà Nội",
+                        gradient: "from-slate-800 via-yellow-900 to-black",
+                        query: "chả cá ngon nhất hà nội"
+                    }
+                ]
+            },
+            29: {
+                articles: [
+                    {
+                        source: "VnExpress",
+                        badgeColor: "bg-lime-100 text-lime-800",
+                        date: "Văn hóa vỉa hè",
+                        title: "Trà chanh Nhà Thờ Lớn: Nét sinh hoạt bình dị làm nên thương hiệu phố cổ Hà Nội",
+                        summary: "Chỉ một chiếc ghế nhựa nhỏ, ly trà chanh mát lạnh và đĩa hướng dương đã đủ giữ chân bao thế hệ thanh niên thủ đô mỗi tối.",
+                        query: "Trà chanh Nhà Thờ Lớn Hà Nội VnExpress"
+                    },
+                    {
+                        source: "Kenh14",
+                        badgeColor: "bg-amber-100 text-amber-800",
+                        date: "Check-in Hà Nội",
+                        title: "Vì sao trà chanh Nhà Thờ luôn có hương vị riêng khó tìm thấy ở nơi khác?",
+                        summary: "Bí quyết nằm ở cách ủ trà nhài thơm dịu kết hợp mật ong và chanh tươi vắt đúng độ không bị đắng.",
+                        query: "Trà chanh Nhà Thờ ngon nhất Hà Nội"
+                    }
+                ],
+                tiktoks: [
+                    {
+                        author: "@hanoian.food",
+                        views: "1.2M",
+                        likes: "79.4K",
+                        title: "Tối cuối tuần ngồi vỉa hè Nhà Thờ Lớn làm cốc trà chanh ngắm phố cổ chill hết nấc!",
+                        gradient: "from-lime-600 via-emerald-800 to-slate-900",
+                        query: "trà chanh nhà thờ lớn hà nội"
+                    },
+                    {
+                        author: "@ninhtito",
+                        views: "840K",
+                        likes: "51.0K",
+                        title: "Food tour quanh Nhà Thờ Lớn: Nem chua nướng, bánh gối và chốt hạ bằng trà chanh",
+                        gradient: "from-amber-600 via-lime-800 to-slate-900",
+                        query: "ăn vặt nhà thờ lớn hà nội"
+                    },
+                    {
+                        author: "@chill.hanoi",
+                        views: "490K",
+                        likes: "32.1K",
+                        title: "Góc ngồi đẹp nhất ngắm tháp chuông Nhà Thờ Lớn buổi chiều hoàng hôn",
+                        gradient: "from-slate-800 via-emerald-950 to-black",
+                        query: "trà chanh ấu triệu hà nội"
+                    }
+                ]
+            },
+            31: {
+                articles: [
+                    {
+                        source: "Forbes Việt Nam",
+                        badgeColor: "bg-amber-100 text-amber-800",
+                        date: "Thương hiệu Việt",
+                        title: "Cà phê cốt dừa Cộng: Cú hích sáng tạo đưa cà phê Việt vươn tầm quốc tế",
+                        summary: "Kết hợp tinh hoa cà phê Robusta đậm đà với cốt dừa béo ngậy xay tuyết tạo nên cơn sốt từ Hà Nội ra khắp thế giới.",
+                        query: "Cà phê cốt dừa Cộng Hà Nội"
+                    },
+                    {
+                        source: "Dân Trí",
+                        badgeColor: "bg-emerald-100 text-emerald-700",
+                        date: "Khám phá",
+                        title: "Những quán cà phê cốt dừa ngon nức tiếng lòng phố cổ Hà Nội",
+                        summary: "Không gian hoài cổ thời bao cấp cùng ly cà phê cốt dừa mát lạnh là điểm dừng chân quen thuộc của du khách.",
+                        query: "Quán cà phê cốt dừa ngon Hà Nội"
+                    }
+                ],
+                tiktoks: [
+                    {
+                        author: "@coffee.saigon.hanoi",
+                        views: "1.5M",
+                        likes: "94.2K",
+                        title: "Cà phê cốt dừa Cộng Cà Phê Nhà Thờ - thức uống du khách nước ngoài nào cũng mê mẩn",
+                        gradient: "from-amber-700 via-stone-800 to-slate-950",
+                        query: "cà phê cốt dừa cộng hà nội"
+                    },
+                    {
+                        author: "@hanoian.food",
+                        views: "710K",
+                        likes: "45.8K",
+                        title: "Thử ngay combo Cà phê cốt dừa và bánh sừng trâu nóng hổi sáng cuối tuần ở Tràng Tiền",
+                        gradient: "from-emerald-700 via-stone-900 to-black",
+                        query: "cộng cà phê tràng tiền hà nội"
+                    },
+                    {
+                        author: "@eatwithbeo",
+                        views: "520K",
+                        likes: "34.6K",
+                        title: "Cách phân biệt cà phê cốt dừa chuẩn vị béo thơm không bị dăm đá",
+                        gradient: "from-slate-800 via-amber-950 to-black",
+                        query: "review cà phê cốt dừa hà nội"
+                    }
+                ]
+            }
+        };
+
+        // Hàm sinh dữ liệu bài báo & TikTok phong phú cho mọi món ăn & đồ uống trong danh sách 38 món
+        function getMediaForDish(dish) {
+            if (curatedDishMedia[dish.id]) {
+                return curatedDishMedia[dish.id];
+            }
+
+            const loc1 = dish.locations[0] ? dish.locations[0].name : `quận ${dish.district}`;
+            const mainIng = dish.ingredients.slice(0, 3).join(", ");
+            const isDrink = dish.category === 'drink';
+
+            return {
+                articles: [
+                    {
+                        source: "VnExpress Ẩm Thực",
+                        badgeColor: "bg-rose-100 text-rose-700",
+                        date: `Đặc sản ${dish.district}`,
+                        title: `${dish.name}: Hương vị gây thương nhớ của ${dish.categoryName.toLowerCase()} Hà Thành`,
+                        summary: `Sự kết hợp hài hòa từ ${mainIng} tạo nên sức hút khó cưỡng. Ghé ngay ${loc1} để thưởng thức trọn vẹn chuẩn vị.`,
+                        query: `${dish.name} ngon nhất Hà Nội VnExpress`
+                    },
+                    {
+                        source: "Kenh14 Food Tour",
+                        badgeColor: "bg-amber-100 text-amber-800",
+                        date: "Cẩm nang Hà Nội",
+                        title: `Truy tìm tọa độ ${isDrink ? 'thưởng thức' : 'ăn'} ${dish.name} chuẩn gốc người bản địa tại quận ${dish.district}`,
+                        summary: `Với mức giá chỉ ${dish.price}, ${isDrink ? 'thức uống' : 'món ăn'} này luôn nằm trong danh sách phải thử khi dạo quanh Hà Nội.`,
+                        query: `Review ${dish.name} ${dish.district} Hà Nội`
+                    }
+                ],
+                tiktoks: [
+                    {
+                        author: "@hanoian.food",
+                        views: `${(450 + (dish.id * 37) % 500)}K`,
+                        likes: `${(28 + (dish.id * 11) % 45)}.4K`,
+                        title: `${isDrink ? 'Đi uống thử' : 'Đi ăn thử'} ${dish.name} tại ${loc1} xem có ngon như lời đồn của dân phố cổ?`,
+                        gradient: "from-rose-600 via-pink-800 to-slate-900",
+                        query: `${dish.name} hà nội review`
+                    },
+                    {
+                        author: "@eatwithbeo",
+                        views: `${(320 + (dish.id * 29) % 420)}K`,
+                        likes: `${(19 + (dish.id * 7) % 35)}.8K`,
+                        title: `Chỉ từ ${dish.price.split('-')[0].trim()} đã có ngay ${isDrink ? 'ly' : 'phần'} ${dish.name} siêu chất lượng ở ${dish.district}`,
+                        gradient: "from-amber-600 via-rose-800 to-slate-900",
+                        query: `${dish.name} ${dish.district} tiktok`
+                    },
+                    {
+                        author: "@foodtour.hanoi",
+                        views: `${(280 + (dish.id * 41) % 380)}K`,
+                        likes: `${(15 + (dish.id * 9) % 29)}.2K`,
+                        title: `Cận cảnh ${dish.name} trứ danh khiến thực khách Hà Thành mê mẩn quanh năm`,
+                        gradient: "from-slate-800 via-indigo-950 to-black",
+                        query: `quán ${dish.name} ngon ở hà nội`
+                    }
+                ]
+            };
+        }
+
+        // Categories Configuration
+        const categories = [
+            { id: 'all', name: 'Tất Cả Món (38)', icon: 'fa-utensils' },
+            { id: 'soup', name: 'Món Nước', icon: 'fa-bowl-rice' },
+            { id: 'lunch', name: 'Món Cơm & Bún', icon: 'fa-plate-wheat' },
+            { id: 'snack', name: 'Món Ăn Vặt', icon: 'fa-ice-cream' },
+            { id: 'fast', name: 'Món Nhanh Gọn', icon: 'fa-burger' },
+            { id: 'special', name: 'Đặc Sản Nhậu', icon: 'fa-fire' },
+            { id: 'drink', name: 'Đồ Uống & Tráng Miệng (14)', icon: 'fa-mug-hot' }
+        ];
+
+        let activeCategory = 'all';
+
+        // Initialize App on Window Load
+        window.onload = function () {
+            renderCategories();
+            renderDishes(dishes);
+            renderMediaHub();
+            prepareWheelDishes();
+        };
+
+        // --- LOGIC VÒNG QUAY MAY MẮN (LUCKY WHEEL) ---
+        let currentRotation = 0;
+        let isSpinning = false;
+        let activeWheelDishes = [];
+        const wheelColors = [
+            '#e11d48', '#f59e0b', '#0d9488', '#4f46e5', '#db2777',
+            '#d97706', '#059669', '#2563eb', '#9333ea', '#dc2626'
+        ];
+
+        function openWheelModal() {
+            const modal = document.getElementById('wheel-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.getElementById('wheel-result-box').classList.add('hidden');
+            if (activeWheelDishes.length === 0) {
+                prepareWheelDishes();
+            } else {
+                drawWheel();
+            }
+            setTimeout(() => {
+                document.getElementById('wheel-modal-content').classList.remove('scale-95', 'opacity-0');
+                document.getElementById('wheel-modal-content').classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeWheelModal() {
+            if (isSpinning) return;
+            const modal = document.getElementById('wheel-modal');
+            document.getElementById('wheel-modal-content').classList.remove('scale-100', 'opacity-100');
+            document.getElementById('wheel-modal-content').classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }, 200);
+        }
+
+        function prepareWheelDishes() {
+            if (isSpinning) return;
+            const cat = document.getElementById('wheel-category-select').value;
+            let pool = cat === 'all' ? [...dishes] : dishes.filter(d => d.category === cat);
+            pool = pool.sort(() => 0.5 - Math.random());
+            activeWheelDishes = pool.slice(0, Math.min(10, pool.length));
+            document.getElementById('wheel-result-box').classList.add('hidden');
+            drawWheel();
+        }
+
+        function drawWheel() {
+            const canvas = document.getElementById('lucky-wheel-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const numSlices = activeWheelDishes.length;
+            if (numSlices === 0) return;
+
+            const arc = (2 * Math.PI) / numSlices;
+            const center = canvas.width / 2;
+            const radius = center - 6;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < numSlices; i++) {
+                // Bắt đầu vẽ từ góc -90 độ (hướng 12 giờ) để đồng bộ chuẩn với kim chỉ
+                const startAngle = -Math.PI / 2 + i * arc;
+                const endAngle = startAngle + arc;
+
+                ctx.beginPath();
+                ctx.fillStyle = wheelColors[i % wheelColors.length];
+                ctx.moveTo(center, center);
+                ctx.arc(center, center, radius, startAngle, endAngle);
+                ctx.lineTo(center, center);
+                ctx.fill();
+
+                ctx.lineWidth = 2;
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.35)';
+                ctx.stroke();
+
+                // Vẽ tên món ăn
+                ctx.save();
+                ctx.translate(center, center);
+                ctx.rotate(startAngle + arc / 2);
+                ctx.textAlign = 'right';
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 12px "Plus Jakarta Sans", sans-serif';
+
+                let label = activeWheelDishes[i].name;
+                if (label.length > 18) {
+                    label = label.substring(0, 16) + '..';
+                }
+                ctx.fillText(label, radius - 16, 4);
+                ctx.restore();
+            }
+        }
+
+        function playTickSound(audioCtx, freq = 600) {
+            if (!audioCtx) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.05);
+            } catch (e) {}
+        }
+
+        function playWinSound(audioCtx) {
+            if (!audioCtx) return;
+            try {
+                const notes = [523.25, 659.25, 783.99, 1046.50];
+                notes.forEach((freq, idx) => {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, audioCtx.currentTime + idx * 0.1);
+                    gain.gain.setValueAtTime(0.12, audioCtx.currentTime + idx * 0.1);
+                    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + idx * 0.1 + 0.35);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(audioCtx.currentTime + idx * 0.1);
+                    osc.stop(audioCtx.currentTime + idx * 0.1 + 0.35);
+                });
+            } catch (e) {}
+        }
+
+        function startSpinning() {
+            if (isSpinning || activeWheelDishes.length === 0) return;
+            isSpinning = true;
+
+            const resultBox = document.getElementById('wheel-result-box');
+            const mainBtn = document.getElementById('spin-main-btn');
+            resultBox.classList.add('hidden');
+            mainBtn.disabled = true;
+            mainBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> <span>Đang quay...</span>`;
+
+            let audioCtx = null;
+            try {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            } catch (e) {}
+
+            let tickDelay = 60;
+            let elapsed = 0;
+            function scheduleTicks() {
+                if (!isSpinning || elapsed > 3900) return;
+                playTickSound(audioCtx, 550 + Math.random() * 150);
+                elapsed += tickDelay;
+                tickDelay = Math.min(350, tickDelay * 1.12);
+                setTimeout(scheduleTicks, tickDelay);
+            }
+            scheduleTicks();
+
+            const canvas = document.getElementById('lucky-wheel-canvas');
+            const extraSpins = 6;
+            const randomDeg = Math.floor(Math.random() * 360);
+            currentRotation += extraSpins * 360 + randomDeg;
+            canvas.style.transform = `rotate(${currentRotation}deg)`;
+
+            setTimeout(() => {
+                isSpinning = false;
+                mainBtn.disabled = false;
+                mainBtn.innerHTML = `<i class="fa-solid fa-dharmachakra text-amber-200"></i> <span>Quay Lại Lần Nữa</span>`;
+
+                const numSlices = activeWheelDishes.length;
+                const sliceAngle = 360 / numSlices;
+                const pointerAngle = (360 - (currentRotation % 360)) % 360;
+                const winningIndex = Math.floor(pointerAngle / sliceAngle) % numSlices;
+                const winningDish = activeWheelDishes[winningIndex];
+
+                playWinSound(audioCtx);
+
+                document.getElementById('wheel-result-name').innerText = winningDish.name;
+                document.getElementById('wheel-result-meta').innerText = `${winningDish.categoryName} • Quận ${winningDish.district} • ${winningDish.price}`;
+                document.getElementById('wheel-view-btn').setAttribute('onclick', `closeWheelModal(); openDishModal(${winningDish.id});`);
+                resultBox.classList.remove('hidden');
+
+                showToast(`🎉 Vòng quay gọi tên: ${winningDish.name}!`);
+            }, 4250);
+        }
+
+        // Render Categories Navbar
+        function renderCategories() {
+            const container = document.getElementById('categories-container');
+            container.innerHTML = categories.map(cat => `
+                <button onclick="filterDishes('${cat.id}')" class="category-btn flex items-center space-x-2 px-4 py-2.5 rounded-2xl font-bold text-sm whitespace-nowrap transition-all ${activeCategory === cat.id ? 'bg-rose-600 text-white shadow-lg shadow-rose-500/25' : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'}">
+                    <i class="fa-solid ${cat.icon}"></i>
+                    <span>${cat.name}</span>
+                </button>
+            `).join('');
+        }
+
+        // Filter Dishes by Category and Search/District
+        function filterDishes(categoryId) {
+            activeCategory = categoryId;
+            renderCategories();
+            handleSearch();
+        }
+
+        // Handle Search & Filtering
+        function handleSearch() {
+            const query = document.getElementById('search-input').value.toLowerCase().trim();
+            const selectedDistrict = document.getElementById('district-filter').value;
+
+            const filtered = dishes.filter(dish => {
+                const matchCategory = activeCategory === 'all' || dish.category === activeCategory;
+                const matchDistrict = selectedDistrict === 'all' || dish.district === selectedDistrict;
+                const matchQuery = dish.name.toLowerCase().includes(query) || 
+                                   dish.description.toLowerCase().includes(query) || 
+                                   dish.ingredients.some(i => i.toLowerCase().includes(query));
+                return matchCategory && matchDistrict && matchQuery;
+            });
+
+            renderDishes(filtered);
+        }
+
+        // Render Dish Cards
+        function renderDishes(data) {
+            const grid = document.getElementById('dishes-grid');
+            const emptyState = document.getElementById('empty-state');
+            const countBadge = document.getElementById('dish-count');
+
+            countBadge.innerText = `${data.length} món`;
+
+            if (data.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            grid.innerHTML = data.map(dish => `
+                <div onclick="openDishModal(${dish.id})" class="group bg-white rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer flex flex-col transform hover:-translate-y-1">
+                    <!-- Card Image -->
+                    <div class="relative h-52 w-full overflow-hidden bg-slate-100">
+                        <img src="${dish.image}" alt="${dish.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='${dish.fallbackImage}';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent"></div>
+                        <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-md text-slate-800 text-[11px] font-extrabold px-3 py-1 rounded-full shadow-md">
+                            ${dish.categoryName}
+                        </span>
+                        <span class="absolute top-3 right-3 bg-slate-900/75 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center space-x-1">
+                            <i class="fa-brands fa-tiktok text-rose-400"></i>
+                            <span>Báo & Review</span>
+                        </span>
+                        <span class="absolute bottom-3 left-4 text-white text-xs font-semibold flex items-center space-x-1.5">
+                            <i class="fa-solid fa-location-dot text-rose-400"></i>
+                            <span>Quận ${dish.district}</span>
+                        </span>
+                    </div>
+
+                    <!-- Card Body -->
+                    <div class="p-6 flex flex-col flex-grow space-y-4">
+                        <div>
+                            <h4 class="text-lg font-black text-slate-800 group-hover:text-rose-600 transition-colors">${dish.name}</h4>
+                            <p class="text-slate-500 text-xs mt-1.5 line-clamp-2 leading-relaxed">${dish.description}</p>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between mt-auto">
+                            <div class="flex items-center space-x-3 text-xs font-bold text-slate-600">
+                                <span><i class="fa-solid fa-clock text-amber-500 mr-1"></i>${dish.time}</span>
+                                <span><i class="fa-solid fa-tag text-emerald-500 mr-1"></i>${dish.price}</span>
+                            </div>
+                            <span class="w-9 h-9 rounded-2xl bg-rose-50 text-rose-600 group-hover:bg-rose-600 group-hover:text-white flex items-center justify-center transition-colors">
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render Homepage Media Hub (Báo Chí & TikTok Ẩm Thực Hà Nội)
+        let hubDishPool = [1, 2, 13, 29, 31, 14, 15, 33];
+
+        function refreshMediaHub() {
+            const shuffled = [...dishes].sort(() => 0.5 - Math.random());
+            hubDishPool = shuffled.slice(0, 6).map(d => d.id);
+            renderMediaHub();
+            showToast("Đã cập nhật tuyển tập bài báo & video TikTok mới!");
+        }
+
+        function renderMediaHub() {
+            const tiktokGrid = document.getElementById('hub-tiktok-grid');
+            const articlesGrid = document.getElementById('hub-articles-grid');
+
+            const selectedDishes = hubDishPool.map(id => dishes.find(d => d.id === id)).filter(Boolean);
+
+            // Render 4 TikTok Cards
+            const tiktokCardsHtml = selectedDishes.slice(0, 4).map(dish => {
+                const media = getMediaForDish(dish);
+                const tt = media.tiktoks[0];
+                const tiktokSearchUrl = `https://www.tiktok.com/search?q=${encodeURIComponent(tt.query)}`;
+
+                return `
+                    <div class="group relative rounded-3xl overflow-hidden bg-slate-900 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-80 border border-slate-200">
+                        <img src="${dish.image}" alt="${dish.name}" class="absolute inset-0 w-full h-full object-cover opacity-55 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='${dish.fallbackImage}';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/50 to-slate-900/20"></div>
+
+                        <!-- Top badges -->
+                        <div class="relative z-10 p-4 flex items-center justify-between">
+                            <span class="bg-black/60 backdrop-blur-md text-white text-[11px] font-bold px-2.5 py-1 rounded-full flex items-center space-x-1.5 border border-white/15">
+                                <i class="fa-brands fa-tiktok text-rose-400"></i>
+                                <span>${tt.author}</span>
+                            </span>
+                            <span class="bg-rose-600/90 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full">
+                                <i class="fa-solid fa-play mr-1"></i>${tt.views}
+                            </span>
+                        </div>
+
+                        <!-- Bottom content -->
+                        <div class="relative z-10 p-4 space-y-3">
+                            <span onclick="openDishModal(${dish.id})" class="inline-block cursor-pointer text-[11px] font-extrabold text-amber-300 hover:underline">
+                                # ${dish.name}
+                            </span>
+                            <p class="text-white font-bold text-sm line-clamp-2 leading-snug">${tt.title}</p>
+                            <div class="flex items-center justify-between pt-2 border-t border-white/15">
+                                <button onclick="openDishModal(${dish.id})" class="text-xs font-bold text-slate-200 hover:text-white transition-colors">
+                                    Chi tiết món
+                                </button>
+                                <a href="${tiktokSearchUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-1.5 bg-white text-slate-900 hover:bg-rose-500 hover:text-white text-xs font-extrabold px-3 py-1.5 rounded-xl transition-colors shadow">
+                                    <i class="fa-brands fa-tiktok"></i>
+                                    <span>Xem TikTok</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            tiktokGrid.innerHTML = tiktokCardsHtml;
+
+            // Render 3 Featured Press Articles
+            const articleCardsHtml = selectedDishes.slice(0, 3).map((dish, idx) => {
+                const media = getMediaForDish(dish);
+                const art = media.articles[idx % media.articles.length];
+                const articleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(art.query)}`;
+
+                return `
+                    <article class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between space-y-4">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-[11px] font-extrabold px-3 py-1 rounded-full ${art.badgeColor}">${art.source}</span>
+                                <span class="text-xs font-semibold text-slate-400">${art.date}</span>
+                            </div>
+                            <h5 class="text-base font-black text-slate-800 leading-snug line-clamp-2">${art.title}</h5>
+                            <p class="text-xs text-slate-500 leading-relaxed line-clamp-3">${art.summary}</p>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                            <button onclick="openDishModal(${dish.id})" class="text-xs font-extrabold text-rose-600 hover:text-rose-700 flex items-center space-x-1">
+                                <i class="fa-solid fa-utensils"></i>
+                                <span>Xem: ${dish.name}</span>
+                            </button>
+                            <a href="${articleSearchUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-1.5 bg-slate-100 hover:bg-slate-800 text-slate-700 hover:text-white text-xs font-bold px-3.5 py-2 rounded-xl transition-colors">
+                                <span>Đọc báo</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+
+            articlesGrid.innerHTML = articleCardsHtml;
+        }
+
+        // Open Dish Detail Modal
+        function openDishModal(dishId) {
+            const dish = dishes.find(d => d.id === dishId);
+            if (!dish) return;
+
+            document.getElementById('modal-image').src = dish.image;
+            document.getElementById('modal-image').onerror = function() { this.src = dish.fallbackImage; };
+            document.getElementById('modal-category').innerText = dish.categoryName;
+            document.getElementById('modal-name').innerText = dish.name;
+            document.getElementById('modal-time').innerText = dish.time;
+            document.getElementById('modal-price').innerText = dish.price;
+            document.getElementById('modal-desc').innerText = dish.description;
+
+            // Flavor metrics
+            const flavorsContainer = document.getElementById('modal-flavors');
+            const flavorLabels = { sweet: { name: 'Độ Ngọt/Đậm', color: 'bg-rose-500' }, rich: { name: 'Độ Béo/Ngậy', color: 'bg-amber-500' }, spicy: { name: 'Độ Cay', color: 'bg-orange-500' }, fresh: { name: 'Độ Tươi Mát', color: 'bg-emerald-500' } };
+            
+            flavorsContainer.innerHTML = Object.entries(dish.flavors).map(([key, val]) => `
+                <div class="bg-slate-50 p-3 rounded-2xl border border-slate-100 space-y-1.5">
+                    <div class="flex justify-between text-xs font-bold text-slate-600">
+                        <span>${flavorLabels[key].name}</span>
+                        <span>${val}%</span>
+                    </div>
+                    <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                        <div class="${flavorLabels[key].color} h-full rounded-full" style="width: ${val}%"></div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Ingredients
+            document.getElementById('modal-ingredients').innerHTML = dish.ingredients.map(ing => `
+                <span class="bg-slate-100 text-slate-700 text-xs font-bold px-3 py-1.5 rounded-xl border border-slate-200/60">${ing}</span>
+            `).join('');
+
+            // Render Bài Báo Giới Thiệu Món Ăn & TikTok Liên Quan
+            const dishMedia = getMediaForDish(dish);
+
+            document.getElementById('modal-articles').innerHTML = dishMedia.articles.map(art => {
+                const articleUrl = `https://www.google.com/search?q=${encodeURIComponent(art.query)}`;
+                return `
+                    <div class="bg-slate-50 hover:bg-rose-50/40 p-4 rounded-2xl border border-slate-200/80 transition-colors flex flex-col justify-between space-y-3">
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-[10px] font-extrabold px-2.5 py-0.5 rounded-full ${art.badgeColor}">${art.source}</span>
+                                <span class="text-[11px] font-semibold text-slate-400">${art.date}</span>
+                            </div>
+                            <h5 class="font-extrabold text-slate-800 text-sm leading-snug">${art.title}</h5>
+                            <p class="text-xs text-slate-600 leading-relaxed">${art.summary}</p>
+                        </div>
+                        <div class="pt-2 flex justify-end">
+                            <a href="${articleUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-1.5 text-xs font-extrabold text-rose-600 hover:text-rose-700 bg-white px-3 py-1.5 rounded-xl border border-rose-200 shadow-sm transition-colors">
+                                <i class="fa-solid fa-book-open"></i>
+                                <span>Đọc bài báo</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('modal-tiktok-all-link').href = `https://www.tiktok.com/search?q=${encodeURIComponent(dish.name + ' Hà Nội')}`;
+
+            document.getElementById('modal-tiktoks').innerHTML = dishMedia.tiktoks.map(tt => {
+                const ttUrl = `https://www.tiktok.com/search?q=${encodeURIComponent(tt.query)}`;
+                return `
+                    <a href="${ttUrl}" target="_blank" rel="noopener noreferrer" class="group relative rounded-2xl overflow-hidden bg-gradient-to-br ${tt.gradient} p-4 text-white flex flex-col justify-between min-h-[190px] shadow-md hover:shadow-xl transition-all transform hover:-translate-y-0.5">
+                        <img src="${dish.image}" alt="${dish.name}" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+
+                        <div class="relative z-10 flex items-center justify-between">
+                            <span class="bg-black/50 backdrop-blur-sm text-[11px] font-bold px-2.5 py-1 rounded-full flex items-center space-x-1 border border-white/15">
+                                <i class="fa-brands fa-tiktok text-rose-400"></i>
+                                <span>${tt.author}</span>
+                            </span>
+                            <span class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm group-hover:bg-rose-600 flex items-center justify-center transition-colors">
+                                <i class="fa-solid fa-play text-xs"></i>
+                            </span>
+                        </div>
+
+                        <div class="relative z-10 space-y-2 mt-4">
+                            <p class="text-xs font-bold leading-snug line-clamp-3">${tt.title}</p>
+                            <div class="flex items-center justify-between text-[11px] text-slate-300 pt-2 border-t border-white/15">
+                                <span><i class="fa-solid fa-eye mr-1"></i>${tt.views}</span>
+                                <span><i class="fa-solid fa-heart text-rose-400 mr-1"></i>${tt.likes}</span>
+                            </div>
+                        </div>
+                    </a>
+                `;
+            }).join('');
+
+            // Locations & Route Guidance
+            const origin = document.getElementById('user-location-input').value.trim() || 'Hồ Hoàn Kiếm, Hà Nội';
+            const locContainer = document.getElementById('modal-locations');
+            
+            locContainer.innerHTML = dish.locations.map((loc) => {
+                const routeStats = estimateRouteStats(origin, loc.address);
+                const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(loc.address)}`;
+                const embedMapUrl = `https://maps.google.com/maps?q=${encodeURIComponent(loc.address)}&output=embed`;
+
+                return `
+                    <div class="bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                            <div>
+                                <h5 class="font-black text-slate-800 text-base">${loc.name}</h5>
+                                <p class="text-slate-500 text-xs mt-0.5"><i class="fa-solid fa-location-dot text-rose-500 mr-1"></i>${loc.address}</p>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-1 rounded-lg">
+                                    <i class="fa-solid fa-star text-amber-500 mr-1"></i>${loc.rating}
+                                </span>
+                                <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-lg">${loc.price}</span>
+                            </div>
+                        </div>
+
+                        <!-- Distance & Route Stats -->
+                        <div class="flex items-center justify-between bg-white px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600">
+                            <div class="flex items-center space-x-3">
+                                <span><i class="fa-solid fa-road text-rose-600 mr-1"></i>Cách khoảng: <b>${routeStats.distance}</b></span>
+                                <span><i class="fa-solid fa-motorcycle text-indigo-600 mr-1"></i>Đi xe máy: <b>${routeStats.duration}</b></span>
+                            </div>
+                            <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="bg-rose-600 hover:bg-rose-700 text-white font-bold px-3 py-1.5 rounded-lg shadow transition-colors flex items-center space-x-1">
+                                <i class="fa-solid fa-diamond-turn-right"></i>
+                                <span>Chỉ Đường</span>
+                            </a>
+                        </div>
+
+                        <!-- Embedded Map -->
+                        <div class="w-full h-40 rounded-xl overflow-hidden border border-slate-200 relative">
+                            <iframe width="100%" height="100%" frameborder="0" style="border:0" src="${embedMapUrl}" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            const modal = document.getElementById('dish-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                document.getElementById('dish-modal-content').classList.remove('scale-95', 'opacity-0');
+                document.getElementById('dish-modal-content').classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        // Close Dish Modal
+        function closeDishModal() {
+            const modal = document.getElementById('dish-modal');
+            document.getElementById('dish-modal-content').classList.remove('scale-100', 'opacity-100');
+            document.getElementById('dish-modal-content').classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }, 200);
+        }
+
+        // GPS Current Location Helper
+        function getCurrentLocation() {
+            const input = document.getElementById('user-location-input');
+            if (!navigator.geolocation) {
+                showToast("Trình duyệt không hỗ trợ định vị GPS.", "error");
+                return;
+            }
+            showToast("Đang xác định tọa độ GPS của bạn...");
+            navigator.geolocation.getCurrentPosition(
+                (pos) => {
+                    const lat = pos.coords.latitude.toFixed(4);
+                    const lng = pos.coords.longitude.toFixed(4);
+                    input.value = `${lat}, ${lng} (Vị trí hiện tại)`;
+                    showToast("Đã cập nhật vị trí GPS thành công!");
+                },
+                () => {
+                    input.value = "Hồ Hoàn Kiếm, Hà Nội";
+                    showToast("Không thể truy cập GPS, sử dụng mặc định Hồ Hoàn Kiếm.", "error");
+                }
+            );
+        }
+
+        // AI Chef Modal Functions
+        function openAiModal() {
+            document.getElementById('ai-modal').classList.remove('hidden');
+            document.getElementById('ai-modal').classList.add('flex');
+            document.getElementById('ai-result').classList.add('hidden');
+            document.getElementById('ai-prompt').value = '';
+        }
+
+        function closeAiModal() {
+            document.getElementById('ai-modal').classList.remove('flex');
+            document.getElementById('ai-modal').classList.add('hidden');
+        }
+
+        function setAiPrompt(text) {
+            document.getElementById('ai-prompt').value = text;
+        }
+
+        let lastAiDishId = null;
+
+        function askAiChef() {
+            const prompt = document.getElementById('ai-prompt').value.trim();
+            if (!prompt) {
+                showToast("Vui lòng nhập tâm trạng, thời tiết hoặc món bạn muốn nhé!", "error");
+                return;
+            }
+
+            const btn = document.getElementById('ai-submit-btn');
+            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-2"></i> Đầu Bếp AI đang phân tích vị giác...`;
+            btn.disabled = true;
+
+            setTimeout(() => {
+                const normalize = (str) => str.toLowerCase()
+                    .normalize("NFD").replace(/[̀-ͯ]/g, "")
+                    .replace(/đ/g, "d");
+
+                const rawPrompt = prompt.toLowerCase();
+                const normPrompt = normalize(prompt);
+                const tokens = normPrompt.split(/[\s,.\-!?&]+/).filter(w => w.length >= 2);
+
+                // Bộ quy tắc chấm điểm thông minh (Ưu tiên tên món/từ khóa cụ thể trước, sau đó đến thời tiết/tâm trạng)
+                const keywordRules = [
+                    { keys: ['thit cho', 'gia cay', 'nhua man', 'cho met'], dishIds: [13], score: 150 },
+                    { keys: ['cha ca', 'la vong', 'ca lang'], dishIds: [14], score: 150 },
+                    { keys: ['lau rieu', 'lau'], dishIds: [25], score: 140 },
+                    { keys: ['pho bo', 'tai chin'], dishIds: [1], score: 150 },
+                    { keys: ['pho cuon', 'ngu xa'], dishIds: [16], score: 150 },
+                    { keys: ['bun cha', 'quat than'], dishIds: [2], score: 150 },
+                    { keys: ['bun dau', 'mam tom'], dishIds: [3], score: 150 },
+                    { keys: ['bun rieu', 'suon sun'], dishIds: [4], score: 150 },
+                    { keys: ['bun thang'], dishIds: [15], score: 150 },
+                    { keys: ['bun ca'], dishIds: [18], score: 150 },
+                    { keys: ['bun bo nam bo', 'bun tron'], dishIds: [22], score: 150 },
+                    { keys: ['mi van than', 'sui cao'], dishIds: [7], score: 150 },
+                    { keys: ['banh mi chao', 'hoa ma'], dishIds: [5], score: 150 },
+                    { keys: ['banh mi sot vang', 'sot vang'], dishIds: [27], score: 150 },
+                    { keys: ['banh mi'], dishIds: [19, 5, 27], score: 110 },
+                    { keys: ['com tam', 'suon bi cha'], dishIds: [6], score: 150 },
+                    { keys: ['banh cuon', 'cha que'], dishIds: [8], score: 150 },
+                    { keys: ['xoi xeo', 'xoi'], dishIds: [9], score: 150 },
+                    { keys: ['nem chua ran', 'khoai lac'], dishIds: [10], score: 150 },
+                    { keys: ['chao suon', 'quay gion'], dishIds: [11], score: 150 },
+                    { keys: ['banh tom', 'ho tay'], dishIds: [17], score: 150 },
+                    { keys: ['nom bo kho', 'nom'], dishIds: [20], score: 150 },
+                    { keys: ['banh gio'], dishIds: [21], score: 150 },
+                    { keys: ['nem lui', 'banh xeo'], dishIds: [26], score: 150 },
+                    { keys: ['ca phe trung', 'giang'], dishIds: [12], score: 150 },
+                    { keys: ['kem trang tien', 'kem'], dishIds: [23], score: 150 },
+                    { keys: ['banh troi tau', 'tau hu'], dishIds: [24], score: 150 },
+                    { keys: ['che khuc bach', 'khuc bach', 'che'], dishIds: [28], score: 150 },
+                    { keys: ['tra chanh', 'nha tho'], dishIds: [29], score: 150 },
+                    { keys: ['nuoc sau', 'sau ngam', 'sau'], dishIds: [30], score: 150 },
+                    { keys: ['ca phe cot dua', 'cot dua', 'cong'], dishIds: [31], score: 150 },
+                    { keys: ['tra sen', 'tay ho'], dishIds: [32], score: 150 },
+                    { keys: ['sua chua danh da', 'sua chua'], dishIds: [33], score: 150 },
+                    { keys: ['nuoc mia', 'tran chau'], dishIds: [34], score: 150 },
+                    { keys: ['tao pho', 'thach gang'], dishIds: [35], score: 150 },
+                    { keys: ['bia hoi', 'bia', 'lac luoc'], dishIds: [36], score: 150 },
+                    { keys: ['tra dao', 'cam sa'], dishIds: [37], score: 150 },
+                    { keys: ['nuoc mo', 'mo ngam'], dishIds: [38], score: 150 }
+                ];
+
+                const intentRules = [
+                    {
+                        keys: ['nhau', 'lai rai', 'ban be', 'cuoi tuan', 'dac san nhau'],
+                        categories: ['special'],
+                        bonus: 65
+                    },
+                    {
+                        keys: ['khat', 'do uong', 'uong', 'giai nhiet', 'tra', 'ca phe', 'nuoc'],
+                        categories: ['drink'],
+                        bonus: 65
+                    },
+                    {
+                        keys: ['thanh dam', 'it dau mo', 'nhe nhang', 'healthy', 'rau', 'mat'],
+                        categories: ['drink'],
+                        dishIds: [16, 20, 15, 22, 28, 32, 35],
+                        bonus: 60
+                    },
+                    {
+                        keys: ['lanh', 'mua', 'am bung', 'nong hoi', 'gio mua', 'mua dong', 'suoi am'],
+                        categories: ['soup', 'special'],
+                        dishIds: [27, 24, 11, 25, 1, 13],
+                        bonus: 45
+                    },
+                    {
+                        keys: ['nang', 'nong buc', 'oi buc', 'mua he', 'giai khat'],
+                        categories: ['drink'],
+                        dishIds: [29, 30, 33, 34, 35, 36, 37, 38, 23],
+                        bonus: 55
+                    },
+                    {
+                        keys: ['doi', 'no', 'bua chinh', 'an trua', 'an toi', 'com', 'chac bung'],
+                        categories: ['lunch', 'soup'],
+                        bonus: 50
+                    },
+                    {
+                        keys: ['an vat', 'buon mieng', 'buoi chieu', 'xe chieu', 'an choi', 'gion'],
+                        categories: ['snack'],
+                        bonus: 55
+                    },
+                    {
+                        keys: ['nhanh', 'buoi sang', 'an sang', 'di lam', 'di hoc', 'voi', 'tien'],
+                        categories: ['fast', 'soup'],
+                        bonus: 50
+                    }
+                ];
+
+                const scoredDishes = dishes.map(dish => {
+                    let score = 0;
+                    const normName = normalize(dish.name);
+                    const normDesc = normalize(dish.description);
+                    const normIng = normalize(dish.ingredients.join(' '));
+                    const normDist = normalize(dish.district);
+
+                    // 1. Khớp trực tiếp tên món
+                    if (normPrompt.includes(normName) || rawPrompt.includes(dish.name.toLowerCase())) {
+                        score += 180;
+                    }
+
+                    // 2. Khớp từ khóa định danh món cụ thể (thịt chó, phở, trà chanh...)
+                    keywordRules.forEach(rule => {
+                        if (rule.keys.some(k => normPrompt.includes(k)) && rule.dishIds.includes(dish.id)) {
+                            score += rule.score;
+                        }
+                    });
+
+                    // 3. Khớp ngữ cảnh thời tiết / tâm trạng / danh mục
+                    intentRules.forEach(rule => {
+                        if (rule.keys.some(k => normPrompt.includes(k))) {
+                            if (rule.categories && rule.categories.includes(dish.category)) {
+                                score += rule.bonus;
+                            }
+                            if (rule.dishIds && rule.dishIds.includes(dish.id)) {
+                                score += rule.bonus;
+                            }
+                        }
+                    });
+
+                    // 4. Khớp từng từ đơn lẻ trong tên, nguyên liệu, quận, mô tả
+                    tokens.forEach(token => {
+                        if (normName.includes(token)) score += 15;
+                        if (normIng.includes(token)) score += 10;
+                        if (normDist.includes(token)) score += 15;
+                        if (normDesc.includes(token)) score += 4;
+                    });
+
+                    // Tránh lặp lại đúng món vừa gợi ý ở lần bấm ngay trước đó
+                    if (dish.id === lastAiDishId) {
+                        score -= 40;
+                    }
+
+                    return { dish, score };
+                });
+
+                scoredDishes.sort((a, b) => b.score - a.score);
+
+                const topScore = scoredDishes[0].score;
+                let match;
+                if (topScore > 0) {
+                    const topCandidates = scoredDishes.filter(item => item.score >= topScore - 15).slice(0, 3);
+                    match = topCandidates[Math.floor(Math.random() * topCandidates.length)].dish;
+                } else {
+                    const fallbackPool = dishes.filter(d => d.id !== lastAiDishId);
+                    match = fallbackPool[Math.floor(Math.random() * fallbackPool.length)];
+                }
+
+                lastAiDishId = match.id;
+
+                const resultBox = document.getElementById('ai-result');
+                const resultContent = document.getElementById('ai-result-content');
+
+                resultContent.innerHTML = `
+                    <p>Dựa trên yêu cầu <b>"${prompt}"</b>, Đầu Bếp AI khuyên bạn thưởng thức ngay:</p>
+                    <div class="bg-white p-4 rounded-xl border border-indigo-200 space-y-2">
+                        <h4 class="font-black text-slate-800 text-base flex items-center justify-between">
+                            <span>${match.name}</span>
+                            <span class="text-xs bg-rose-100 text-rose-700 px-2 py-0.5 rounded">${match.price}</span>
+                        </h4>
+                        <p class="text-xs text-slate-600">${match.description}</p>
+                        <div class="pt-2 flex items-center justify-between gap-2">
+                            <span class="text-xs font-bold text-indigo-600"><i class="fa-solid fa-location-dot mr-1"></i>Gợi ý: ${match.locations[0].name}</span>
+                            <button onclick="closeAiModal(); openDishModal(${match.id});" class="text-xs bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-3 py-1.5 rounded-lg shadow transition-colors shrink-0">
+                                Xem chi tiết, TikTok & Chỉ đường
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                resultBox.classList.remove('hidden');
+                btn.innerHTML = `<i class="fa-solid fa-sparkles text-amber-300 mr-2"></i> AI Gợi Ý Ngay`;
+                btn.disabled = false;
+            }, 500);
+        }
+
+        // Helper: Estimate Route Stats
+        function estimateRouteStats(origin, destination) {
+            const hash = (origin.length + destination.length) % 55;
+            const distKm = (1.2 + (hash % 10) * 0.5).toFixed(1);
+            const durationMin = Math.round(distKm * 3.5 + 4);
+            return {
+                distance: `${distKm} km`,
+                duration: `${durationMin} phút`
+            };
+        }
+
+        // Toast Notification Helper
+        function showToast(msg, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-msg');
+            const toastIcon = document.getElementById('toast-icon');
+
+            toastMsg.innerText = msg;
+            if (type === 'error') {
+                toastIcon.className = 'fa-solid fa-circle-exclamation text-rose-400';
+            } else {
+                toastIcon.className = 'fa-solid fa-circle-check text-emerald-400';
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        function resetFilters() {
+            document.getElementById('search-input').value = '';
+            document.getElementById('district-filter').value = 'all';
+            filterDishes('all');
+        }
+    </script>
+</body>
+</html>
