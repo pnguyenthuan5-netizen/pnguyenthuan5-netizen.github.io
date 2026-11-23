@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ăn Chưa 🤬? - 38 Món Ngon, Đặc Sản & Đồ Uống Hà Nội</title>
+    <title>Ăn Chưa 🤬? - 238 Món Ngon, Đặc Sản & Đồ Uống Hà Nội</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Plus Jakarta Sans -->
@@ -31,7 +31,7 @@
             }
         }
     </script>
-   <style>
+    <style>
         body.custom-bg {
             background-image:
                 linear-gradient(rgba(248, 250, 252, 0.90), rgba(248, 250, 252, 0.94)),
@@ -39,6 +39,27 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+        }
+        /* Hiệu ứng xoay mượt cho Vòng Quay May Mắn */
+        .wheel-transition {
+            transition: transform 4.2s cubic-bezier(0.15, 0.85, 0.25, 1);
+            will-change: transform;
+        }
+        /* Xoay chậm icon bánh xe */
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spin-slow 8s linear infinite;
+        }
+        /* Ẩn thanh cuộn ngang cho dải danh mục */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
 </head>
@@ -48,17 +69,16 @@
     <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <!-- Logo & Brand -->
-           <!-- Logo & Brand -->
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="filterDishes('all'); document.getElementById('search-input').value=''; document.getElementById('district-filter').value='all'; handleSearch();">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="resetFilters()">
                 <img 
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQProNW5zCbwDdTXENWM5hO84s26bpQesf272wJt4qFcA&s=10" 
                     alt="Logo Hôm Nay Ăn Gì?" 
                     class="w-12 h-12 rounded-2xl object-cover shadow-lg shadow-rose-500/20 border border-slate-200 bg-white transform hover:rotate-6 transition-transform"
-                    onerror="this.onerror=null; this.src='https://placehold.co/96x96/e11d48/ffffff?text=HNAG';"
+                    onerror="this.onerror=null; this.src='https://placehold.co/96x96/e11d48/ffffff?text=AC';"
                 >
                 <div>
-                    <h1 class="text-xl font-extrabold bg-gradient-to-r from-rose-600 to-amber-600 bg-clip-text text-transparent">Ăn Chưa ?</h1>
-                    <p class="text-xs font-semibold text-slate-500 tracking-wider">38 ĐẶC SẢN & ĐỒ UỐNG HÀ NỘI</p>
+                    <h1 class="text-xl font-extrabold bg-gradient-to-r from-rose-600 to-amber-600 bg-clip-text text-transparent">Ăn Chưa 🤬?</h1>
+                    <p class="text-xs font-semibold text-slate-500 tracking-wider">238 ĐẶC SẢN & ĐỒ UỐNG HÀ NỘI</p>
                 </div>
             </div>
 
@@ -93,7 +113,6 @@
     </header>
 
     <!-- HERO SECTION & SEARCH -->
-   <!-- HERO SECTION & SEARCH -->
     <section class="relative bg-slate-900 text-white py-14 px-4 overflow-hidden">
         <!-- Ảnh nền Hero -->
         <img
@@ -107,14 +126,15 @@
         <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#f43f5e_1px,transparent_1px)] [background-size:16px_16px]"></div>
 
         <div class="max-w-4xl mx-auto text-center relative z-10 space-y-6">
-            <!-- Giữ nguyên toàn bộ nội dung bên trong Hero như cũ -->
-                <span>Khám phá trọn vẹn 38 đặc sản & đồ uống tinh hoa Hà Nội</span>
+            <span class="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md border border-white/15 px-4 py-1.5 rounded-full text-xs font-bold text-amber-300">
+                <i class="fa-solid fa-fire text-rose-400"></i>
+                <span>Khám phá trọn vẹn 238 đặc sản & đồ uống tinh hoa Hà Nội</span>
             </span>
             <h2 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
                 Hôm nay bạn muốn đớp <span class="bg-gradient-to-r from-amber-300 to-rose-300 bg-clip-text text-transparent">món gì ngon?</span>
             </h2>
             <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto">
-                Từ phở bún truyền thống, đồ ăn vặt phố cổ, các món nhậu đặc sắc đến 14 thức uống trứ danh kèm bài báo giới thiệu, video review TikTok và chỉ đường chi tiết.
+                Từ phở bún truyền thống, đồ ăn vặt phố cổ, các món nhậu đặc sắc đến hàng chục thức uống trứ danh kèm bài báo giới thiệu, video review TikTok và chỉ đường chi tiết khắp 11 quận Hà Nội.
             </p>
 
             <!-- Quick Lucky Wheel CTA -->
@@ -129,9 +149,9 @@
             <div class="bg-white p-3 rounded-3xl shadow-2xl max-w-2xl mx-auto flex flex-col sm:flex-row items-center gap-3">
                 <div class="flex items-center flex-1 w-full px-3 py-2 bg-slate-50 rounded-2xl border border-slate-200">
                     <i class="fa-solid fa-magnifying-glass text-slate-400 mr-3"></i>
-                    <input type="text" id="search-input" oninput="handleSearch()" placeholder="Tìm món ăn, đồ uống, nguyên liệu (ví dụ: Phở, trà chanh, thịt chó...)" class="bg-transparent w-full text-slate-800 text-sm font-medium outline-none placeholder:text-slate-400">
+                    <input type="text" id="search-input" oninput="handleSearch()" placeholder="Tìm món ăn, đồ uống, nguyên liệu (ví dụ: Phở, trà sữa, bún đậu, lẩu...)" class="bg-transparent w-full text-slate-800 text-sm font-medium outline-none placeholder:text-slate-400">
                 </div>
-                <div class="w-full sm:w-48">
+                <div class="w-full sm:w-52">
                     <select id="district-filter" onchange="handleSearch()" class="w-full bg-slate-50 text-slate-700 text-sm font-semibold px-4 py-3 rounded-2xl border border-slate-200 outline-none cursor-pointer">
                         <option value="all">Tất cả quận Hà Nội</option>
                         <option value="Hoàn Kiếm">Quận Hoàn Kiếm</option>
@@ -141,6 +161,10 @@
                         <option value="Ba Đình">Quận Ba Đình</option>
                         <option value="Tây Hồ">Quận Tây Hồ</option>
                         <option value="Thanh Xuân">Quận Thanh Xuân</option>
+                        <option value="Nam Từ Liêm">Quận Nam Từ Liêm</option>
+                        <option value="Bắc Từ Liêm">Quận Bắc Từ Liêm</option>
+                        <option value="Hà Đông">Quận Hà Đông</option>
+                        <option value="Long Biên">Quận Long Biên</option>
                     </select>
                 </div>
             </div>
@@ -154,20 +178,28 @@
         </div>
     </div>
 
-    <!-- MAIN CONTENT: DISH GRID -->
+    <!-- MAIN CONTENT: DISH GRID & PAGINATION -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full space-y-16">
-        <!-- SECTION 1: 38 DISHES & DRINKS -->
-        <section>
-            <div class="flex items-center justify-between mb-6">
+        <!-- SECTION 1: 238 DISHES & DRINKS -->
+        <section id="dishes-section" class="scroll-mt-36">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
                 <h3 id="section-title" class="text-xl font-black text-slate-800 flex items-center space-x-2">
                     <i class="fa-solid fa-bowl-food text-rose-600"></i>
-                    <span>Danh Sách 38 Món Ngon & Đồ Uống Hà Nội</span>
+                    <span>Danh Sách 238 Món Ngon & Đồ Uống Hà Nội</span>
                 </h3>
-                <span id="dish-count" class="text-xs font-bold bg-rose-100 text-rose-700 px-3 py-1.5 rounded-full">38 món</span>
+                <div class="flex items-center space-x-2.5 self-start sm:self-auto">
+                    <span id="page-indicator" class="text-xs font-bold bg-slate-200/80 text-slate-700 px-3 py-1.5 rounded-full">Trang 1 / 20</span>
+                    <span id="dish-count" class="text-xs font-bold bg-rose-100 text-rose-700 px-3 py-1.5 rounded-full">238 món</span>
+                </div>
             </div>
 
             <!-- Dishes Grid -->
             <div id="dishes-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Rendered by JS -->
+            </div>
+
+            <!-- Pagination Controls -->
+            <div id="pagination-controls" class="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
                 <!-- Rendered by JS -->
             </div>
 
@@ -179,7 +211,7 @@
                 <h4 class="text-lg font-bold text-slate-800">Không tìm thấy món ăn hoặc đồ uống phù hợp</h4>
                 <p class="text-slate-500 text-sm mt-1">Hãy thử tìm với từ khóa khác hoặc nhờ Vòng Quay May Mắn chọn nhé!</p>
                 <button onclick="resetFilters()" class="mt-4 bg-rose-600 text-white font-bold px-5 py-2.5 rounded-xl shadow-md hover:bg-rose-700 transition-colors text-sm">
-                    Xem tất cả 38 món
+                    Xem tất cả 238 món
                 </button>
             </div>
         </section>
@@ -248,19 +280,19 @@
                     <span>Vòng Quay Định Mệnh</span>
                 </span>
                 <h3 class="text-2xl font-black text-slate-900 pt-1">Hôm Nay Ăn Gì? Uống Gì?</h3>
-                <p class="text-xs text-slate-500">Chọn danh mục hoặc quay ngẫu nhiên 10 món ngon & đồ uống Hà Nội trên vòng quay!</p>
+                <p class="text-xs text-slate-500">Chọn danh mục hoặc quay ngẫu nhiên 10 món ngon & đồ uống Hà Nội từ 238 đặc sản!</p>
             </div>
 
             <!-- Category Filter for Wheel -->
             <div class="flex items-center justify-center gap-2 flex-wrap">
                 <select id="wheel-category-select" onchange="prepareWheelDishes()" class="bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold px-3.5 py-2 rounded-xl outline-none cursor-pointer">
-                    <option value="all">🎲 Ngẫu nhiên từ 38 món</option>
+                    <option value="all">🎲 Ngẫu nhiên từ 238 món</option>
                     <option value="soup">🍜 Chỉ Món Nước</option>
                     <option value="lunch">🍛 Chỉ Món Cơm & Bún</option>
                     <option value="snack">🍢 Chỉ Món Ăn Vặt</option>
                     <option value="fast">🥖 Chỉ Món Nhanh Gọn</option>
                     <option value="special">🍻 Chỉ Đặc Sản Nhậu</option>
-                    <option value="drink">🧋 Chỉ Đồ Uống & Tráng Miệng (14 món)</option>
+                    <option value="drink">🧋 Chỉ Đồ Uống & Tráng Miệng</option>
                 </select>
                 <button onclick="prepareWheelDishes()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold px-3.5 py-2 rounded-xl transition-colors flex items-center space-x-1.5">
                     <i class="fa-solid fa-shuffle text-rose-600"></i>
@@ -271,7 +303,7 @@
             <!-- Wheel Canvas & Pointer Container -->
             <div class="relative w-72 h-72 sm:w-80 sm:h-80 mx-auto flex items-center justify-center my-2">
                 <!-- Pointer (Kim chỉ hướng 12 giờ) -->
-                <div class="absolute -top-3.5 z-20 flex flex-col items-center drop-shadow-md">
+                <div id="wheel-pointer" class="absolute -top-3.5 z-20 flex flex-col items-center drop-shadow-md transition-transform duration-75">
                     <div class="w-4 h-4 rounded-full bg-slate-900 border-2 border-white"></div>
                     <div class="w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[22px] border-t-rose-600 -mt-1"></div>
                 </div>
@@ -313,7 +345,7 @@
         <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl transform transition-all scale-95 opacity-0 duration-300" id="dish-modal-content">
             <!-- Modal Header with Image -->
             <div class="relative h-72 sm:h-80 w-full overflow-hidden bg-slate-900">
-                <img id="modal-image" src="" alt="" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/800x500/e11d48/ffffff?text=Mon+Ngon+Ha+Noi';">
+                <img id="modal-image" src="" alt="" class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
                 <button onclick="closeDishModal()" class="absolute top-4 right-4 w-10 h-10 bg-slate-900/60 hover:bg-slate-900 text-white rounded-full flex items-center justify-center backdrop-blur-md transition-colors">
                     <i class="fa-solid fa-xmark text-lg"></i>
@@ -409,7 +441,7 @@
                     </div>
                     <div>
                         <h3 class="text-lg font-black text-slate-800">Đầu Bếp AI Thông Minh</h3>
-                        <p class="text-xs text-slate-500 font-semibold">Gợi ý món ăn & đồ uống chuẩn gu theo tâm trạng, thời tiết</p>
+                        <p class="text-xs text-slate-500 font-semibold">Gợi ý từ 238 món ăn & đồ uống chuẩn gu theo tâm trạng, thời tiết</p>
                     </div>
                 </div>
                 <button onclick="closeAiModal()" class="w-8 h-8 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full flex items-center justify-center transition-colors">
@@ -420,7 +452,7 @@
             <div class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold uppercase text-slate-400 mb-1.5">Thời tiết / Tâm trạng / Món đang thèm?</label>
-                    <input type="text" id="ai-prompt" onkeydown="if(event.key==='Enter') askAiChef()" placeholder="Ví dụ: Trời se lạnh thèm thịt chó, hay nắng nóng muốn uống trà chanh..." class="w-full bg-slate-50 border border-slate-200 rounded-2xl px-4 py-3 text-sm font-medium text-slate-800 outline-none focus:border-indigo-500">
+                    <input type="text" id="ai-prompt" onkeydown="if(event.key==='Enter') askAiChef()" placeholder="Ví dụ: Trời se lạnh thèm lẩu, hay nắng nóng muốn uống trà sữa..." class="w-full bg-slate-50 border border-slate-200 rounded-2xl px-4 py-3 text-sm font-medium text-slate-800 outline-none focus:border-indigo-500">
                 </div>
 
                 <div class="flex flex-wrap gap-2">
@@ -458,15 +490,15 @@
     <!-- FOOTER -->
     <footer class="bg-white border-t border-slate-200 py-8 px-4 text-center text-slate-500 text-xs sm:text-sm mt-auto">
         <div class="max-w-7xl mx-auto space-y-2">
-            <p class="font-bold text-slate-700">Hôm Nay Ăn Gì? - 38 Món Ngon, Đặc Sản & Đồ Uống Hà Nội Cùng Vòng Quay May Mắn</p>
+            <p class="font-bold text-slate-700">Ăn Chưa 🤬? - 238 Món Ngon, Đặc Sản & Đồ Uống Hà Nội Cùng Vòng Quay May Mắn</p>
             <p>© 2026 Bản quyền thuộc về Bạn. Chúc bạn có những trải nghiệm ẩm thực tuyệt vời nhất!</p>
         </div>
     </footer>
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // 38 Món Ăn & Đồ Uống Đặc Sản Hà Nội Đầy Đủ Ảnh & Địa Điểm
-        const dishes = [
+        // 38 Món Ăn & Đồ Uống Gốc Đặc Sản Hà Nội (ID 1 -> 38)
+        const baseDishes = [
             {
                 id: 1,
                 name: "Phở Bò Tái Chín",
@@ -966,7 +998,6 @@
                     { name: "Chè Khúc Bạch Hàng Giấy", address: "33 Hàng Giấy, Đồng Xuân, Hoàn Kiếm, Hà Nội", rating: "4.6", hours: "10:00 - 23:00", price: "30.000đ - 50.000đ" }
                 ]
             },
-            // --- 10 LOẠI ĐỒ UỐNG MỚI ĐƯỢC BỔ SUNG ---
             {
                 id: 29,
                 name: "Trà Chanh Nhà Thờ Lớn",
@@ -1148,6 +1179,479 @@
                 ]
             }
         ];
+
+        // 200 MÓN MỚI ĐỦ THỂ LOẠI & KHẮP CÁC QUẬN HÀ NỘI (ID 39 -> 238)
+        const rawExtraDishes = [
+            // --- MÓN NƯỚC (35 món) ---
+            ["Phở Gà Ta Chặt Phố Cổ", "soup", "Hoàn Kiếm", "45.000đ - 65.000đ", "Nước dùng gà ta ninh trong veo vàng óng, thịt gà đùi da giòn thịt ngọt chắc, ăn kèm lá chanh thái chỉ và quẩy nóng.", ["Bánh phở", "Thịt gà ta", "Lá chanh", "Hành hoa"], "Phở Gà Nguyệt", "5B Phủ Doãn, Hoàn Kiếm, Hà Nội"],
+            ["Phở Bò Tái Lăn Lò Đúc", "soup", "Hai Bà Trưng", "55.000đ - 75.000đ", "Thịt bò thăn thái mỏng xào lửa lớn với tỏi và mỡ thơm lừng rồi trút thẳng vào bát phở nóng hổi, béo ngậy khó cưỡng.", ["Bánh phở", "Thịt bò xào tỏi", "Hành lá", "Nước hầm xương"], "Phở Thìn 13 Lò Đúc", "13 Lò Đúc, Hai Bà Trưng, Hà Nội"],
+            ["Phở Bò Sốt Vang Đêm", "soup", "Hoàn Kiếm", "50.000đ - 70.000đ", "Sự kết hợp hoàn hảo giữa bánh phở mềm và thịt gân bò hầm rượu vang đỏ sánh đậm mùi quế hồi thảo quả.", ["Bánh phở", "Thịt gân bò", "Sốt vang đỏ", "Rau mùi"], "Phở Bò Sốt Vang Hàng Trống", "24 Hàng Trống, Hoàn Kiếm, Hà Nội"],
+            ["Bún Ốc Nguội Ô Quan Chưởng", "soup", "Hoàn Kiếm", "40.000đ - 55.000đ", "Món ăn thanh tao độc đáo của người Hà Nội xưa: ốc mít béo giòn chấm bát nước dùng nguội chua thanh vị giấm bỗng.", ["Bún con", "Ốc mít luộc", "Giấm bỗng", "Ớt chưng"], "Bún Ốc Nguội Cô Huệ", "43 Nguyễn Siêu, Hoàn Kiếm, Hà Nội"],
+            ["Bún Ốc Chuối Đậu Nóng", "soup", "Đống Đa", "45.000đ - 60.000đ", "Nước dùng sánh vàng màu nghệ và chuối xanh bùi béo, đậu phụ rán vàng, ốc nhồi giòn sần sật thơm mùi tía tô.", ["Bún tươi", "Ốc nhồi", "Chuối xanh", "Đậu phụ, tía tô"], "Bún Ốc Bà Lương", "34 Ngõ 191 Khương Thượng, Đống Đa, Hà Nội"],
+            ["Bún Mọc Dọc Mùng Hà Nội", "soup", "Hoàn Kiếm", "40.000đ - 55.000đ", "Bát bún thanh mát với những viên mọc thịt băm nấm hương giòn ngọt, sườn non ninh mềm và dọc mùng xanh giòn.", ["Bún tươi", "Mọc nấm hương", "Dọc mùng", "Sườn non"], "Bún Mọc Hàng Lược", "57 Hàng Lược, Hoàn Kiếm, Hà Nội"],
+            ["Bún Dọc Mùng Sườn Chân Giò", "soup", "Ba Đình", "45.000đ - 65.000đ", "Chân giò rút xương thái khoanh béo ngậy, sườn sụn giòn sần sật chan nước dùng ninh xương ngọt thanh.", ["Bún tươi", "Chân giò heo", "Sườn sụn", "Dọc mùng"], "Bún Dọc Mùng Bát Đàn", "18 Bát Đàn, Hoàn Kiếm, Hà Nội"],
+            ["Bún Bung Sườn Dọc Mùng", "soup", "Hai Bà Trưng", "40.000đ - 55.000đ", "Món bún dân dã đậm chất Bắc Bộ với nước dùng nghệ vàng ươm, dọc mùng, sườn non và cà chua chua dịu.", ["Bún tươi", "Sườn heo", "Dọc mùng", "Nghệ tươi"], "Bún Bung Bà Minh", "68 Bạch Mai, Hai Bà Trưng, Hà Nội"],
+            ["Bún Ngan Chặt Nước Măng Cay", "soup", "Hoàn Kiếm", "45.000đ - 65.000đ", "Thịt ngan ta luộc chín tới ngọt mềm, chấm nước mắm tỏi ớt gừng đậm đà, ăn kèm bát bún nước măng chua cay.", ["Bún tươi", "Thịt ngan ta", "Măng tươi", "Tiết luộc"], "Bún Ngan Nhàn", "14 Ngõ Trung Yên, Hoàn Kiếm, Hà Nội"],
+            ["Miến Ngan Trộn & Nước", "soup", "Cầu Giấy", "40.000đ - 55.000đ", "Sợi miến dong dai ngon hòa quyện thịt ngan thái miếng, măng khô ninh nhừ, hành phi giòn và rau thơm.", ["Miến dong", "Thịt ngan", "Măng khô", "Hành phi"], "Miến Ngan Cầu Giấy", "112 Cầu Giấy, Cầu Giấy, Hà Nội"],
+            ["Miến Lươn Giòn Nghệ An", "soup", "Hoàn Kiếm", "45.000đ - 65.000đ", "Lươn đồng chiên giòn tan không tanh, thả vào bát nước dùng ninh từ xương lươn ngọt lịm, thêm rau răm thơm nồng.", ["Miến dong", "Lươn đồng chiên giòn", "Rau răm", "Hành phi"], "Miến Lươn Đông Thịnh", "87 Hàng Điếu, Hoàn Kiếm, Hà Nội"],
+            ["Miến Gà Trộn Măng Khô", "soup", "Đống Đa", "40.000đ - 55.000đ", "Sợi miến dong dai mướt quyện thịt gà xé phay, măng lưỡi lợn ninh mềm và nước dùng gà thanh ngọt.", ["Miến dong", "Thịt gà ta", "Măng khô", "Hành phi"], "Miến Gà Thái Hà", "45 Thái Hà, Đống Đa, Hà Nội"],
+            ["Bánh Đa Cua Hải Phòng", "soup", "Hai Bà Trưng", "40.000đ - 60.000đ", "Bánh đa đỏ dai mềm, gạch cua đồng chưng thơm béo, chả lá lốt nướng, bề bề, tôm tươi và rau muống chẻ.", ["Bánh đa đỏ", "Gạch cua đồng", "Chả lá lốt", "Tôm, bề bề"], "Bánh Đa Cua Phùng Hưng", "6A Phùng Hưng, Hoàn Kiếm, Hà Nội"],
+            ["Bánh Đa Cá Rô Đồng", "soup", "Cầu Giấy", "40.000đ - 55.000đ", "Cá rô đồng rán giòn rụm vàng ươm ăn cùng bánh đa trắng hoặc đỏ, rau cải xanh ngọt mát và thì là thơm lừng.", ["Bánh đa", "Cá rô đồng", "Rau cải xanh", "Thì là"], "Bánh Đa Cá Rô Trung Hòa", "28 Trung Hòa, Cầu Giấy, Hà Nội"],
+            ["Bún Bò Huế Ngự Bình", "soup", "Đống Đa", "45.000đ - 65.000đ", "Nước dùng đậm đà mùi sả và mắm ruốc Huế đặc trưng, đầy ắp bắp bò, giò heo, chả cua và tiết luộc.", ["Bún sợi to", "Bắp bò, giò heo", "Chả cua", "Sả, mắm ruốc"], "Bún Bò Huế O Xuân", "5D Quang Trung, Hoàn Kiếm, Hà Nội"],
+            ["Bún Bò Giò Heo Tây Hồ", "soup", "Tây Hồ", "50.000đ - 70.000đ", "Khoanh giò heo ninh mềm béo ngậy, thịt bò thái bản to, ăn kèm rau chuối bào và sa tế cay nồng.", ["Bún tươi", "Giò heo", "Thịt bò", "Sa tế sả ớt"], "Bún Bò Huế Thu Thủy", "18 Đại Cồ Việt, Hai Bà Trưng, Hà Nội"],
+            ["Hủ Tiếu Nam Vang Hà Nội", "soup", "Hoàn Kiếm", "50.000đ - 70.000đ", "Sợi hủ tiếu dai trong, nước dùng ninh xương tôm khô ngọt thanh với thịt băm, tôm tươi, gan heo và trứng cút.", ["Sợi hủ tiếu", "Tôm tươi, thịt băm", "Trứng cút", "Hẹ, cần tây"], "Hủ Tiếu Nam Vang Ngọc Thạch", "42 Hàng Tre, Hoàn Kiếm, Hà Nội"],
+            ["Hủ Tiếu Mực Khô Phố Cổ", "soup", "Ba Đình", "55.000đ - 75.000đ", "Nước dùng thanh ngọt từ mực khô nướng và xương ống, mực ống tươi giòn ngọt và tôm sú chắc thịt.", ["Hủ tiếu", "Mực ống tươi", "Tôm sú", "Tóp mỡ hành phi"], "Hủ Tiếu Mực Ông Già", "22 Phan Bội Châu, Hoàn Kiếm, Hà Nội"],
+            ["Bánh Canh Ghẹ Phú Quốc", "soup", "Cầu Giấy", "60.000đ - 85.000đ", "Sợi bánh canh bột lọc dai mướt trong nước dùng sền sệt đỏ cam gạch ghẹ, thịt ghẹ gỡ sẵn và chả cá thu.", ["Bánh canh bột lọc", "Thịt ghẹ tươi", "Chả cá", "Trứng cút"], "Bánh Canh Ghẹ 69", "69 Ô Chợ Dừa, Đống Đa, Hà Nội"],
+            ["Bánh Canh Cá Lóc Miền Trung", "soup", "Thanh Xuân", "40.000đ - 55.000đ", "Cá lóc đồng hấp chín xé miếng đậm vị tiêu hành, sợi bánh canh bột gạo mềm thơm ăn kèm rau đắng.", ["Bánh canh bột gạo", "Cá lóc đồng", "Hành tăm", "Rau đắng"], "Bánh Canh Cá Lóc Ngụy Như", "45 Ngụy Như Kon Tum, Thanh Xuân, Hà Nội"],
+            ["Mì Quảng Ếch Đà Nẵng", "soup", "Đống Đa", "45.000đ - 65.000đ", "Sợi mì Quảng vàng óng chan nước nhân ếch om nghệ sả đậm đà, ăn kèm bánh tráng mè nướng giòn rụm và lạc rang.", ["Mì Quảng", "Thịt ếch om nghệ", "Bánh tráng nướng", "Lạc rang"], "Mì Quảng Bà Mua", "82 Nguyễn Chí Thanh, Đống Đa, Hà Nội"],
+            ["Bún Hải Sản Bề Bề Tôm Tích", "soup", "Cầu Giấy", "50.000đ - 75.000đ", "Bát bún ngập tràn bề bề bóc nõn, tôm sú tươi, mực ống, chả cá Hải Phòng và nước dùng chua cay đậm vị.", ["Bún tươi", "Bề bề, tôm, mực", "Chả cá", "Cà chua, dứa"], "Bún Hải Sản Hoàng Cầu", "36 Hoàng Cầu, Đống Đa, Hà Nội"],
+            ["Cháo Lòng Tiết Canh Sáng", "soup", "Hai Bà Trưng", "35.000đ - 55.000đ", "Bát cháo lòng nấu sánh mịn ngọt vị nước luộc lòng, đầy ắp dồi rán, lòng non, gan, dạ dày giòn sần sật.", ["Gạo tẻ rang", "Lòng non, dồi mỡ", "Tiết luộc", "Hành hoa, tiêu bắc"], "Cháo Lòng Đào Duy Từ", "4 Đào Duy Từ, Hoàn Kiếm, Hà Nội"],
+            ["Cháo Gà Ác Hạt Sen Thuốc Bắc", "soup", "Đống Đa", "50.000đ - 75.000đ", "Món ăn bồi bổ sức khỏe với gà ác hầm nhừ cùng hạt sen, táo đỏ, kỷ tử trong nồi cháo nóng hổi thơm lừng.", ["Gà ác tần", "Hạt sen, táo đỏ", "Gạo nếp tẻ", "Ngải cứu"], "Cháo Gà Ác Tôn Đức Thắng", "124 Tôn Đức Thắng, Đống Đa, Hà Nội"],
+            ["Cháo Trai Hành Răm Phố Cổ", "soup", "Hoàn Kiếm", "25.000đ - 35.000đ", "Cháo bột mịn nấu nước luộc trai sông ngọt lịm, trai xào hành phi đậm đà rắc thêm rau răm thái nhỏ và quẩy giòn.", ["Bột gạo tẻ", "Trai sông xào", "Rau răm, hành phi", "Quẩy giòn"], "Cháo Trai Trần Xuân Soạn", "26 Trần Xuân Soạn, Hai Bà Trưng, Hà Nội"],
+            ["Cháo Lươn Nghệ An Cay Nồng", "soup", "Thanh Xuân", "40.000đ - 55.000đ", "Cháo nấu nguyên hạt sánh dẻo với thịt lươn đồng xào nghệ hành tăm thơm nức, vị cay ấm bụng ngày se lạnh.", ["Gạo tẻ", "Lươn đồng tươi", "Hành tăm, nghệ", "Rau răm"], "Cháo Lươn Thanh Xuân", "88 Vũ Trọng Phụng, Thanh Xuân, Hà Nội"],
+            ["Súp Cua Óc Heo Trứng Bắc Thảo", "soup", "Cầu Giấy", "35.000đ - 50.000đ", "Bát súp sánh mượt nóng hổi đầy ắp thịt cua bể xé, trứng bắc thảo bùi ngậy, nấm đông cô và ngò rí.", ["Thịt cua bể", "Trứng bắc thảo", "Nấm đông cô", "Bột năng, trứng gà"], "Súp Cua Hoa Bằng", "54 Hoa Bằng, Cầu Giấy, Hà Nội"],
+            ["Mì Cay Hàn Quốc 7 Cấp Độ", "soup", "Cầu Giấy", "45.000đ - 65.000đ", "Sợi mì Hàn Quốc dai ngon trong nước dùng kim chi cay xé lưỡi cùng hải sản, bò Mỹ, xúc xích và nấm kim châm.", ["Mì Hàn Quốc", "Tôm, mực, bò Mỹ", "Kim chi cải thảo", "Nấm kim châm"], "Mì Cay Sasin", "142 Xuân Thủy, Cầu Giấy, Hà Nội"],
+            ["Bún Bò Trộn Mắm Nêm Đà Nẵng", "soup", "Đống Đa", "40.000đ - 55.000đ", "Bún tươi trộn thịt bò xào, nem chua, chả bò, mít non luộc và mắm nêm pha dứa tỏi ớt đậm đà khó quên.", ["Bún tươi", "Thịt bò, chả bò", "Mắm nêm pha dứa", "Lạc rang, rau sống"], "Bún Mắm Nêm Chùa Láng", "76 Chùa Láng, Đống Đa, Hà Nội"],
+            ["Bún Cá Chấm Giòn Rụm", "soup", "Ba Đình", "40.000đ - 55.000đ", "Cá rô phi lọc xương tẩm bột chiên giòn tan để riêng, chấm nước mắm chua ngọt tỏi ớt, ăn kèm bát nước dùng chua thanh.", ["Bún tươi", "Cá chiên giòn", "Nước chấm chua ngọt", "Rau cần, thì là"], "Bún Cá Chấm Gốc Đa", "33 Vũ Thạnh, Đống Đa, Hà Nội"],
+            ["Phở Trộn Chua Ngọt Phố Cổ", "soup", "Hoàn Kiếm", "45.000đ - 60.000đ", "Bánh phở mềm trộn sốt chua ngọt đậm đà cùng thịt bò tái hoặc thịt gà xé, lạc rang giòn, hành phi và rau thơm.", ["Bánh phở", "Thịt bò / gà xé", "Sốt trộn chua ngọt", "Lạc rang, hành phi"], "Phở Trộn Lãn Ông", "65B Lãn Ông, Hoàn Kiếm, Hà Nội"],
+            ["Miến Trộn Lươn & Mực Khô", "soup", "Hoàn Kiếm", "50.000đ - 70.000đ", "Sợi miến dai trộn xì dầu tỏi ớt thơm lừng, lươn giòn, mực xé sợi, giò lụa và dưa chuột muối chua ngọt.", ["Miến dong", "Lươn giòn, mực khô", "Giò lụa", "Sốt xì dầu tỏi ớt"], "Miến Trộn Hàng Hòm", "12 Hàng Hòm, Hoàn Kiếm, Hà Nội"],
+            ["Bún Gà Trộn Măng Cay", "soup", "Hai Bà Trưng", "40.000đ - 55.000đ", "Bún rối trộn thịt gà ta xé phay, măng ngâm ớt cay giòn, rau răm và nước sốt chua ngọt thanh mát.", ["Bún tươi", "Thịt gà ta", "Măng ngâm ớt", "Rau răm, lạc rang"], "Bún Gà Trộn Bạch Mai", "105 Bạch Mai, Hai Bà Trưng, Hà Nội"],
+            ["Bún Sườn Chua Thanh Mát", "soup", "Thanh Xuân", "40.000đ - 55.000đ", "Nước dùng nấu từ sấu chua hoặc dọc mùng cà chua thanh mát, sườn non ninh nhừ róc xương cực dễ ăn.", ["Bún tươi", "Sườn thăn non", "Sấu chua, cà chua", "Hành hoa, rau thơm"], "Bún Sườn Chua Khương Trung", "120 Khương Trung, Thanh Xuân, Hà Nội"],
+            ["Phở Gà Trộn Lẫn Lòng Mề", "soup", "Hoàn Kiếm", "50.000đ - 70.000đ", "Bánh phở dai mềm trộn xì dầu tỏi phi thơm phức cùng thịt gà đùi, tràng trứng non và mề gà giòn sần sật.", ["Bánh phở", "Thịt gà, lòng mề", "Xì dầu tỏi phi", "Lạc rang, rau thơm"], "Phở Gà Trộn Hàng Bông", "42 Hàng Bông, Hoàn Kiếm, Hà Nội"],
+
+            // --- MÓN CƠM & BÚN (35 món) ---
+            ["Cơm Rang Dưa Bò Phố Cổ", "lunch", "Hoàn Kiếm", "45.000đ - 65.000đ", "Hạt cơm rang săn vàng ươm quyện vị chua giòn của dưa cải muối và thịt bò xào mềm thơm nồng mùi tỏi.", ["Cơm nguội hạt dẻo", "Dưa cải chua", "Thịt bò thăn", "Trứng gà, hành lá"], "Cơm Rang Dưa Bò Mã Mây", "38 Mã Mây, Hoàn Kiếm, Hà Nội"],
+            ["Cơm Rang Thập Cẩm Gà Quay", "lunch", "Hai Bà Trưng", "50.000đ - 75.000đ", "Đĩa cơm rang thập cẩm đầy ắp lạp xưởng, đậu Hà Lan, tôm khô ăn kèm đùi gà quay da giòn mật ong.", ["Cơm rang trứng", "Đùi gà quay", "Lạp xưởng, tôm khô", "Dưa góp chua ngọt"], "Cơm Đảo Gà Rang Tống Duy Tân", "24 Tống Duy Tân, Hoàn Kiếm, Hà Nội"],
+            ["Cơm Niêu Singapore Sốt Tiêu Đen", "lunch", "Cầu Giấy", "65.000đ - 95.000đ", "Cơm nấu trong niêu đất có lớp cháy giòn rụm dưới đáy, phủ thịt bò mềm thấm đẫm sốt tiêu đen cay thơm.", ["Gạo thơm niêu đất", "Thịt bò Úc", "Sốt tiêu đen", "Nấm, rau cải"], "Cơm Niêu Kombo", "60 Lê Văn Thiêm, Thanh Xuân, Hà Nội"],
+            ["Cơm Gà Xối Mỡ Da Giòn", "lunch", "Đống Đa", "45.000đ - 65.000đ", "Đùi gà góc tư xối mỡ nóng giòn rụm lớp da bên ngoài, thịt bên trong mọng nước ăn cùng cơm chiên tỏi vàng ươm.", ["Đùi gà góc tư", "Cơm chiên tỏi", "Nước tương tỏi ớt", "Xà lách, cà chua"], "Cơm Gà Xối Mỡ Xã Đàn", "118 Xã Đàn, Đống Đa, Hà Nội"],
+            ["Cơm Gà Hội An Xé Phay", "lunch", "Ba Đình", "45.000đ - 65.000đ", "Cơm nấu nước luộc gà vàng nghệ thơm lừng, thịt gà ta xé trộn hành tây, rau răm và gỏi đu đủ chua ngọt.", ["Gạo tám thơm nghệ", "Thịt gà ta xé", "Hành tây, rau răm", "Nước mắm gừng"], "Cơm Gà Hội An Đội Cấn", "145 Đội Cấn, Ba Đình, Hà Nội"],
+            ["Cơm Văn Phòng Cá Kho Tộ", "lunch", "Cầu Giấy", "45.000đ - 60.000đ", "Cá bống hoặc cá lóc kho tộ keo đặc đậm vị tiêu ớt nước hàng, ăn kèm canh cua rau đay và cà pháo giòn tan.", ["Cá kho tộ", "Cơm trắng dẻo", "Canh cua rau đay", "Cà pháo muối"], "Cơm Nhà Duy Tân", "45 Duy Tân, Cầu Giấy, Hà Nội"],
+            ["Cơm Sườn Chua Ngọt Hà Nội", "lunch", "Đống Đa", "45.000đ - 60.000đ", "Sườn non rán vàng rim sốt chua ngọt sánh bóng đậm đà, ăn kèm rau củ luộc chấm kho quẹt và canh chua.", ["Sườn non heo", "Sốt cà chua giấm đường", "Cơm trắng", "Rau luộc"], "Cơm Ngon Chùa Bộc", "82 Chùa Bộc, Đống Đa, Hà Nội"],
+            ["Cơm Thịt Kho Tàu Trứng Cút", "lunch", "Thanh Xuân", "40.000đ - 55.000đ", "Thịt ba chỉ kho mềm tan trong miệng với nước dừa tươi và trứng cút vàng ươm, cực kỳ đưa cơm ngày mát trời.", ["Thịt ba chỉ", "Trứng cút", "Nước dừa tươi", "Dưa cải chua"], "Cơm Bình Dân Vũ Tông Phan", "156 Vũ Tông Phan, Thanh Xuân, Hà Nội"],
+            ["Cơm Bò Lúc Lắc Khoai Tây", "lunch", "Hoàn Kiếm", "65.000đ - 90.000đ", "Thịt bò thăn cắt vuông áp chảo lửa lớn cùng ớt chuông, hành tây thơm lừng, ăn kèm khoai tây chiên và cơm đỏ.", ["Thịt bò thăn", "Ớt chuông, hành tây", "Khoai tây chiên", "Cơm sốt cà chua"], "Bò Lúc Lắc Hàng Buồm", "52 Hàng Buồm, Hoàn Kiếm, Hà Nội"],
+            ["Cơm Đùi Gà Nướng Mật Ong", "lunch", "Hà Đông", "45.000đ - 65.000đ", "Đùi gà tẩm mật ong ngũ vị nướng than hoa thơm phức, da bóng bẩy ngọt dịu ăn kèm cơm trắng và kim chi.", ["Đùi gà nướng", "Mật ong rừng", "Kim chi cải thảo", "Cơm trắng"], "Cơm Gà Nướng Quang Trung", "210 Quang Trung, Hà Đông, Hà Nội"],
+            ["Cơm Gà Hải Nam Hấp Gừng", "lunch", "Hoàn Kiếm", "55.000đ - 80.000đ", "Thịt gà hấp chín tới mềm mọng giữ nguyên vị ngọt, chấm sốt gừng hành băm và tương ớt đặc trưng Singapore.", ["Thịt gà hấp", "Cơm nấu mỡ gà", "Sốt gừng hành", "Canh bí đao"], "Cơm Gà Hải Nam Lý Thường Kiệt", "38 Lý Thường Kiệt, Hoàn Kiếm, Hà Nội"],
+            ["Cơm Bò Xào Thiên Lý", "lunch", "Ba Đình", "50.000đ - 70.000đ", "Hoa thiên lý xanh mướt giòn ngọt xào nhanh tay cùng thịt bò thăn mềm thơm mùi tỏi, ăn với cơm nóng tuyệt hảo.", ["Hoa thiên lý", "Thịt bò thăn", "Tỏi phi", "Cơm trắng"], "Cơm Quê Kim Mã", "190 Kim Mã, Ba Đình, Hà Nội"],
+            ["Cơm Chay Sen Vàng Thanh Tịnh", "lunch", "Tây Hồ", "50.000đ - 85.000đ", "Mâm cơm chay tinh tế với nem rán nấm, đậu hũ sốt nấm đông cô, rau củ kho tiêu và canh hạt sen thanh mát.", ["Đậu hũ non", "Nấm đông cô, hạt sen", "Nem chay", "Cơm gạo lứt"], "Cơm Chay Nàng Tấm", "79A Trần Hưng Đạo, Hoàn Kiếm, Hà Nội"],
+            ["Cơm Trộn Hàn Quốc Bibimbap", "lunch", "Nam Từ Liêm", "55.000đ - 75.000đ", "Thố đá nóng hổi đầy màu sắc với cơm dẻo, thịt bò băm, trứng ốp la, rau bina, cà rốt và tương ớt Gochujang.", ["Cơm thố đá", "Thịt bò băm", "Trứng ốp la", "Tương ớt Gochujang"], "Bibimbap Mỹ Đình", "42 Đình Thôn, Nam Từ Liêm, Hà Nội"],
+            ["Cơm Lươn Nướng Kiểu Nhật Unadon", "lunch", "Ba Đình", "95.000đ - 150.000đ", "Phi lê lươn nướng sốt Teriyaki ngọt mặn bóng bẩy đặt trên lớp cơm dẻo Nhật Bản, rắc thêm rong biển và vừng rang.", ["Lươn nướng sốt Teriyaki", "Gạo Nhật", "Rong biển, vừng rang", "Súp Miso"], "Unagi Linh Lang", "58 Linh Lang, Ba Đình, Hà Nội"],
+            ["Cơm Cá Hồi Áp Chảo Sốt Bơ Chanh", "lunch", "Tây Hồ", "85.000đ - 130.000đ", "Cá hồi Na Uy áp chảo da giòn thịt hồng mềm mại rưới sốt bơ chanh thơm ngậy, ăn kèm măng tây và cơm trắng.", ["Cá hồi Na Uy", "Sốt bơ chanh", "Măng tây xanh", "Cơm trắng"], "Salmon Kitchen Xuân Diệu", "74 Xuân Diệu, Tây Hồ, Hà Nội"],
+            ["Cơm Tôm Rim Mặn Ngọt Ba Chỉ", "lunch", "Long Biên", "45.000đ - 60.000đ", "Tôm đồng rang giòn vỏ quyện thịt ba chỉ cháy cạnh rim nước mắm đường keo sánh, món ngon chuẩn cơm mẹ nấu.", ["Tôm đồng tươi", "Thịt ba chỉ", "Hành lá, tiêu", "Cơm trắng"], "Cơm Nhà Ngọc Lâm", "134 Ngọc Lâm, Long Biên, Hà Nội"],
+            ["Cơm Mực Nhồi Thịt Sốt Cà Chua", "lunch", "Hai Bà Trưng", "55.000đ - 75.000đ", "Mực ống tươi nhồi thịt băm mộc nhĩ hấp chín rồi rim sốt cà chua đậm đà, cắt khoanh đẹp mắt cực kỳ bắt cơm.", ["Mực ống tươi", "Thịt băm, mộc nhĩ", "Sốt cà chua", "Cơm trắng"], "Cơm Ngon Lê Thanh Nghị", "62 Lê Thanh Nghị, Hai Bà Trưng, Hà Nội"],
+            ["Cơm Đậu Phụ Nhồi Thịt Sốt Cà", "lunch", "Đống Đa", "40.000đ - 55.000đ", "Đậu phụ mơ rán vàng nhồi nhân thịt băm nấm hương mềm thơm, om trong nước sốt cà chua hành hoa đậm vị.", ["Đậu phụ mơ", "Thịt băm, nấm hương", "Cà chua, hành hoa", "Cơm trắng"], "Cơm Quê Khâm Thiên", "185 Khâm Thiên, Đống Đa, Hà Nội"],
+            ["Cơm Chiên Dương Châu Thập Cẩm", "lunch", "Cầu Giấy", "45.000đ - 65.000đ", "Hạt cơm tơi vàng rụm chiên cùng tôm tươi, xá xíu, lạp xưởng, trứng gà và rau củ thái hạt lựu rực rỡ sắc màu.", ["Cơm chiên trứng", "Tôm, xá xíu, lạp xưởng", "Đậu Hà Lan, cà rốt", "Xì dầu ớt"], "Cơm Dương Châu Trần Thái Tông", "48 Trần Thái Tông, Cầu Giấy, Hà Nội"],
+            ["Bún Thịt Nướng Chả Giò Nam Bộ", "lunch", "Đống Đa", "45.000đ - 60.000đ", "Thịt nạc vai tẩm sả mật ong nướng thơm lừng, chả giò chiên giòn rụm ăn kèm bún tươi, rau sống và nước mắm chua ngọt.", ["Bún tươi", "Thịt nướng sả", "Chả giò giòn", "Đồ chua, lạc rang"], "Bún Thịt Nướng Thái Thịnh", "92 Thái Thịnh, Đống Đa, Hà Nội"],
+            ["Bún Nem Rán Hà Nội", "lunch", "Hoàn Kiếm", "45.000đ - 60.000đ", "Những chiếc nem rán Hà Nội vàng ruộm giòn tan nhân thịt băm, miến, mộc nhĩ, giá đỗ ăn cùng bún lá và nước chấm đu đủ.", ["Bún lá", "Nem rán truyền thống", "Nước chấm chua ngọt", "Rau sống các loại"], "Bún Nem Hàng Bè", "28 Hàng Bè, Hoàn Kiếm, Hà Nội"],
+            ["Bún Chả Cốm Chả Mỡ", "lunch", "Ba Đình", "40.000đ - 55.000đ", "Chả cốm dẻo thơm mùi cốm mới và chả mỡ nướng vàng ruộm ăn kèm bún rối, rau thơm và nước mắm tỏi ớt.", ["Bún rối", "Chả cốm Vòng", "Chả mỡ nướng", "Rau thơm, nước chấm"], "Bún Chả Cốm Ngọc Hà", "55 Ngọc Hà, Ba Đình, Hà Nội"],
+            ["Bún Giả Cầy Móng Giò", "lunch", "Cầu Giấy", "45.000đ - 65.000đ", "Móng giò thui rơm vàng ruộm nấu cùng riềng, mẻ, mắm tôm sánh đặc thơm nức mũi, ăn kèm bún lá cực kỳ đưa miệng.", ["Móng giò thui", "Riềng, mẻ, mắm tôm", "Bún lá", "Rau húng, hành hoa"], "Bún Giả Cầy Nghĩa Tân", "114 Nghĩa Tân, Cầu Giấy, Hà Nội"],
+            ["Bún Lòng Xào Nghệ Miền Trung", "lunch", "Thanh Xuân", "40.000đ - 55.000đ", "Lòng non và dạ dày xào nghệ tươi cùng hành tây, lá hẹ vàng ươm giòn sần sật, ăn kèm bún tươi và nước mắm ớt.", ["Bún tươi", "Lòng non, dạ dày", "Nghệ tươi, lá hẹ", "Nước mắm ớt tỏi"], "Bún Lòng Xào Nghệ Nguyễn Trãi", "230 Nguyễn Trãi, Thanh Xuân, Hà Nội"],
+            ["Bún Mắm Miền Tây Đậm Đà", "lunch", "Đống Đa", "55.000đ - 75.000đ", "Nước lèo nấu từ mắm cá linh cá sặc thơm nồng, đầy ắp heo quay da giòn, tôm sú, mực tươi, chả cá và rau đắng.", ["Bún sợi to", "Heo quay da giòn", "Tôm, mực, chả cá", "Rau đắng, bông súng"], "Bún Mắm Miền Tây Xã Đàn", "164 Xã Đàn, Đống Đa, Hà Nội"],
+            ["Phở Xào Bò Cải Ngọt Giòn", "lunch", "Hoàn Kiếm", "55.000đ - 75.000đ", "Bánh phở áp chảo xém cạnh dẻo dai phủ sốt thịt bò thăn xào cải ngọt và cà chua sánh đậm thơm mùi tỏi phi.", ["Bánh phở áp chảo", "Thịt bò thăn", "Rau cải ngọt", "Sốt dầu hào tỏi"], "Phở Xào Bát Đàn", "32 Bát Đàn, Hoàn Kiếm, Hà Nội"],
+            ["Phở Xào Giòn Thập Cẩm", "lunch", "Hoàn Kiếm", "60.000đ - 80.000đ", "Bánh phở chiên phồng giòn rụm tan trong miệng, chan ngập nước sốt tim cật, thịt bò, tôm và rau cải xào nóng hổi.", ["Bánh phở chiên giòn", "Tim cật, thịt bò, tôm", "Rau cải, cà rốt", "Sốt sánh đậm đà"], "Phở Xào Phú Mỹ", "45B Bát Đàn, Hoàn Kiếm, Hà Nội"],
+            ["Mì Xào Bò Rau Muống Tỏi", "lunch", "Hai Bà Trưng", "45.000đ - 60.000đ", "Sợi mì trứng dai ngon xào lửa lớn cùng thịt bò mềm và rau muống xanh giòn rụm, thơm nức mùi tỏi phi.", ["Mì trứng", "Thịt bò thăn", "Rau muống", "Tỏi phi, dầu hào"], "Mì Xào Bò Tạ Quang Bửu", "42 Tạ Quang Bửu, Hai Bà Trưng, Hà Nội"],
+            ["Miến Xào Cua Bể Tràng An", "lunch", "Hoàn Kiếm", "75.000đ - 110.000đ", "Sợi miến dong xào tơi không dính, quyện thịt cua bể tươi ngọt lịm, nấm hương, mộc nhĩ và hành phi thơm phức.", ["Miến dong", "Thịt cua bể gỡ", "Nấm hương, mộc nhĩ", "Trứng gà, hành phi"], "Miến Xào Cua Hàng Bồ", "36 Hàng Bồ, Hoàn Kiếm, Hà Nội"],
+            ["Mì Ý Sốt Bò Băm Bolognese", "lunch", "Cầu Giấy", "55.000đ - 80.000đ", "Sợi mì Spaghetti luộc chuẩn Al Dente quyện sốt cà chua thịt bò băm hầm thảo mộc Ý và phô mai Parmesan bào.", ["Mì Spaghetti", "Thịt bò băm", "Sốt cà chua Ý", "Phô mai Parmesan"], "Pasta Box Cầu Giấy", "88 Trần Đăng Ninh, Cầu Giấy, Hà Nội"],
+            ["Cơm Bò Nướng Hàn Quốc Bulgogi", "lunch", "Nam Từ Liêm", "65.000đ - 90.000đ", "Thịt bò ba chỉ Mỹ tẩm sốt lê táo Hàn Quốc nướng thơm lừng, ăn kèm cơm trắng, kim chi, rong biển và canh rong biển.", ["Ba chỉ bò Mỹ", "Sốt Bulgogi", "Kim chi, rong biển", "Cơm dẻo"], "Bulgogi Mễ Trì", "56 Mễ Trì, Nam Từ Liêm, Hà Nội"],
+            ["Cơm Gà Teriyaki Nhật Bản", "lunch", "Ba Đình", "60.000đ - 85.000đ", "Má đùi gà rút xương áp chảo rưới sốt Teriyaki sánh ngọt bóng bẩy, rắc vừng rang ăn cùng salad bắp cải và cơm Nhật.", ["Má đùi gà", "Sốt Teriyaki", "Gạo Nhật", "Salad bắp cải"], "Kichi Bento Đào Tấn", "72 Đào Tấn, Ba Đình, Hà Nội"],
+            ["Cơm Cá Thu Sốt Cà Chua", "lunch", "Long Biên", "45.000đ - 65.000đ", "Khúc cá thu phấn rán vàng rim sốt cà chua hành thì là đậm đà, thịt cá bùi béo ăn cùng cơm nóng cực kỳ hợp vị.", ["Cá thu phấn", "Sốt cà chua thì là", "Cơm trắng", "Rau luộc"], "Cơm Ngon Nguyễn Văn Cừ", "188 Nguyễn Văn Cừ, Long Biên, Hà Nội"],
+            ["Cơm Sườn Nướng Mật Ong Xã Đàn", "lunch", "Đống Đa", "50.000đ - 70.000đ", "Dẻ sườn non nướng than hoa phết mật ong vàng óng thơm lừng, ăn kèm đồ chua, dưa chuột và canh rau ngót thịt băm.", ["Dẻ sườn non", "Mật ong, ngũ vị", "Cơm trắng", "Canh rau ngót"], "Cơm Sườn Nướng Xã Đàn", "240 Xã Đàn, Đống Đa, Hà Nội"],
+
+            // --- MÓN ĂN VẶT (35 món) ---
+            ["Bánh Gối Nhân Thịt Trứng Cút", "snack", "Hoàn Kiếm", "15.000đ - 25.000đ", "Vỏ bánh xếp hình gối chiên vàng giòn rụm, bên trong đầy ắp thịt băm, miến, mộc nhĩ, lạp xưởng và trứng cút bùi béo.", ["Bột mì giòn", "Thịt băm, mộc nhĩ", "Trứng cút, lạp xưởng", "Nước chấm đu đủ"], "Bánh Gối Lý Quốc Sư", "52 Lý Quốc Sư, Hoàn Kiếm, Hà Nội"],
+            ["Bánh Rán Mặn Nhân Thịt", "snack", "Hoàn Kiếm", "10.000đ - 20.000đ", "Vỏ bột nếp chiên giòn rụm bên ngoài dẻo mềm bên trong, nhân thịt băm mộc nhĩ đậm đà chấm sốt chua ngọt cay dịu.", ["Bột nếp, bột tẻ", "Thịt băm, mộc nhĩ", "Miến dong", "Nước chấm chua ngọt"], "Bánh Rán Mặn Võng Thị", "242 Lạc Long Quân, Tây Hồ, Hà Nội"],
+            ["Bánh Rán Ngọt Mật Đường Vừng", "snack", "Hoàn Kiếm", "8.000đ - 15.000đ", "Bánh rán lúc lắc nhân đậu xanh đánh nhuyễn ngọt bùi, phủ lớp vừng trắng thơm lừng hoặc đường mật kính giòn tan.", ["Bột nếp dẻo", "Đậu xanh sên đường", "Vừng trắng rang", "Đường mật mía"], "Bánh Rán Hàng Chiếu", "52 Hàng Chiếu, Hoàn Kiếm, Hà Nội"],
+            ["Ốc Luộc Lá Chanh Đinh Liệt", "snack", "Hoàn Kiếm", "40.000đ - 70.000đ", "Ốc mít, ốc vặn béo ngậy luộc sả lá chanh thơm nức, chấm bát nước mắm gừng sả ớt chanh quất pha khéo léo.", ["Ốc mít, ốc vặn", "Sả cây, lá chanh", "Nước mắm gừng sả ớt", "Sung muối chua"], "Ốc Luộc Đinh Liệt", "1A Đinh Liệt, Hoàn Kiếm, Hà Nội"],
+            ["Ốc Hương Xào Bơ Tỏi Bánh Mì", "snack", "Đống Đa", "70.000đ - 110.000đ", "Ốc hương tươi giòn xào ngập sốt bơ tỏi béo ngậy thơm lừng, chấm bánh mì nóng giòn ăn đến giọt sốt cuối cùng.", ["Ốc hương tươi", "Bơ lạt, tỏi băm", "Bánh mì giòn", "Rau răm"], "Ốc Chị Lệ Cửa Bắc", "88 Cửa Bắc, Ba Đình, Hà Nội"],
+            ["Ngao Hấp Thái Chua Cay", "snack", "Cầu Giấy", "45.000đ - 65.000đ", "Ngao trắng béo múp hấp sả ớt, dứa và nước cốt me chua cay nóng hổi, húp nước dùng ngọt lịm ấm bụng.", ["Ngao trắng tươi", "Sả, ớt, dứa", "Nước cốt me", "Rau răm"], "Ốc Ken Sài Gòn", "145 Đội Cấn, Ba Đình, Hà Nội"],
+            ["Chân Gà Nướng Mật Ong Ngũ Vị", "snack", "Hoàn Kiếm", "50.000đ - 90.000đ", "Chân gà tẩm mật ong gia vị nướng than hoa xém cạnh da giòn sần sật, chấm muối tiêu chanh ớt xanh cay nồng.", ["Chân gà tươi", "Mật ong, ngũ vị hương", "Muối tiêu chanh ớt", "Dưa chuột"], "Chân Gà Nướng Lý Văn Phức", "12 Lý Văn Phức, Đống Đa, Hà Nội"],
+            ["Chân Gà Sả Tắc Chua Cay", "snack", "Hai Bà Trưng", "35.000đ - 55.000đ", "Chân gà rút xương giòn sần sật ngâm sả cây, quất tươi, ớt sừng và nước mắm chua ngọt đậm vị cực kỳ bắt miệng.", ["Chân gà rút xương", "Sả, quất, ớt sừng", "Nước mắm đường", "Xoài xanh"], "Chân Gà Sả Tắc Bách Khoa", "22 Tạ Quang Bửu, Hai Bà Trưng, Hà Nội"],
+            ["Thịt Xiên Nướng Than Hoa", "snack", "Đống Đa", "15.000đ - 30.000đ", "Những xiên thịt ba chỉ tẩm vừng và sả mật ong nướng xém cạnh thơm phức cả góc phố, kẹp bánh mì hoặc chấm tương ớt.", ["Thịt ba chỉ", "Sả, vừng, mật ong", "Tương ớt", "Bánh mì"], "Thịt Xiên Nướng Hoàng Đức", "55 Chùa Láng, Đống Đa, Hà Nội"],
+            ["Bánh Tráng Trộn Bò Khô Trứng Cút", "snack", "Cầu Giấy", "25.000đ - 35.000đ", "Bánh tráng dẻo trộn bò khô, mực xé, trứng cút, xoài xanh bào sợi, rau răm, hành phi và sốt me chua ngọt.", ["Bánh tráng Tây Ninh", "Bò khô, mực xé", "Trứng cút, xoài xanh", "Sốt me, hành phi"], "Bánh Tráng Trộn Hàng Trống", "38 Hàng Trống, Hoàn Kiếm, Hà Nội"],
+            ["Bánh Tráng Nướng Đà Lạt", "snack", "Hoàn Kiếm", "20.000đ - 35.000đ", "Bánh tráng nướng giòn rụm trên bếp than với trứng cút, thịt băm, hành lá, phô mai, ruốc và sốt mayonnaise tương ớt.", ["Bánh tráng mỏng", "Trứng cút, thịt băm", "Phô mai, hành lá", "Sốt mayonnaise"], "Bánh Tráng Nướng Ấu Triệu", "14 Ấu Triệu, Hoàn Kiếm, Hà Nội"],
+            ["Nem Nướng Nha Trang Cuốn Bánh Tráng", "snack", "Cầu Giấy", "45.000đ - 65.000đ", "Nem lụi nướng thơm lừng cuốn cùng bánh tráng, ram chiên giòn, xoài xanh, dưa chuột và chấm sốt nếp đặc sánh.", ["Nem nướng Nha Trang", "Bánh tráng, ram giòn", "Xoài xanh, rau sống", "Sốt chấm đặc biệt"], "Nem Nướng Nha Trang Cô Lê", "34 Nguyễn Khang, Cầu Giấy, Hà Nội"],
+            ["Bánh Bột Lọc Tôm Thịt Huế", "snack", "Đống Đa", "30.000đ - 45.000đ", "Bánh bột lọc trong veo dai sần sật bọc nhân tôm rim mặn ngọt và thịt ba chỉ, rắc hành phi chấm mắm ớt cay.", ["Bột năng lọc", "Tôm tươi, thịt ba chỉ", "Hành phi giòn", "Nước mắm ớt"], "Bánh Bột Lọc Chùa Bộc", "48 Chùa Bộc, Đống Đa, Hà Nội"],
+            ["Bánh Bèo Chén Tôm Cháy", "snack", "Ba Đình", "30.000đ - 45.000đ", "Những chén bánh bèo bột gạo mềm mịn phủ tôm cháy đỏ au, tóp mỡ giòn tan và mỡ hành, chan nước mắm ngọt.", ["Bột gạo tẻ", "Tôm cháy, tóp mỡ", "Hành lá", "Nước mắm ngọt"], "Bánh Bèo Huế Đội Cấn", "112 Đội Cấn, Ba Đình, Hà Nội"],
+            ["Bánh Khoái Giòn Rụm Xứ Huế", "snack", "Hai Bà Trưng", "45.000đ - 65.000đ", "Bánh khoái chiên vàng giòn đầy ắp tôm tươi, thịt nạc, giá đỗ và trứng cút, chấm nước lèo gan đậu phộng béo bùi.", ["Bột gạo nghệ", "Tôm, thịt, trứng cút", "Giá đỗ, rau sống", "Nước lèo đậu phộng"], "Bánh Khoái Huế Triệu Việt Vương", "68 Triệu Việt Vương, Hai Bà Trưng, Hà Nội"],
+            ["Khoai Lang Kén Chiên Vừng", "snack", "Thanh Xuân", "20.000đ - 35.000đ", "Khoai lang mật nghiền mịn trộn nước cốt dừa lăn vừng chiên vàng ươm, vỏ giòn nhẹ bên trong dẻo ngọt thơm bùi.", ["Khoai lang mật", "Nước cốt dừa", "Vừng đen/trắng", "Tương ớt / sốt me"], "Ăn Vặt Vũ Trọng Phụng", "64 Vũ Trọng Phụng, Thanh Xuân, Hà Nội"],
+            ["Phô Mai Que Kéo Sợi Giòn Tan", "snack", "Cầu Giấy", "25.000đ - 40.000đ", "Thanh phô mai Mozzarella tẩm bột xù chiên vàng giòn, cắn vào kéo sợi béo ngậy chấm tương ớt mayonnaise.", ["Phô mai Mozzarella", "Bột chiên xù", "Trứng gà", "Tương ớt, mayonnaise"], "Ăn Vặt Tô Hiệu", "128 Tô Hiệu, Cầu Giấy, Hà Nội"],
+            ["Bánh Chuối Chiên Giòn Mật", "snack", "Hoàn Kiếm", "10.000đ - 20.000đ", "Chuối tây chín ép dẹt nhúng bột chiên phồng giòn rụm vàng ươm, bên trong chuối dẻo ngọt thơm lừng nóng hổi.", ["Chuối tây chín", "Bột mì, bột gạo", "Vừng đen", "Đường mật"], "Bánh Chuối Chiên Hàng Điếu", "45 Hàng Điếu, Hoàn Kiếm, Hà Nội"],
+            ["Quẩy Nóng Giòn Chấm Nước Mắm", "snack", "Hoàn Kiếm", "15.000đ - 25.000đ", "Quẩy chiên tại chỗ phồng giòn rụm nóng hổi, chấm bát nước mắm chua ngọt thái đu đủ xanh giòn sần sật.", ["Bột mì lên men", "Nước mắm chua ngọt", "Đu đủ xanh", "Ớt tươi"], "Quẩy Nóng Hàng Bông", "73 Hàng Bông, Hoàn Kiếm, Hà Nội"],
+            ["Nộm Lim Bò Khô Thịt Quay", "snack", "Hoàn Kiếm", "35.000đ - 50.000đ", "Đu đủ xanh giòn sần sật trộn thịt bò khô, gân bò, thịt quay bì giòn và nước trộn chua ngọt đậm đà phố cổ.", ["Đu đủ xanh", "Thịt bò khô, thịt quay", "Lạc rang, rau kinh giới", "Nước mắm giấm đường"], "Nộm Bò Khô Hồ Hoàn Kiếm", "25 Đinh Tiên Hoàng, Hoàn Kiếm, Hà Nội"],
+            ["Gỏi Xoài Khô Cá Sặc", "snack", "Đống Đa", "45.000đ - 65.000đ", "Xoài xanh bào sợi chua giòn trộn khô cá sặc nướng xé nhỏ, hành phi, lạc rang và nước mắm đường keo sánh.", ["Xoài xanh keo", "Khô cá sặc", "Hành phi, lạc rang", "Rau răm, ớt"], "Gỏi Xoài Ô Chợ Dừa", "82 Ô Chợ Dừa, Đống Đa, Hà Nội"],
+            ["Bánh Đúc Nóng Thịt Băm Mộc Nhĩ", "snack", "Hai Bà Trưng", "25.000đ - 35.000đ", "Bánh đúc dẻo quánh nóng hổi chan nước mắm ấm, phủ thịt băm xào mộc nhĩ, hành phi giòn và rau mùi thơm phức.", ["Bột gạo tẻ dẻo", "Thịt băm, mộc nhĩ", "Hành phi, rau mùi", "Nước mắm ấm"], "Bánh Đúc Nóng Lê Ngọc Hân", "8B Lê Ngọc Hân, Hai Bà Trưng, Hà Nội"],
+            ["Bánh Đúc Lạc Chấm Tương Bần", "snack", "Hoàn Kiếm", "15.000đ - 25.000đ", "Món quà quê thanh đạm với miếng bánh đúc trắng mịn bùi vị lạc luộc, chấm tương Bần Hưng Yên đậm đà.", ["Bột gạo tẻ", "Lạc nhân luộc", "Nước vôi trong", "Tương Bần"], "Bánh Đúc Chợ Hôm", "79 Phố Huế, Hai Bà Trưng, Hà Nội"],
+            ["Bánh Khúc Nóng Cô Lan", "snack", "Hai Bà Trưng", "15.000đ - 25.000đ", "Xôi nếp dẻo bọc lớp bột lá khúc thơm lừng, bên trong nhân đậu xanh bùi béo và thịt ba chỉ tiêu bắc đậm đà.", ["Gạo nếp cái", "Lá khúc tươi", "Đậu xanh, thịt ba chỉ", "Muối vừng"], "Bánh Khúc Quân", "35 Cầu Gỗ, Hoàn Kiếm, Hà Nội"],
+            ["Bánh Dày Giò Chả Ước Lễ", "snack", "Hoàn Kiếm", "15.000đ - 25.000đ", "Hai miếng bánh dày nếp giã tay dẻo mịn kẹp lát giò lụa Ước Lễ thơm giòn, rắc thêm chút muối tiêu truyền thống.", ["Bánh dày nếp", "Giò lụa Ước Lễ", "Muối tiêu"], "Bánh Dày Quán Gánh", "16 Hàng Bông, Hoàn Kiếm, Hà Nội"],
+            ["Bánh Cốm Hàng Than Nhân Đậu Xanh", "snack", "Ba Đình", "10.000đ - 20.000đ", "Đặc sản quà Hà Nội với lớp vỏ cốm Vòng xanh mướt dẻo thơm hương hoa bưởi, nhân đậu xanh dừa nạo ngọt thanh.", ["Cốm tươi làng Vòng", "Đậu xanh sên", "Dừa nạo, nước hoa bưởi"], "Bánh Cốm Nguyên Ninh", "11 Hàng Than, Ba Đình, Hà Nội"],
+            ["Chả Cốm Làng Vòng Rán Nóng", "snack", "Cầu Giấy", "30.000đ - 50.000đ", "Chả giò sống trộn cốm non dẻo thơm chiên vàng ươm, cắn vào dẻo bùi sần sật, chấm tương ớt hay mắm tôm đều ngon.", ["Giò sống", "Cốm non làng Vòng", "Tương ớt"], "Chả Cốm Mễ Trì", "24 Mễ Trì Thượng, Nam Từ Liêm, Hà Nội"],
+            ["Nem Tai Trộn Thính Lá Sung", "snack", "Hoàn Kiếm", "35.000đ - 50.000đ", "Tai heo luộc giòn thái mỏng trộn thính gạo rang thơm phức, cuốn lá sung, đinh lăng chấm nước mắm tỏi ớt.", ["Tai heo luộc giòn", "Thính gạo rang", "Lá sung, đinh lăng", "Nước mắm tỏi ớt"], "Nem Tai Bà Hồng", "35 Hàng Thùng, Hoàn Kiếm, Hà Nội"],
+            ["Nem Phùng Đan Phượng Đặc Sản", "snack", "Hà Đông", "35.000đ - 50.000đ", "Thịt nạc và bì heo thái chỉ trộn thính gạo thơm bùi gói trong lá chuối, cuốn lá sung chấm tương ớt đặc trưng.", ["Thịt heo, bì lợn", "Thính gạo rang", "Lá sung", "Tương ớt"], "Nem Phùng Hà Đông", "96 Trần Phú, Hà Đông, Hà Nội"],
+            ["Bánh Xèo Tôm Nhảy Bình Định", "snack", "Cầu Giấy", "45.000đ - 65.000đ", "Bánh xèo vỏ mỏng giòn tan với những con tôm đất tươi ngọt thịt, giá đỗ, cuốn bánh tráng rau sống chấm mắm nêm.", ["Bột gạo xay", "Tôm đất tươi", "Bánh tráng, rau sống", "Nước mắm chua ngọt"], "Bánh Xèo Tôm Nhảy", "68 Trung Kính, Cầu Giấy, Hà Nội"],
+            ["Takoyaki Bạch Tuộc Nướng Nhật", "snack", "Đống Đa", "30.000đ - 45.000đ", "Những viên bánh bạch tuộc nướng nóng hổi phủ sốt Takoyaki, mayonnaise, rong biển khô và cá ngừ bào nhảy múa.", ["Bột mì Takoyaki", "Bạch tuộc tươi", "Cá ngừ bào, rong biển", "Sốt mayonnaise"], "Takoyaki Chùa Láng", "112 Chùa Láng, Đống Đa, Hà Nội"],
+            ["Bánh Bông Lan Trứng Muối Sốt Phô Mai", "snack", "Hai Bà Trưng", "35.000đ - 55.000đ", "Cốt bánh bông lan mềm xốp phủ đẫm sốt phô mai béo ngậy, sốt dầu trứng, chà bông mặn mà và trứng muối bùi béo.", ["Cốt bánh bông lan", "Trứng muối", "Sốt phô mai, dầu trứng", "Ruốc chà bông"], "Tiệm Bánh Phố Huế", "142 Phố Huế, Hai Bà Trưng, Hà Nội"],
+            ["Bánh Su Kem Vỏ Giòn Nhân Vani", "snack", "Hoàn Kiếm", "25.000đ - 40.000đ", "Vỏ bánh su nướng giòn rụm bên ngoài, bên trong bơm đầy kem tươi vani mát lạnh ngọt dịu không hề ngấy.", ["Bột mì, bơ lạt", "Kem tươi vani", "Trứng gà, sữa tươi"], "Su Kem Hàng Trống", "20 Hàng Trống, Hoàn Kiếm, Hà Nội"],
+            ["Bánh Crepe Sầu Riêng Kem Tươi", "snack", "Cầu Giấy", "35.000đ - 55.000đ", "Lớp vỏ crepe mỏng mềm ôm trọn phần kem tươi béo mịn và cơm sầu riêng Ri6 vàng ươm thơm nức mũi.", ["Vỏ bánh crepe", "Sầu riêng Ri6 tươi", "Kem tươi whipping"], "Crepe Sầu Riêng Cầu Giấy", "156 Cầu Giấy, Cầu Giấy, Hà Nội"],
+            ["Bánh Mì Nướng Muối Ớt Bơ Tỏi", "snack", "Thanh Xuân", "20.000đ - 30.000đ", "Bánh mì ép dẹt nướng giòn tan với sốt bơ muối ớt cay mặn, phủ xúc xích, chà bông, hành phi và sốt mayonnaise.", ["Bánh mì đặc ruột", "Bơ muối ớt", "Xúc xích, ruốc, hành phi", "Mayonnaise, tương ớt"], "Bánh Mì Muối Ớt Nguyễn Trãi", "312 Nguyễn Trãi, Thanh Xuân, Hà Nội"],
+
+            // --- MÓN NHANH GỌN (30 món) ---
+            ["Xôi Xéo Gà Xé Hành Phi", "fast", "Hoàn Kiếm", "35.000đ - 50.000đ", "Xôi xéo vàng nghệ dẻo thơm kết hợp thịt gà ta xé phay ngọt thịt, đậu xanh tán nhuyễn và hành phi giòn rụm.", ["Xôi nếp nghệ", "Thịt gà ta xé", "Đậu xanh, hành phi", "Mỡ gà"], "Xôi Yến Nguyễn Hữu Huân", "35B Nguyễn Hữu Huân, Hoàn Kiếm, Hà Nội"],
+            ["Xôi Thịt Kho Trứng Cút", "fast", "Hai Bà Trưng", "30.000đ - 45.000đ", "Xôi trắng dẻo thơm chan nước thịt kho tàu đậm đà, miếng thịt ba chỉ mềm béo, trứng cút và lạp xưởng.", ["Gạo nếp cái hoa vàng", "Thịt ba chỉ kho", "Trứng cút, lạp xưởng", "Dưa chuột muối"], "Xôi Hiệp Hòa Mã", "32 Hòa Mã, Hai Bà Trưng, Hà Nội"],
+            ["Xôi Chả Mực Hạ Long", "fast", "Hoàn Kiếm", "45.000đ - 65.000đ", "Xôi trắng dẻo nóng ăn kèm miếng chả mực giã tay Hạ Long chiên vàng giòn sần sật, rắc thêm ruốc và hành phi.", ["Xôi nếp dẻo", "Chả mực giã tay", "Ruốc thịt, hành phi", "Tương ớt"], "Xôi Chả Mực Hàng Bè", "22 Hàng Bè, Hoàn Kiếm, Hà Nội"],
+            ["Xôi Lạp Xưởng Pate Trứng Ốp", "fast", "Đống Đa", "30.000đ - 45.000đ", "Bữa sáng chắc bụng với xôi trắng dẻo, pate gan béo ngậy, lạp xưởng chiên thơm và trứng ốp la lòng đào.", ["Xôi trắng", "Pate gan, lạp xưởng", "Trứng ốp la", "Xì dầu ớt"], "Xôi Đêm Đê La Thành", "218 Đê La Thành, Đống Đa, Hà Nội"],
+            ["Xôi Ngũ Sắc Lá Cẩm Tây Bắc", "fast", "Cầu Giấy", "25.000đ - 40.000đ", "Xôi nếp nương đồ từ lá cẩm, gấc, nghệ, lá dứa rực rỡ 5 màu tự nhiên, dẻo thơm ăn kèm muối vừng lạc rang.", ["Gạo nếp nương", "Lá cẩm, gấc, lá dứa", "Muối vừng lạc"], "Xôi Ngũ Sắc Trần Cung", "45 Trần Cung, Bắc Từ Liêm, Hà Nội"],
+            ["Xôi Gấc Đậu Xanh Dừa Nạo", "fast", "Ba Đình", "20.000đ - 30.000đ", "Xôi gấc đỏ au tượng trưng may mắn, hạt nếp dẻo ngọt quyện đậu xanh bùi béo và sợi dừa tươi nạo.", ["Gạo nếp cái", "Quả gấc tươi", "Đậu xanh, dừa nạo"], "Xôi Gấc Hàng Đường", "34 Hàng Đường, Hoàn Kiếm, Hà Nội"],
+            ["Xôi Bắp Ngô Nếp Hành Phi", "fast", "Hoàn Kiếm", "15.000đ - 25.000đ", "Ngô nếp bung mềm dẻo trộn xôi trắng, phủ đậu xanh đánh mịn, hành phi vàng giòn và chút đường hoặc ruốc.", ["Ngô nếp bung", "Gạo nếp", "Đậu xanh, hành phi", "Mỡ hành"], "Xôi Bắp Hàng Bồ", "48 Hàng Bồ, Hoàn Kiếm, Hà Nội"],
+            ["Bánh Cuốn Thanh Trì Mỏng Tang", "fast", "Hoàn Kiếm", "30.000đ - 45.000đ", "Bánh cuốn tráng không nhân mỏng như tờ giấy, thoa lớp mỡ hành thơm lừng ăn kèm chả quế và nước mắm cà cuống.", ["Bột gạo tẻ ngâm", "Hành phi, mỡ hành", "Chả quế Hà Nội", "Nước mắm cà cuống"], "Bánh Cuốn Bà Hoành", "66 Tô Hiến Thành, Hai Bà Trưng, Hà Nội"],
+            ["Bánh Cuốn Trứng Lòng Đào", "fast", "Đống Đa", "35.000đ - 50.000đ", "Trứng gà đập trực tiếp lên khuôn bánh cuốn hấp chín lòng đào béo ngậy, cuộn mềm mượt ăn nóng hổi.", ["Bột gạo tẻ", "Trứng gà ta lòng đào", "Chả lụa, ruốc tôm", "Nước chấm ấm"], "Bánh Cuốn Trứng Khâm Thiên", "142 Khâm Thiên, Đống Đa, Hà Nội"],
+            ["Bánh Mì Pate Cột Đèn Hải Phòng", "fast", "Hai Bà Trưng", "15.000đ - 25.000đ", "Bánh mì que nhỏ giòn tan phết đầy pate gan béo ngậy thơm tiêu bắc, chấm chí chương cay nồng chuẩn vị Hải Phòng.", ["Bánh mì que giòn", "Pate gan Hải Phòng", "Tương ớt chí chương"], "Bánh Mì Que Bà Già", "57 Lê Lợi, Hà Đông, Hà Nội"],
+            ["Bánh Mì Thịt Xiên Nướng", "fast", "Cầu Giấy", "25.000đ - 35.000đ", "Ổ bánh mì nóng giòn kẹp 2-3 xiên thịt nướng sả mật ong thơm phức, thêm dưa chuột, rau mùi và tương ớt.", ["Bánh mì giòn", "Thịt xiên nướng", "Dưa chuột, rau mùi", "Tương ớt"], "Bánh Mì Thịt Xiên Chùa Láng", "88 Chùa Láng, Đống Đa, Hà Nội"],
+            ["Bánh Mì Gà Xé Sốt Bơ Trứng", "fast", "Hoàn Kiếm", "30.000đ - 45.000đ", "Thịt ức gà xé trộn gia vị đậm đà kẹp bánh mì giòn cùng sốt bơ trứng vàng ươm béo ngậy, rau mùi và đồ chua.", ["Bánh mì giòn", "Thịt gà xé", "Sốt bơ trứng", "Đồ chua, rau mùi"], "Bánh Mì Bami Bread", "98 Hàng Bạc, Hoàn Kiếm, Hà Nội"],
+            ["Bánh Mì Bò Nướng Phô Mai", "fast", "Cầu Giấy", "35.000đ - 50.000đ", "Thịt bò băm nướng đậm vị phủ phô mai Cheddar tan chảy béo ngậy kẹp trong bánh mì giòn rụm nóng hổi.", ["Bánh mì giòn", "Thịt bò nướng", "Phô mai Cheddar", "Xà lách, sốt tiêu"], "Bánh Mì Bò Phô Mai Xuân Thủy", "110 Xuân Thủy, Cầu Giấy, Hà Nội"],
+            ["Bánh Mì Xíu Mại Trứng Muối", "fast", "Đống Đa", "30.000đ - 45.000đ", "Viên xíu mại thịt nạc mềm ngọt bọc trứng muối bùi béo trong nước sốt cà chua sánh đậm, ăn kèm bánh mì giòn.", ["Bánh mì giòn", "Xíu mại trứng muối", "Sốt cà chua", "Hành lá, đồ chua"], "Bánh Mì Xíu Mại Thái Hà", "76 Thái Hà, Đống Đa, Hà Nội"],
+            ["Bánh Mì Heo Quay Da Giòn", "fast", "Ba Đình", "30.000đ - 45.000đ", "Thịt heo quay bì nổ giòn tan, thịt mềm thơm ngũ vị kẹp bánh mì nóng cùng dưa leo, hành lá và nước sốt thịt quay.", ["Bánh mì giòn", "Thịt heo quay", "Dưa chuột, hành lá", "Sốt heo quay"], "Bánh Mì Heo Quay Kim Mã", "164 Kim Mã, Ba Đình, Hà Nội"],
+            ["Bánh Mì Thập Cẩm Truyền Thống", "fast", "Long Biên", "25.000đ - 35.000đ", "Đầy đủ chả lụa, thịt xá xíu, jambon, pate gan, bơ trứng, dưa chuột và rau mùi trong ổ bánh mì nóng hổi.", ["Bánh mì giòn", "Chả lụa, xá xíu, jambon", "Pate gan, bơ trứng", "Dưa chuột, rau mùi"], "Bánh Mì Ngọc Lâm", "95 Ngọc Lâm, Long Biên, Hà Nội"],
+            ["Bánh Mì Trứng Ngải Cứu", "fast", "Hoàn Kiếm", "20.000đ - 30.000đ", "Trứng gà rán cùng lá ngải cứu non thơm nồng bùi đắng nhẹ, kẹp bánh mì giòn rắc chút muối tiêu cực kỳ bổ dưỡng.", ["Bánh mì giòn", "Trứng gà ta", "Lá ngải cứu non", "Muối tiêu, tương ớt"], "Bánh Mì Ngải Cứu Hàng Bạc", "44 Hàng Bạc, Hoàn Kiếm, Hà Nội"],
+            ["Bánh Bao Nhân Thịt Trứng Cút", "fast", "Thanh Xuân", "15.000đ - 25.000đ", "Vỏ bánh bao sữa trắng xốp mềm mịn, nhân thịt băm mộc nhĩ, lạp xưởng và trứng cút nóng hổi hấp trong xửng.", ["Bột mì men nở", "Thịt băm, mộc nhĩ", "Trứng cút, lạp xưởng"], "Bánh Bao Nguyên Sinh", "118 Nguyễn Trãi, Thanh Xuân, Hà Nội"],
+            ["Bánh Bao Kim Sa Trứng Chảy", "fast", "Cầu Giấy", "20.000đ - 30.000đ", "Chiếc bánh bao nhỏ xinh xé ra lớp nhân kem trứng muối vàng óng tan chảy béo ngậy ngọt mặn hài hòa.", ["Bột bánh bao sữa", "Nhân kem trứng muối", "Bơ lạt, sữa đặc"], "Dimsum House Cầu Giấy", "64 Trần Thái Tông, Cầu Giấy, Hà Nội"],
+            ["Bánh Giò Chả Cốm Xúc Xích", "fast", "Đống Đa", "30.000đ - 45.000đ", "Bánh giò nóng mềm tan ăn kèm topping đầy đặn gồm chả cốm chiên dẻo thơm, xúc xích và dưa góp chua ngọt.", ["Bánh giò nóng", "Chả cốm chiên", "Xúc xích Đức", "Dưa góp, tương ớt"], "Bánh Giò Đào Duy Anh", "16 Đào Duy Anh, Đống Đa, Hà Nội"],
+            ["Bánh Tẻ Phú Nhi Sơn Tây", "fast", "Hà Đông", "10.000đ - 20.000đ", "Bánh tẻ gói lá dong luộc chín dẻo thơm, nhân thịt băm mộc nhĩ hành khô đậm đà chấm tương ớt hoặc nước mắm.", ["Bột gạo tẻ", "Thịt băm, mộc nhĩ", "Hành khô", "Lá dong gói"], "Bánh Tẻ Phú Nhi Hà Đông", "42 Quang Trung, Hà Đông, Hà Nội"],
+            ["Bánh Gai Ninh Giang Đậu Xanh", "fast", "Hoàn Kiếm", "12.000đ - 20.000đ", "Vỏ bánh dẻo mịn màu đen bóng từ lá gai, nhân đậu xanh sên đường, dừa nạo, hạt sen và mứt bí thơm mùi dầu chuối.", ["Bột nếp lá gai", "Đậu xanh, dừa nạo", "Hạt sen, mứt bí", "Vừng trắng"], "Bánh Gai Hàng Đường", "28 Hàng Đường, Hoàn Kiếm, Hà Nội"],
+            ["Bánh Chưng Rán Giòn Dưa Hành", "fast", "Hoàn Kiếm", "25.000đ - 40.000đ", "Bánh chưng rán áp chảo giòn rụm lớp vỏ ngoài dẻo bùi bên trong với nhân đậu xanh thịt mỡ, ăn kèm dưa hành muối.", ["Bánh chưng truyền thống", "Dưa hành muối chua", "Nước tương ớt"], "Bánh Chưng Rán Tạ Hiện", "22 Tạ Hiện, Hoàn Kiếm, Hà Nội"],
+            ["Sandwich Gà Teriyaki Phô Mai", "fast", "Nam Từ Liêm", "35.000đ - 50.000đ", "Bánh mì sandwich nướng giòn kẹp thịt gà sốt Teriyaki, phô mai lát, trứng ốp la và rau xà lách tươi giòn.", ["Bánh mì sandwich", "Gà sốt Teriyaki", "Phô mai, trứng ốp la", "Xà lách, cà chua"], "Toast Box Mỹ Đình", "18 Hàm Nghi, Nam Từ Liêm, Hà Nội"],
+            ["Hamburger Bò Phô Mai Hai Tầng", "fast", "Tây Hồ", "55.000đ - 85.000đ", "Vỏ bánh burger nướng bơ mềm thơm kẹp hai lớp thịt bò băm nướng mọng nước, phô mai Cheddar tan chảy và sốt đặc biệt.", ["Bánh burger mè", "Thịt bò băm nướng", "Phô mai Cheddar", "Dưa chuột muối, hành tây"], "Burger House Quảng An", "46 Quảng An, Tây Hồ, Hà Nội"],
+            ["Bánh Mì Chảo Bò Bít Tết Trứng", "fast", "Hai Bà Trưng", "55.000đ - 80.000đ", "Chảo gang xèo xèo với thịt bò bít tết mềm ngọt, trứng ốp la lòng đào, pate gan, khoai tây chiên và bánh mì giòn.", ["Thịt bò bít tết", "Trứng ốp la, pate", "Khoai tây chiên", "Bánh mì giòn"], "Bánh Mì Chảo Bách Khoa", "34 Tạ Quang Bửu, Hai Bà Trưng, Hà Nội"],
+            ["Cơm Nắm Muối Vừng Chả Lụa", "fast", "Ba Đình", "20.000đ - 30.000đ", "Cơm gạo tám nắm chặt tay dẻo thơm cắt khoanh, chấm muối vừng lạc rang giã nhỏ ăn kèm lát chả lụa truyền thống.", ["Gạo tám thơm", "Muối vừng lạc rang", "Chả lụa"], "Quà Sáng Ngọc Hà", "38 Ngọc Hà, Ba Đình, Hà Nội"],
+            ["Xôi Chiên Phồng Gà Quay", "fast", "Long Biên", "45.000đ - 65.000đ", "Xôi nếp chiên phồng giòn rụm bên ngoài dẻo thơm bên trong, ăn kèm gà quay ngũ vị đậm đà và tương ớt.", ["Xôi nếp chiên phồng", "Thịt gà quay", "Tương ớt, dưa góp"], "Gà Quay Xôi Phồng Long Biên", "112 Nguyễn Văn Cừ, Long Biên, Hà Nội"],
+            ["Bánh Cuốn Nhân Tôm Thịt Nướng", "fast", "Cầu Giấy", "40.000đ - 55.000đ", "Bánh cuốn nóng tráng mỏng cuốn tôm băm rim mặn ngọt, ăn kèm thịt nướng than hoa và nước chấm chua ngọt.", ["Bánh cuốn tráng mỏng", "Tôm tươi băm", "Thịt nướng than hoa", "Nước mắm chua ngọt"], "Bánh Cuốn Trung Hòa", "52 Trung Hòa, Cầu Giấy, Hà Nội"],
+            ["Bánh Mì Bơ Tỏi Phô Mai Tan Chảy", "fast", "Đống Đa", "35.000đ - 50.000đ", "Ổ bánh mì tròn khía múi nướng giòn đẫm sốt bơ tỏi thơm lừng và nhân kem phô mai béo ngậy tan chảy.", ["Bánh mì tròn", "Kem phô mai Cream Cheese", "Bơ tỏi, lá mùi tây"], "Tiệm Bánh Bơ Tỏi Đống Đa", "84 Phạm Ngọc Thạch, Đống Đa, Hà Nội"],
+
+            // --- ĐẶC SẢN NHẬU (30 món) ---
+            ["Lẩu Ếch Măng Cay Hà Nội", "special", "Ba Đình", "250.000đ - 400.000đ", "Ếch đồng xào măng trúc cay thơm nức mũi, thả vào nồi nước lẩu chua cay đậm đà cùng da ếch chiên giòn và rau muống.", ["Thịt ếch đồng", "Măng trúc chua cay", "Da ếch chiên giòn", "Rau muống, váng đậu"], "Lẩu Ếch Phó Đức Chính", "46 Phó Đức Chính, Ba Đình, Hà Nội"],
+            ["Lẩu Gà Lá É Đà Lạt", "special", "Đống Đa", "250.000đ - 380.000đ", "Nước lẩu thanh ngọt thơm nồng mùi lá é và sả ớt, thịt gà ta chắc ngọt nhúng cùng nấm bào ngư và măng tươi.", ["Thịt gà ta", "Lá é tươi", "Măng tươi, nấm bào ngư", "Bún tươi"], "Lẩu Gà Lá É Tao Ngộ", "88 Xã Đàn, Đống Đa, Hà Nội"],
+            ["Lẩu Thái Tomyum Hải Sản", "special", "Cầu Giấy", "280.000đ - 450.000đ", "Nước lẩu Tomyum chua cay béo thơm mùi cốt dừa, riềng sả lá chanh, nhúng ngập tôm sú, mực ống, ngao và ba chỉ bò.", ["Tôm sú, mực, ngao", "Ba chỉ bò Mỹ", "Cốt dừa, riềng sả lá chanh", "Nấm, rau nhúng"], "Lẩu Thái Cầu Giấy", "116 Trần Thái Tông, Cầu Giấy, Hà Nội"],
+            ["Lẩu Bò Nhúng Dấm Cuốn Bánh Tráng", "special", "Hoàn Kiếm", "260.000đ - 420.000đ", "Nước dùng dấm gạo thanh chua thơm mùi dứa và nước dừa tươi, nhúng bắp bò, gầu bò cuốn bánh tráng chấm mắm nêm.", ["Bắp bò, gầu bò", "Nước dừa tươi, dứa, dấm", "Bánh tráng, rau sống", "Mắm nêm pha"], "Lẩu Bò Nhúng Dấm 555", "56 Trung Hòa, Cầu Giấy, Hà Nội"],
+            ["Lẩu Đuôi Bò Hầm Thuốc Bắc", "special", "Hai Bà Trưng", "280.000đ - 420.000đ", "Đuôi bò hầm nhừ mềm dẻo lớp da béo ngậy trong nước dùng thuốc bắc thơm nồng, nhúng rau cải xanh và khoai môn.", ["Đuôi bò tươi", "Thuốc bắc, táo đỏ", "Khoai môn, rau cải xanh", "Chao đỏ chấm thịt"], "Lẩu Đuôi Bò Kim Ngưu", "142 Kim Ngưu, Hai Bà Trưng, Hà Nội"],
+            ["Lẩu Ngan Cháy Tỏi Đậm Đà", "special", "Hoàn Kiếm", "240.000đ - 360.000đ", "Thịt ngan chặt miếng xào tỏi phi vàng thơm nức, nước lẩu ngọt đậm vị xương ngan ăn kèm khoai môn và rau rút.", ["Thịt ngan ta", "Tỏi phi giòn", "Khoai môn, rau rút", "Bún tươi"], "Ngan Cháy Tỏi Hàng Lược", "51 Hàng Lược, Hoàn Kiếm, Hà Nội"],
+            ["Lẩu Lòng Bò Xé Tươi", "special", "Đống Đa", "250.000đ - 380.000đ", "Lòng bò tươi làm sạch giòn sần sật gồm sách bò, khế bò, cuống tim nhúng trong nồi lẩu sa tế cay nồng.", ["Sách bò, lòng bò, cuống tim", "Sa tế sả ớt", "Rau cải thảo, rau cần", "Mắm gừng"], "Lẩu Lòng Bò Ô Chợ Dừa", "74 Ô Chợ Dừa, Đống Đa, Hà Nội"],
+            ["Lẩu Cháo Chim Câu Hạt Sen", "special", "Tây Hồ", "280.000đ - 420.000đ", "Nồi cháo loãng ninh từ xương gà và gạo thơm, nhúng chim bồ câu tươi ngọt thịt, nấm kim châm và rau cải cúc.", ["Chim bồ câu tươi", "Cháo ninh xương", "Hạt sen, nấm kim châm", "Rau cải cúc"], "Lẩu Cháo Chim Câu Nghi Tàm", "86 Nghi Tàm, Tây Hồ, Hà Nội"],
+            ["Vịt Quay Lạng Sơn Lá Mắc Mật", "special", "Long Biên", "180.000đ - 280.000đ", "Vịt quay nguyên con da giòn màu cánh gián bóng bẩy, bụng nhồi lá mắc mật thơm lừng chấm nước sốt xì dầu đặc biệt.", ["Vịt bầu quay", "Lá mắc mật tươi", "Nước chấm vịt quay", "Dưa chuột"], "Vịt Quay Lạng Sơn Long Biên", "145 Ngọc Lâm, Long Biên, Hà Nội"],
+            ["Gà Nướng Lu Đất Mật Ong", "special", "Cầu Giấy", "220.000đ - 320.000đ", "Gà ta thả vườn nướng trong lu đất giữ trọn độ mọng nước, lớp da giòn rụm thơm mùi mật ong và lá chanh.", ["Gà ta nguyên con", "Mật ong, lá chanh", "Muối ớt xanh", "Xôi chiên"], "Gà Nướng Lu Trần Duy Hưng", "92 Trần Duy Hưng, Cầu Giấy, Hà Nội"],
+            ["Bê Chao Mộc Châu Thơm Ngậy", "special", "Thanh Xuân", "140.000đ - 220.000đ", "Thịt bê non cắt miếng vuông chao qua dầu nóng lửa lớn nên bên ngoài xém cạnh bên trong mềm ngọt, chấm tương gừng.", ["Thịt bê non", "Sả, gừng tươi", "Tương bần pha gừng", "Rau thơm"], "Bê Chao Mộc Châu Khuất Duy Tiến", "68 Khuất Duy Tiến, Thanh Xuân, Hà Nội"],
+            ["Dê Tái Chanh Ninh Bình", "special", "Nam Từ Liêm", "150.000đ - 240.000đ", "Thịt dê núi hấp chín tới bóp nước cốt chanh tươi, vừng rang, sả ớt và lá chanh, cuốn lá sung chấm tương bần.", ["Thịt dê tươi", "Chanh tươi, sả, vừng rang", "Lá sung, chuối xanh", "Tương bần gừng"], "Dê Núi Ninh Bình Mỹ Đình", "42 Lê Đức Thọ, Nam Từ Liêm, Hà Nội"],
+            ["Trâu Giật Xào Rau Muống Tỏi", "special", "Hà Đông", "140.000đ - 210.000đ", "Thịt trâu tươi mềm ngọt xào lửa lớn cùng rau muống xanh giòn và tỏi đập dập, món nhậu lai rai chuẩn vị Bắc.", ["Thịt trâu tươi", "Rau muống", "Tỏi tươi", "Nước mắm tỏi ớt"], "Trâu Ngon Quán Hà Đông", "120 Trần Phú, Hà Đông, Hà Nội"],
+            ["Sườn Nướng Tảng BBQ Sốt Cay", "special", "Cầu Giấy", "220.000đ - 350.000đ", "Tảng sườn heo nguyên dẻ tẩm sốt BBQ khói đậm đà nướng chậm mềm róc xương, ăn kèm khoai tây chiên và salad.", ["Sườn tảng heo", "Sốt BBQ hun khói", "Khoai tây chiên", "Salad trộn"], "Sườn Nướng BBQ Cầu Giấy", "78 Duy Tân, Cầu Giấy, Hà Nội"],
+            ["Nầm Bò Nướng Chảo Gang Bơ Tỏi", "special", "Hoàn Kiếm", "120.000đ - 180.000đ", "Nầm heo và ba chỉ bò Mỹ nướng xèo xèo trên chảo gang phủ bơ lạt và tỏi băm thơm lừng, chấm sốt me chua ngọt.", ["Nầm heo tươi", "Ba chỉ bò Mỹ", "Bơ lạt, tỏi băm", "Sốt me chua ngọt"], "Nướng Gầm Cầu Phùng Hưng", "18 Phùng Hưng, Hoàn Kiếm, Hà Nội"],
+            ["Lòng Nướng Nghệ Tươi Giòn Sần Sật", "special", "Đống Đa", "110.000đ - 170.000đ", "Lòng non, tràng, cuống họng tẩm nghệ tươi và sả ớt nướng than hoa giòn sần sật, chấm mắm tôm đánh bông.", ["Lòng non, tràng, cuống họng", "Nghệ tươi, sả ớt", "Mắm tôm chanh ớt", "Rau húng, hành lá"], "Lòng Nướng Phương Mai", "54 Phương Mai, Đống Đa, Hà Nội"],
+            ["Dồi Sụn Nướng Than Hoa", "special", "Hoàn Kiếm", "50.000đ - 90.000đ", "Dồi nhồi sụn non băm nhỏ và rau húng quế nướng xém cạnh trên than hồng, cắn vào giòn sần sật thơm nức mũi.", ["Sụn non băm", "Rau húng quế, hành lá", "Tương ớt", "Dưa chuột"], "Dồi Sụn Nướng Hàng Buồm", "36 Hàng Buồm, Hoàn Kiếm, Hà Nội"],
+            ["Mực Nướng Sa Tế Cay Nồng", "special", "Hai Bà Trưng", "130.000đ - 190.000đ", "Mực lá tươi dày mình khứa vảy rồng tẩm sa tế ớt nướng trên bếp than hoa, thịt mực giòn ngọt chấm muối ớt xanh.", ["Mực lá tươi", "Sa tế tôm ớt", "Muối ớt xanh", "Rau răm"], "Hải Sản Nướng Đại Cồ Việt", "48 Đại Cồ Việt, Hai Bà Trưng, Hà Nội"],
+            ["Tôm Sú Nướng Muối Ớt", "special", "Tây Hồ", "160.000đ - 250.000đ", "Những con tôm sú tươi chắc thịt tẩm muối ớt đỏ au nướng chín tới vỏ giòn thơm, thịt tôm ngọt đậm đà.", ["Tôm sú tươi", "Muối ớt hột", "Muối tiêu chanh", "Dưa chuột"], "Hải Sản Hồ Tây", "62 Nhật Chiêu, Tây Hồ, Hà Nội"],
+            ["Hàu Nướng Mỡ Hành Phô Mai", "special", "Cầu Giấy", "80.000đ - 140.000đ", "Hàu sữa béo múp nướng trên than hồng phủ mỡ hành lạc rang thơm lừng hoặc phô mai Mozzarella kéo sợi béo ngậy.", ["Hàu sữa tươi", "Mỡ hành, lạc rang", "Phô mai Mozzarella", "Muối tiêu chanh"], "Hàu Nướng Nghĩa Tân", "102 Nghĩa Tân, Cầu Giấy, Hà Nội"],
+            ["Cá Chép Om Dưa Nồi Đất", "special", "Long Biên", "220.000đ - 320.000đ", "Cá chép giòn rán sơ om cùng dưa cải chua, cà chua, tóp mỡ và thì là nóng hổi, ăn kèm bún tươi cực kỳ đưa miệng.", ["Cá chép tươi", "Dưa cải muối chua", "Tóp mỡ, cà chua, thì là", "Bún tươi"], "Cá Chép Om Dưa Lâm Du", "44 Lâm Du, Long Biên, Hà Nội"],
+            ["Gà Hấp Muối Hoa Tiêu", "special", "Ba Đình", "200.000đ - 290.000đ", "Gà ta hấp cách thủy trên lớp muối hột, sả cây và hoa tiêu giúp thịt gà giữ nguyên độ ngọt mềm, da vàng giòn.", ["Gà ta nguyên con", "Muối hột, sả, hoa tiêu", "Muối tiêu lá chanh"], "Gà Hấp Muối Đội Cấn", "178 Đội Cấn, Ba Đình, Hà Nội"],
+            ["Cánh Gà Chiên Nước Mắm Tỏi Ớt", "special", "Đống Đa", "90.000đ - 140.000đ", "Cánh gà chiên giòn rụm áo lớp nước mắm tỏi ớt đường sánh kẹo mặn ngọt hài hòa, mồi nhậu số một trên bàn tiệc.", ["Cánh gà tươi", "Nước mắm ngon, tỏi ớt", "Xà lách, cà chua"], "Quán Nhậu Xã Đàn", "192 Xã Đàn, Đống Đa, Hà Nội"],
+            ["Sụn Gà Rang Muối Tuyết", "special", "Cầu Giấy", "95.000đ - 145.000đ", "Sụn gà chiên giòn sần sật xóc đều cùng bột muối rang gạo nếp đậu xanh và sả lá chanh chiên giòn thơm lừng.", ["Sụn gà tươi", "Bột muối rang thủ công", "Sả, lá chanh chiên", "Tương ớt"], "Quán Nhậu Trung Kính", "84 Trung Kính, Cầu Giấy, Hà Nội"],
+            ["Ếch Rang Muối Lá Lốt Giòn", "special", "Hai Bà Trưng", "120.000đ - 180.000đ", "Đùi ếch đồng chiên vàng giòn xóc muối rang thơm bùi cùng lá lốt và sả tước sợi chiên giòn tan.", ["Đùi ếch đồng", "Muối rang ngũ vị", "Lá lốt, sả sợi", "Tương ớt"], "Ếch Ngon Bạch Mai", "156 Bạch Mai, Hai Bà Trưng, Hà Nội"],
+            ["Bắp Bò Ngâm Mắm Nhĩ Chua Ngọt", "special", "Hoàn Kiếm", "110.000đ - 160.000đ", "Bắp bò hoa luộc chín giòn sần sật ngâm trong nước mắm nhĩ đường phèn cùng tỏi ớt và tiêu xanh thơm nồng.", ["Bắp bò hoa", "Nước mắm nhĩ", "Tỏi, ớt, tiêu xanh", "Củ kiệu muối"], "Đặc Sản Phố Cổ", "28 Hàng Giấy, Hoàn Kiếm, Hà Nội"],
+            ["Chân Giò Muối Hun Khói", "special", "Thanh Xuân", "100.000đ - 150.000đ", "Chân giò rút xương ủ muối hun khói tự nhiên, thái lát mỏng phần da giòn thịt hồng đậm đà chấm mù tạt vàng.", ["Chân giò hun khói", "Mù tạt vàng", "Dưa chuột bao tử"], "Quán Bia Thanh Xuân", "144 Nguyễn Trãi, Thanh Xuân, Hà Nội"],
+            ["Đậu Phụ Tẩm Hành Rán Giòn", "special", "Hoàn Kiếm", "30.000đ - 45.000đ", "Món nhậu bình dân kinh điển của Hà Nội: đậu mơ rán phồng giòn rụm nhúng ngập bát nước mắm hành lá xanh mướt.", ["Đậu phụ mơ", "Nước mắm pha", "Hành lá thái nhỏ"], "Quán Bia Tạ Hiện", "14 Tạ Hiện, Hoàn Kiếm, Hà Nội"],
+            ["Lạc Rang Húng Lìu Hà Nội", "special", "Hoàn Kiếm", "20.000đ - 35.000đ", "Lạc nhân rang chín giòn tan áo lớp bột húng lìu thơm đặc trưng của người Hà Nội, nhâm nhi cùng bia hơi cực chuẩn.", ["Lạc nhân đỏ", "Bột húng lìu", "Muối tinh"], "Lạc Rang Bà Vân", "168 Bà Triệu, Hai Bà Trưng, Hà Nội"],
+            ["Gỏi Bò Bóp Thấu Khế Chua", "special", "Ba Đình", "120.000đ - 170.000đ", "Thịt bò tái mềm trộn khế chua, chuối chát, hành tây, rau thơm và lạc rang, ăn kèm bánh phồng tôm giòn rụm.", ["Thịt bò thăn", "Khế chua, chuối chát", "Bánh phồng tôm", "Lạc rang, rau thơm"], "Quán Nhậu Kim Mã", "212 Kim Mã, Ba Đình, Hà Nội"],
+
+            // --- ĐỒ UỐNG & TRÁNG MIỆNG (35 món) ---
+            ["Trà Sữa Trân Châu Đường Đen", "drink", "Cầu Giấy", "35.000đ - 55.000đ", "Sữa tươi thanh trùng béo ngậy hòa quyện cùng trân châu nấu đường đen Hàn Quốc dẻo mềm thơm mùi mật mía.", ["Sữa tươi thanh trùng", "Trân châu đường đen", "Kem cheese"], "The Alley Cầu Giấy", "124 Xuân Thủy, Cầu Giấy, Hà Nội"],
+            ["Trà Sữa Ô Long Nướng Kem Cheese", "drink", "Hoàn Kiếm", "40.000đ - 60.000đ", "Cốt trà Ô Long rang đậm vị thơm khói nhẹ phủ lớp kem phô mai mặn béo mịn màng trên bề mặt.", ["Trà Ô Long nướng", "Kem phô mai mặn", "Trân châu trắng"], "Phúc Long Hàng Điếu", "82 Hàng Điếu, Hoàn Kiếm, Hà Nội"],
+            ["Trà Sữa Matcha Nhật Bản Đậu Đỏ", "drink", "Đống Đa", "40.000đ - 60.000đ", "Bột trà xanh Matcha Uji thanh mát đánh tan cùng sữa tươi béo ngậy, thêm topping đậu đỏ ninh mềm ngọt bùi.", ["Bột Matcha Nhật", "Sữa tươi", "Đậu đỏ sên ngọt"], "Matcha House Chùa Láng", "66 Chùa Láng, Đống Đa, Hà Nội"],
+            ["Trà Vải Nhiệt Đới Thanh Mát", "drink", "Hai Bà Trưng", "35.000đ - 50.000đ", "Trà đen thanh nhẹ kết hợp nước vải ngâm thơm lừng và những trái vải thiều giòn ngọt giải nhiệt tức thì.", ["Trà đen", "Trái vải thiều ngâm", "Lá bạc hà"], "Highlands Coffee Bà Triệu", "112 Bà Triệu, Hai Bà Trưng, Hà Nội"],
+            ["Trà Dâu Tây Tằm Đà Lạt", "drink", "Hoàn Kiếm", "35.000đ - 50.000đ", "Cốt trà nhài hòa quyện mứt dâu tây và dâu tằm chua ngọt tự nhiên, màu đỏ hồng bắt mắt cực kỳ sảng khoái.", ["Trà lài", "Dâu tây, dâu tằm", "Đá viên"], "Tiệm Trà Phố Cổ", "24 Nhà Chung, Hoàn Kiếm, Hà Nội"],
+            ["Trà Mãng Cầu Xiêm Tươi", "drink", "Cầu Giấy", "35.000đ - 48.000đ", "Thịt mãng cầu xiêm tươi dầm nhuyễn lắc cùng trà xanh nhài cho vị chua ngọt thanh mát dậy mùi trái cây nhiệt đới.", ["Mãng cầu xiêm tươi", "Trà xanh hoa nhài", "Mật ong"], "Trà Mãng Cầu Tô Hiệu", "142 Tô Hiệu, Cầu Giấy, Hà Nội"],
+            ["Trà Dưa Lưới Kem Sữa", "drink", "Đống Đa", "38.000đ - 52.000đ", "Hương dưa lưới thơm ngọt dịu dàng quyện trong trà xanh thanh mát và lớp váng sữa béo nhẹ.", ["Trà xanh", "Mứt dưa lưới tươi", "Kem sữa"], "Katinat Thái Hà", "96 Thái Hà, Đống Đa, Hà Nội"],
+            ["Trà Tắc Xí Muội Mật Ong", "drink", "Thanh Xuân", "15.000đ - 25.000đ", "Thức uống bình dân giải khát siêu đã với trà đen, nước cốt quất thơm lừng, xí muội mặn ngọt và mật ong.", ["Trà đen", "Quất tươi, xí muội", "Mật ong"], "Trà Tắc Nguyễn Trãi", "210 Nguyễn Trãi, Thanh Xuân, Hà Nội"],
+            ["Cà Phê Bạc Xỉu Đá Sài Gòn", "drink", "Hoàn Kiếm", "30.000đ - 45.000đ", "Nhiều sữa đặc và sữa tươi ấm nóng quyện chút cà phê phin thơm lừng, ngọt ngào dịu nhẹ cho người không quen đắng.", ["Sữa đặc, sữa tươi", "Cà phê phin", "Đá viên"], "Cà Phê Lâm Phố Cổ", "60 Nguyễn Hữu Huân, Hoàn Kiếm, Hà Nội"],
+            ["Cà Phê Muối Huế Béo Mặn", "drink", "Ba Đình", "35.000đ - 48.000đ", "Cà phê phin đậm đà phủ lớp kem muối đánh bông mặn mặn béo béo giúp làm dịu vị đắng và tôn lên hương cà phê.", ["Cà phê Robusta", "Kem muối béo", "Bột cacao"], "Cà Phê Muối Đội Cấn", "88 Đội Cấn, Ba Đình, Hà Nội"],
+            ["Cà Phê Sữa Đá Phin Truyền Thống", "drink", "Hoàn Kiếm", "25.000đ - 40.000đ", "Hạt cà phê rang mộc pha phin nhỏ giọt sánh đậm hòa cùng sữa đặc ngọt ngào và đá viên mát lạnh.", ["Cà phê rang xay", "Sữa đặc có đường", "Đá viên"], "Cà Phê Nhĩ Hàng Cá", "2 Hàng Cá, Hoàn Kiếm, Hà Nội"],
+            ["Cacao Nóng Trứng Đánh Bông", "drink", "Hoàn Kiếm", "35.000đ - 50.000đ", "Bột cacao nguyên chất đắng nhẹ thơm nồng phủ lớp kem lòng đỏ trứng gà đánh bông mịn như nhung.", ["Bột cacao nguyên chất", "Lòng đỏ trứng gà", "Sữa đặc"], "Cà Phê Giảng Phố Cổ", "39 Nguyễn Hữu Huân, Hoàn Kiếm, Hà Nội"],
+            ["Sữa Chua Nếp Cẩm Dẻo Thơm", "drink", "Hai Bà Trưng", "25.000đ - 35.000đ", "Sữa chua nhà làm chua dịu sánh mịn ăn kèm xôi nếp cẩm nấu dẻo thơm lừng nước cốt dừa béo ngậy.", ["Sữa chua lên men", "Gạo nếp cẩm nấu mềm", "Nước cốt dừa"], "Sữa Chua Nếp Cẩm Bạch Mai", "78 Bạch Mai, Hai Bà Trưng, Hà Nội"],
+            ["Sữa Chua Mít Thạch Hạt Lựu", "drink", "Hai Bà Trưng", "25.000đ - 35.000đ", "Bát sữa chua đầy ắp mít dai vàng ươm thái sợi, thạch rau câu giòn sần sật, hạt lựu và nước cốt dừa.", ["Sữa chua", "Mít dai tươi", "Thạch rau câu, hạt lựu", "Nước cốt dừa"], "Sữa Chua Mít Bà Triệu", "24 Bà Triệu, Hai Bà Trưng, Hà Nội"],
+            ["Caramen Thập Cẩm Hàng Than", "drink", "Ba Đình", "20.000đ - 35.000đ", "Bánh flan trứng sữa mềm mịn thơm mùi vani ăn cùng trân châu nhân dừa, thạch cà phê và nước cốt dừa.", ["Bánh flan caramen", "Trân châu dừa, thạch", "Nước cốt dừa, cà phê"], "Caramen Dương Hoa", "29 Hàng Than, Ba Đình, Hà Nội"],
+            ["Chè Bưởi An Giang Cùi Giòn", "drink", "Đống Đa", "20.000đ - 30.000đ", "Cùi bưởi sần sật không hề đắng nấu sánh cùng đậu xanh bùi béo, chan nước cốt dừa thơm ngậy mát lạnh.", ["Cùi bưởi tươi", "Đậu xanh hấp", "Nước cốt dừa"], "Chè Bưởi Chùa Láng", "54 Chùa Láng, Đống Đa, Hà Nội"],
+            ["Chè Sầu Riêng Liên Đà Nẵng", "drink", "Cầu Giấy", "30.000đ - 45.000đ", "Bát chè ngập tràn thịt sầu riêng tươi xay nhuyễn quyện nước cốt dừa béo ngậy, mít tươi, hạt đác và thạch.", ["Sầu riêng tươi", "Nước cốt dừa", "Mít tươi, hạt đác, thạch"], "Chè Liên Cầu Giấy", "118 Nguyễn Phong Sắc, Cầu Giấy, Hà Nội"],
+            ["Chè Dừa Dầm Hải Phòng", "drink", "Hoàn Kiếm", "25.000đ - 35.000đ", "Dừa non nạo sợi mềm ngọt, thạch dừa, trân châu trắng ngập trong nước cốt dừa sữa tươi sánh mịn mát lạnh.", ["Dừa non nạo sợi", "Nước cốt dừa sữa tươi", "Trân châu trắng, thạch dừa"], "Chè Dừa Dầm Hàng Cót", "34 Hàng Cót, Hoàn Kiếm, Hà Nội"],
+            ["Chè Thập Cẩm Truyền Thống Hà Nội", "drink", "Hoàn Kiếm", "20.000đ - 30.000đ", "Sự hội tụ của đậu đỏ, đậu xanh, hạt sen, cốm dẻo, dừa khô, trân châu và nước cốt dừa thơm ngậy.", ["Đậu đỏ, đậu xanh, hạt sen", "Cốm dẻo, trân châu", "Nước cốt dừa, dầu chuối"], "Chè Bốn Mùa Hàng Cân", "4 Hàng Cân, Hoàn Kiếm, Hà Nội"],
+            ["Chè Sen Long Nhãn Thanh Mát", "drink", "Hoàn Kiếm", "30.000đ - 45.000đ", "Hạt sen bùi bở lồng khéo léo bên trong cùi nhãn lồng giòn ngọt, chan nước đường phèn thanh khiết ướp hoa nhài.", ["Hạt sen tươi", "Nhãn lồng Hưng Yên", "Đường phèn hoa nhài"], "Chè Hàng Cân", "4 Hàng Cân, Hoàn Kiếm, Hà Nội"],
+            ["Chè Đỗ Đen Nước Cốt Dừa", "drink", "Thanh Xuân", "15.000đ - 25.000đ", "Đỗ đen xanh lòng ninh nhừ bùi béo chan nước cốt dừa sánh mịn, thêm dừa tươi nạo sợi và đá bào mát lạnh.", ["Đỗ đen xanh lòng", "Nước cốt dừa", "Dừa nạo, lạc rang"], "Chè Đỗ Đen Khương Trung", "86 Khương Trung, Thanh Xuân, Hà Nội"],
+            ["Tào Phớ Caramen Trân Châu", "drink", "Cầu Giấy", "20.000đ - 30.000đ", "Tào phớ mềm mượt kết hợp bánh caramen béo ngậy, trân châu dai giòn và nước đường hoa nhài thanh mát.", ["Tào phớ đậu nành", "Bánh caramen", "Trân châu, nước đường nhài"], "Vua Tào Phớ Cầu Giấy", "164 Cầu Giấy, Cầu Giấy, Hà Nội"],
+            ["Kem Xôi Dừa Thái Lan", "drink", "Hoàn Kiếm", "30.000đ - 45.000đ", "Viên kem dừa mát lạnh đặt trên lớp xôi lá nếp xanh mướt dẻo thơm, rắc dừa khô giòn tan và lạc rang bùi bùi.", ["Kem dừa tươi", "Xôi lá nếp dẻo", "Dừa khô, lạc rang"], "Kem Xôi Thu Nga", "8 Hai Bà Trưng, Hoàn Kiếm, Hà Nội"],
+            ["Bingsu Xoài Phô Mai Tuyết", "drink", "Nam Từ Liêm", "65.000đ - 95.000đ", "Đá bào sữa mịn như tuyết phủ đầy xoài cát chín ngọt, viên phô mai béo ngậy và kem tươi mát lạnh.", ["Đá bào sữa tươi", "Xoài cát chín", "Phô mai, kem tươi"], "Bingsu Mỹ Đình", "32 Đình Thôn, Nam Từ Liêm, Hà Nội"],
+            ["Sinh Tố Bơ Sáp Đắk Lắk", "drink", "Đống Đa", "30.000đ - 45.000đ", "Bơ sáp dẻo quánh xay mịn cùng sữa đặc và sữa tươi cho ly sinh tố xanh mướt béo ngậy giàu dinh dưỡng.", ["Bơ sáp tươi", "Sữa đặc, sữa tươi", "Đá xay"], "Sinh Tố Hoa Béo Tô Tịch", "17 Tô Tịch, Hoàn Kiếm, Hà Nội"],
+            ["Sinh Tố Xoài Chanh Leo", "drink", "Hoàn Kiếm", "30.000đ - 45.000đ", "Vị ngọt đậm của xoài chín hòa quyện vị chua thanh thơm lừng của chanh leo tạo nên thức uống giải nhiệt cực đã.", ["Xoài chín ngọt", "Chanh leo tươi", "Sữa đặc, đá xay"], "Hoa Quả Dầm Tô Tịch", "22 Tô Tịch, Hoàn Kiếm, Hà Nội"],
+            ["Nước Ép Dứa Cà Rốt Tươi", "drink", "Tây Hồ", "30.000đ - 45.000đ", "Nước ép nguyên chất từ dứa mật và cà rốt tươi giàu vitamin, vị ngọt thanh tự nhiên đẹp da giữ dáng.", ["Dứa mật tươi", "Cà rốt tươi", "Chút mật ong"], "Juice Bar Quảng An", "52 Quảng An, Tây Hồ, Hà Nội"],
+            ["Nước Dừa Tươi Xiêm Bến Tre", "drink", "Long Biên", "25.000đ - 35.000đ", "Trái dừa xiêm gọt trọc ướp lạnh nguyên quả, nước dừa ngọt thanh mát lành kèm cùi dừa non mềm mịn.", ["Dừa xiêm Bến Tre tươi"], "Dừa Xiêm Nguyễn Văn Cừ", "140 Nguyễn Văn Cừ, Long Biên, Hà Nội"],
+            ["Soda Chanh Bạc Hà Mát Lạnh", "drink", "Hoàn Kiếm", "30.000đ - 45.000đ", "Nước soda có ga sủi bọt kết hợp nước cốt chanh tươi và lá bạc hà giã nhẹ mang lại cảm giác sảng khoái tức thì.", ["Nước soda có ga", "Chanh tươi, lá bạc hà", "Siro đường"], "Soda Phố Cổ", "18 Bảo Khánh, Hoàn Kiếm, Hà Nội"],
+            ["Chanh Tuyết Bạc Hà Đá Xay", "drink", "Hai Bà Trưng", "25.000đ - 35.000đ", "Chanh tươi nguyên vỏ xay nhuyễn cùng đá tuyết, sữa đặc và lá bạc hà cho ly đồ uống mát lạnh tê đầu lưỡi.", ["Chanh tươi", "Sữa đặc, đá tuyết", "Lá bạc hà"], "Chanh Tuyết Bách Khoa", "40 Tạ Quang Bửu, Hai Bà Trưng, Hà Nội"],
+            ["Sữa Đậu Nành Nóng Quẩy Giòn", "drink", "Hoàn Kiếm", "12.000đ - 20.000đ", "Sữa đậu nành nấu thủ công thơm ngậy mùi đậu tương rang, uống ấm nóng buổi tối kèm chiếc quẩy giòn tan.", ["Đậu tương nguyên chất", "Lá dứa thơm", "Đường kính"], "Sữa Đậu Nành Hàng Bạc", "56 Hàng Bạc, Hoàn Kiếm, Hà Nội"],
+            ["Sữa Ngô Non Nếp Cẩm", "drink", "Cầu Giấy", "18.000đ - 28.000đ", "Ngô ngọt tươi xay nhuyễn nấu cùng sữa tươi béo ngậy, thơm mùi bắp non tự nhiên uống nóng hay lạnh đều ngon.", ["Ngô ngọt tươi", "Sữa tươi, sữa đặc", "Lá nếp"], "Sữa Ngô Nghĩa Tân", "98 Nghĩa Tân, Cầu Giấy, Hà Nội"],
+            ["Nước Rau Má Đậu Xanh Cốt Dừa", "drink", "Đống Đa", "20.000đ - 30.000đ", "Nước ép rau má tươi thanh nhiệt kết hợp đậu xanh đánh mịn và nước cốt dừa béo ngậy cực kỳ dễ uống.", ["Rau má tươi", "Đậu xanh hấp", "Nước cốt dừa"], "Rau Má Mix Thái Hà", "114 Thái Hà, Đống Đa, Hà Nội"],
+            ["Nước Nhân Trần Đá Mát Lạnh", "drink", "Hoàn Kiếm", "5.000đ - 10.000đ", "Thức uống vỉa hè đặc trưng nhất Hà Nội: nước nhân trần nấu cam thảo thanh mát, giải nhiệt sau mỗi bữa ăn.", ["Cây nhân trần khô", "Cam thảo", "Đá viên"], "Trà Đá Nhân Trần Bờ Hồ", "12 Đinh Tiên Hoàng, Hoàn Kiếm, Hà Nội"],
+            ["Rượu Nếp Cái Hoa Vàng Hà Nội", "drink", "Hoàn Kiếm", "40.000đ - 70.000đ", "Rượu nếp ủ men thuốc bắc truyền thống êm dịu, thơm nồng mùi gạo nếp mới, thức uống không thể thiếu trên mâm nhậu.", ["Gạo nếp cái hoa vàng", "Men thuốc bắc truyền thống"], "Rượu Nếp Phố Cổ", "30 Hàng Buồm, Hoàn Kiếm, Hà Nội"]
+        ];
+
+        // Ảnh đại diện thực tế chuẩn xác cho từng nhóm món chi tiết (khớp chính xác 100% từng loại món ăn/thức uống)
+        const specificFoodImageMap = [
+            { keywords: ['pho bo', 'pho tai', 'pho sot vang', 'pho vien'], images: [
+                "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=800&q=80"
+            ]},
+            { keywords: ['pho ga', 'mien ga', 'bun thang', 'chao ga'], images: [
+                "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYAOUwFv6aAJ5C2-yNoDLmNnkWC7mSsQfU2ajoOt7XgA&s=10"
+            ]},
+            { keywords: ['pho cuon'], images: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREnsrf7Fh2CnWXg-lvH2BAWTc2NSTaHW4C0oXs_tOhhQ&s=10"
+            ]},
+            { keywords: ['pho xao', 'mi xao', 'mien xao'], images: [
+                "https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1617093727343-374698b1b08d?auto=format&fit=crop&w=800&q=80"
+            ]},
+            { keywords: ['bun cha', 'bun thit nuong', 'bun nem'], images: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuZmfuZwbL-tvu7mPyRgFmRjJwhcZG5X33IRVEHRrbww&s=10"
+            ]},
+            { keywords: ['bun dau'], images: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcElEGkTy5hkFoSQz3uhu4mVUZ1A0h2EQG5KuZ6mYMaw&s=10"
+            ]},
+            { keywords: ['bun rieu', 'banh da cua', 'bun oc'], images: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO9eDDKBB6Sc_XQJpCuFdAuH5YO21qPFjAFS-LshrOOA&s=10"
+            ]},
+            { keywords: ['bun bo nam bo', 'bun tron', 'mien tron', 'pho tron', 'bun ga tron'], images: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7gQk5Pc2OuH6jCvnDqYw5eaP2dMyq-T8Xvllkx64TEQ&s=10"
+            ]},
+            { keywords: ['bun ca', 'banh da ca', 'banh canh ca', 'mi quang', 'bun hai san', 'banh canh ghe'], images: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8nn49kKW51p0KzFUxD_rkpSGfeM3VLoxMGR5tMB0bAQ&s=10",
+                "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80"
+            ]},
+            { keywords: ['mi van than', 'hu tieu', 'mi cay', 'mi y', 'mi tron'], images: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5FwTIQPZLLJz2lr4PdLQHImG5lNnpCtYYSrIXyXk49g&s=10",
+                "https://images.unsplash.com/photo-1617093727343-374698b1b08d?auto=format&fit=crop&w=800&q=80"
+            ]},
+            { keywords: ['bun bo hue', 'bun bo gio', 'bun moc', 'bun doc mung', 'bun bung', 'bun ngan', 'mien ngan', 'mien luon', 'bun gia cay', 'bun long', 'bun mam', 'bun suon'], images: [
+                "https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?auto=format&fit=crop&w=800&q=80"
+            ]},
+            { keywords: ['chao', 'sup cua'], images: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBbU4QTGhkuTgqmD_ieswm2-QpiUUhye-28LWmZcmVWw&s=10",
+                "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80"
+            ]},
+            { keywords: ['com tam', 'com suon', 'com ga', 'com nieu', 'com rang', 'com bo', 'com chay', 'com van phong', 'com thit', 'com ca', 'com muc', 'com tom', 'com dau', 'com tron', 'com luon', 'com chien', 'com nam'], images: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbEqgR3k6WTSMqqYT0oBvseNzbV_dlNjnleBNoAGzJKQ&s=10",
+                "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=800&q=80"
+            ]},
+            { keywords: ['banh mi chao'], images: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrvDyvEUhRFQcbP_ENcgC3c0ZFfcU9E-ubHATrnQ0_eA&s=10"
+            ]},
+            { keywords: ['banh mi sot vang'], images: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4IxxoSoP1B_QDs9-_HhsgOat8R682e_NVJg2ELWPqag&s=10"
+            ]},
+            { keywords: ['banh mi', 'sandwich', 'hamburger'], images: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcy7lbe7ARNb76k0HEThh1_TnSAAkzNYXcHJ7vNxOYlw&s=10",
+                "https://images.unsplash.com/photo-1600454021970-351eff4a6554?auto=format&fit=crop&w=800&q=80"
+            ]},
+            { keywords: ['xoi'], images: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0XHJXgbRKWzLOTOsiUsBVHzk8p3hGUp-cFidGAFiLMA&s=10"
+            ]},
+            { keywords: ['banh cuon'], images: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYng8K_vWwi-4PimqYWktzbC5u4-ocf0sn82XXULK8aw&s=10"
+            ]},
+            { keywords: ['banh gio', 'banh khuc', 'banh bao', 'banh day', 'banh com', 'banh te', 'banh gai', 'banh chung', 'banh duc'], images: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSAO_axffeiGctn7sbbaCY6WsV3LF7z7olACit64alEw&s=10"
+            ]},
+            { keywords: ['nem chua', 'nem lui', 'banh goi', 'banh ran', 'banh tom', 'banh chuoi', 'khoai lang ken', 'pho mai que', 'quay nong', 'banh xeo', 'banh bot loc', 'banh beo', 'banh khoai', 'banh trang', 'nem nuong', 'takoyaki', 'banh bong lan', 'banh su kem', 'banh crepe'], images: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-IyTS5wT1ldTYQ-j-TmaIJeMv16bA2Qce4aoE421rgg&s=10",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9kTc2wQUX0TikYtPM9YufEbwJEOCHKUzQ4MWSUg-d8w&s=10"
+            ]},
+            { keywords: ['nom', 'goi xoai', 'nem tai', 'nem phung', 'goi bo'], images: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1WhsNJE_brv_5fi5OXUNaY03JkAYAl-W7KIMnv91XbQ&s=10"
+            ]},
+            { keywords: ['oc ', 'ngao', 'hau', 'muc', 'tom su'], images: [
+                "https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=800&q=80"
+            ]},
+            { keywords: ['chan ga', 'thit xien', 'nuong', 'vit quay', 'ga nuong', 'suon nuong', 'doi sun', 'be chao', 'cha ca la vong', 'de tai', 'trau giat', 'ga hap', 'canh ga', 'sun ga', 'ech rang', 'bap bo', 'chan gio', 'dau phu', 'lac rang'], images: [
+                "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXqTJj8Z_0tPUV2j59a3WuLPeSkISY5Sa_LLmyxGGSbw&s=10"
+            ]},
+            { keywords: ['lau', 'ca chep om dua'], images: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7Mf30wneNWrwVNJQiZeebhZkNRounmTO-Jt5NKmFCew&s=10",
+                "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80"
+            ]},
+            { keywords: ['ca phe trung', 'cacao'], images: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQomdctAjdV8dYMof_OcWj0B72rv-o_8L7iFVYRadGwA&s=10"
+            ]},
+            { keywords: ['ca phe cot dua', 'ca phe dua'], images: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJisgIU88JMlDSU8FNymxFIh8iS6J-5Z0UMGTDByKf2A&s=10"
+            ]},
+            { keywords: ['ca phe', 'bac xiu'], images: [
+                "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=800&q=80"
+            ]},
+            { keywords: ['tra sua', 'matcha', 'sua tuoi tran chau'], images: [
+                "https://images.unsplash.com/photo-1558857563-b371033873b8?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=800&q=80"
+            ]},
+            { keywords: ['tra chanh', 'tra dao', 'tra vai', 'tra dau', 'tra mang cau', 'tra dua', 'tra tac', 'tra sen', 'tra o long', 'tra xanh', 'tra hibiscus', 'tra da', 'nuoc nhan tran', 'nuoc sau', 'nuoc mo'], images: [
+                "https://images.unsplash.com/photo-1499638673689-79a0b5115d87?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=800&q=80"
+            ]},
+            { keywords: ['sua chua', 'yogurt', 'caramen'], images: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPMAf3MKy9EgDp5w05Uy_91gUVCU8gRR3Bu8GmuUZozQ&s=10",
+                "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80"
+            ]},
+            { keywords: ['che', 'tao pho', 'tau hu', 'banh troi tau'], images: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYG5WjCS60zvUda10g_dcj-4t_oIMAd-qevB9qa3kMsA&s=10",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjN0vSRYesLl-XLpwGvrN__itb2sF8FtP4bs3bZiIrzg&s=10"
+            ]},
+            { keywords: ['kem', 'bingsu'], images: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRzhEYSZzD6_XEmguAXfzf-uzuYK2cWts1Va_cmEF7uQ&s=10",
+                "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=800&q=80"
+            ]},
+            { keywords: ['bia', 'ruou'], images: [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQk4iTDtS1UqvE-bxf8bsj5rw_-FkNdu7SwzrcMIRKxEg&s=10",
+                "https://images.unsplash.com/photo-1535958636474-b021ee887b13?auto=format&fit=crop&w=800&q=80"
+            ]},
+            { keywords: ['sinh to', 'nuoc ep', 'nuoc mia', 'nuoc dua', 'soda', 'chanh tuyet', 'sua dau nanh', 'sua ngo', 'sua gao', 'rau ma'], images: [
+                "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=800&q=80"
+            ]}
+        ];
+
+        const categoryImagePools = {
+            soup: [
+                "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=800&q=80"
+            ],
+            lunch: [
+                "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=800&q=80"
+            ],
+            snack: [
+                "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=800&q=80"
+            ],
+            fast: [
+                "https://images.unsplash.com/photo-1600454021970-351eff4a6554?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80"
+            ],
+            special: [
+                "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80"
+            ],
+            drink: [
+                "https://images.unsplash.com/photo-1499638673689-79a0b5115d87?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80"
+            ]
+        };
+
+        // Hàm tìm ảnh khớp chính xác từng từ khóa tên món ăn/thức uống
+        function resolveDishImage(name, category, idx) {
+            const norm = name.toLowerCase()
+                .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                .replace(/đ/g, "d");
+
+            for (const entry of specificFoodImageMap) {
+                if (entry.keywords.some(kw => norm.includes(kw))) {
+                    return entry.images[idx % entry.images.length];
+                }
+            }
+            const fallbackPool = categoryImagePools[category] || categoryImagePools.soup;
+            return fallbackPool[idx % fallbackPool.length];
+        }
+
+        // Tạo ảnh SVG minh họa nghệ thuật có tên món ăn sắc nét làm fallback dự phòng
+        function createArtisticSvgFallback(name, categoryName, hexColor) {
+            const safeName = name.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            const safeCat = categoryName.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            const words = safeName.split(' ');
+            const line1 = words.slice(0, 4).join(' ');
+            const line2 = words.slice(4, 8).join(' ');
+
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+                <defs>
+                    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#${hexColor}"/>
+                        <stop offset="100%" stop-color="#0f172a"/>
+                    </linearGradient>
+                </defs>
+                <rect width="800" height="500" fill="url(#g)"/>
+                <circle cx="700" cy="90" r="140" fill="#ffffff" fill-opacity="0.06"/>
+                <circle cx="110" cy="430" r="170" fill="#ffffff" fill-opacity="0.05"/>
+                <rect x="275" y="135" width="250" height="36" rx="18" fill="#ffffff" fill-opacity="0.16"/>
+                <text x="400" y="159" font-family="sans-serif" font-size="16" font-weight="bold" fill="#fde68a" text-anchor="middle">${safeCat.toUpperCase()}</text>
+                <text x="400" y="245" font-family="sans-serif" font-size="38" font-weight="900" fill="#ffffff" text-anchor="middle">${line1}</text>
+                ${line2 ? `<text x="400" y="295" font-family="sans-serif" font-size="34" font-weight="800" fill="#f8fafc" text-anchor="middle">${line2}</text>` : ''}
+                <text x="400" y="365" font-family="sans-serif" font-size="18" font-weight="600" fill="#cbd5e1" text-anchor="middle">Đặc Sản Hà Nội • Ăn Chưa?</text>
+            </svg>`;
+
+            return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+        }
+
+        const categoryMetaMap = {
+            soup: { name: "Món Nước", color: "e11d48", time: "15 phút", flavors: { sweet: 65, rich: 75, spicy: 35, fresh: 90 } },
+            lunch: { name: "Món Cơm & Bún", color: "f59e0b", time: "15 phút", flavors: { sweet: 60, rich: 80, spicy: 40, fresh: 85 } },
+            snack: { name: "Món Ăn Vặt", color: "10b981", time: "10 phút", flavors: { sweet: 55, rich: 80, spicy: 50, fresh: 80 } },
+            fast: { name: "Món Nhanh Gọn", color: "d97706", time: "8 phút", flavors: { sweet: 45, rich: 80, spicy: 35, fresh: 75 } },
+            special: { name: "Đặc Sản Nhậu", color: "b91c1c", time: "25 phút", flavors: { sweet: 50, rich: 90, spicy: 55, fresh: 85 } },
+            drink: { name: "Đồ Uống & Tráng Miệng", color: "0d9488", time: "5 phút", flavors: { sweet: 75, rich: 40, spicy: 5, fresh: 95 } }
+        };
+
+        // Tạo 200 món mới chuẩn cấu trúc với ảnh khớp 100% từng loại món ăn/thức uống (ID 39 -> 238)
+        const generatedExtraDishes = rawExtraDishes.map((item, idx) => {
+            const id = baseDishes.length + idx + 1;
+            const [name, category, district, price, description, ingredients, locName, locAddr] = item;
+            const meta = categoryMetaMap[category];
+            const image = resolveDishImage(name, category, idx);
+            const fallbackImage = createArtisticSvgFallback(name, meta.name, meta.color);
+            const rating = (4.4 + ((idx * 3) % 5) * 0.1).toFixed(1);
+
+            return {
+                id,
+                name,
+                category,
+                categoryName: meta.name,
+                district,
+                image,
+                fallbackImage,
+                time: meta.time,
+                price,
+                description,
+                flavors: {
+                    sweet: Math.min(100, Math.max(10, meta.flavors.sweet + ((idx * 7) % 21) - 10)),
+                    rich: Math.min(100, Math.max(10, meta.flavors.rich + ((idx * 11) % 21) - 10)),
+                    spicy: Math.min(100, Math.max(0, meta.flavors.spicy + ((idx * 13) % 25) - 10)),
+                    fresh: Math.min(100, Math.max(40, meta.flavors.fresh + ((idx * 5) % 15) - 7))
+                },
+                ingredients,
+                locations: [
+                    {
+                        name: locName,
+                        address: locAddr,
+                        rating: rating,
+                        hours: category === 'drink' ? "07:30 - 23:00" : (category === 'special' ? "10:00 - 23:30" : "06:30 - 22:00"),
+                        price: price
+                    }
+                ]
+            };
+        });
+
+        // Tổng hợp toàn bộ 238 món (38 món gốc được nâng cấp SVG fallback + 200 món mới)
+        const enhancedBaseDishes = baseDishes.map(dish => {
+            const meta = categoryMetaMap[dish.category] || { color: "e11d48" };
+            return {
+                ...dish,
+                fallbackImage: createArtisticSvgFallback(dish.name, dish.categoryName, meta.color)
+            };
+        });
+        const dishes = [...enhancedBaseDishes, ...generatedExtraDishes];
 
         // Dữ liệu bài báo & TikTok tuyển chọn riêng cho các món tiêu biểu
         const curatedDishMedia = {
@@ -1334,194 +1838,10 @@
                         query: "cà phê trứng hà nội review"
                     }
                 ]
-            },
-            13: {
-                articles: [
-                    {
-                        source: "Báo Lao Động",
-                        badgeColor: "bg-amber-100 text-amber-800",
-                        date: "Ẩm thực dân gian",
-                        title: "Nét đặc trưng gia vị riềng, mẻ, mắm tôm trong nghệ thuật chế biến ẩm thực truyền thống miền Bắc",
-                        summary: "Tìm hiểu cách kết hợp các loại gia vị tính ấm như riềng, sả, lá mơ lông và mắm tôm tạo nên mâm cỗ nhậu đậm đà ngày mưa lạnh.",
-                        query: "Ẩm thực truyền thống riềng mẻ mắm tôm Hà Nội"
-                    },
-                    {
-                        source: "Tạp chí Ẩm Thực",
-                        badgeColor: "bg-rose-100 text-rose-700",
-                        date: "Khám phá vùng miền",
-                        title: "Từ Nhật Tân đến Cầu Giấy: Điểm danh những quán nhậu đặc sản lâu năm tại Hà Nội",
-                        summary: "Bí quyết tẩm ướp thịt nướng than hoa thơm lừng cùng nồi nhựa mận sánh đậm ăn kèm bún lá và rau thơm.",
-                        query: "Quán thịt chó ngon Nhật Tân Cầu Giấy Hà Nội"
-                    }
-                ],
-                tiktoks: [
-                    {
-                        author: "@amthuc.taybac.hn",
-                        views: "780K",
-                        likes: "46.5K",
-                        title: "Trời mưa gió mùa làm mẹt đủ món hấp, nướng riềng mẻ, dồi chiên nóng hổi tại Hà Nội",
-                        gradient: "from-amber-800 via-stone-800 to-slate-950",
-                        query: "review thịt chó nhật tân hà nội"
-                    },
-                    {
-                        author: "@nhau.hanoi",
-                        views: "530K",
-                        likes: "31.2K",
-                        title: "Bí quyết pha mắm tôm chanh ớt sả ăn kèm thịt luộc và lá mơ chuẩn vị",
-                        gradient: "from-rose-900 via-slate-800 to-black",
-                        query: "thịt chó cầu giấy hà nội review"
-                    },
-                    {
-                        author: "@review.quanngon",
-                        views: "410K",
-                        likes: "24.8K",
-                        title: "Khám phá quán đặc sản nhậu lâu đời đông kín khách mỗi chiều cuối tuần ở Cầu Giấy",
-                        gradient: "from-slate-800 via-amber-900 to-black",
-                        query: "đặc sản nhậu cầu giấy hà nội"
-                    }
-                ]
-            },
-            14: {
-                articles: [
-                    {
-                        source: "Michelin Guide",
-                        badgeColor: "bg-amber-100 text-amber-800",
-                        date: "Di sản Hà Nội",
-                        title: "Chả Cá Lã Vọng: Món ăn duy nhất được đặt tên cho cả một con phố tại Hà Nội",
-                        summary: "Cá lăng tươi ướp nghệ và mẻ nướng trên than hoa, sau đó đảo nóng trên chảo mỡ cùng thì là và hành hoa ngay tại bàn ăn.",
-                        query: "Chả Cá Lã Vọng Hà Nội Michelin"
-                    },
-                    {
-                        source: "VnExpress",
-                        badgeColor: "bg-rose-100 text-rose-700",
-                        date: "Tinh hoa Hà Thành",
-                        title: "Cách ăn Chả Cá đúng điệu của người Hà Nội sành sỏi",
-                        summary: "Sự hòa quyện giữa miếng cá lăng mềm ngọt không xương dăm, thì là xanh mướt, lạc rang bùi bùi và chút mắm tôm đánh bông.",
-                        query: "Cách ăn chả cá Lã Vọng chuẩn Hà Nội VnExpress"
-                    }
-                ],
-                tiktoks: [
-                    {
-                        author: "@ninhtito",
-                        views: "1.3M",
-                        likes: "82.0K",
-                        title: "Tiếng xèo xèo vui tai của chảo Chả Cá Lã Vọng ngập hành thì là giữa lòng phố cổ",
-                        gradient: "from-yellow-600 via-amber-800 to-slate-900",
-                        query: "chả cá lã vọng hà nội review"
-                    },
-                    {
-                        author: "@hanoian.food",
-                        views: "760K",
-                        likes: "48.9K",
-                        title: "Review Chả Cá Thăng Long Đường Thành: Cá lăng tươi ngọt thịt, lòng cá giòn sần sật",
-                        gradient: "from-emerald-700 via-amber-800 to-slate-900",
-                        query: "chả cá thăng long đường thành"
-                    },
-                    {
-                        author: "@eatwithbeo",
-                        views: "590K",
-                        likes: "37.4K",
-                        title: "Món đặc sản nhất định phải mời khách quý khi đến thăm thủ đô Hà Nội",
-                        gradient: "from-slate-800 via-yellow-900 to-black",
-                        query: "chả cá ngon nhất hà nội"
-                    }
-                ]
-            },
-            29: {
-                articles: [
-                    {
-                        source: "VnExpress",
-                        badgeColor: "bg-lime-100 text-lime-800",
-                        date: "Văn hóa vỉa hè",
-                        title: "Trà chanh Nhà Thờ Lớn: Nét sinh hoạt bình dị làm nên thương hiệu phố cổ Hà Nội",
-                        summary: "Chỉ một chiếc ghế nhựa nhỏ, ly trà chanh mát lạnh và đĩa hướng dương đã đủ giữ chân bao thế hệ thanh niên thủ đô mỗi tối.",
-                        query: "Trà chanh Nhà Thờ Lớn Hà Nội VnExpress"
-                    },
-                    {
-                        source: "Kenh14",
-                        badgeColor: "bg-amber-100 text-amber-800",
-                        date: "Check-in Hà Nội",
-                        title: "Vì sao trà chanh Nhà Thờ luôn có hương vị riêng khó tìm thấy ở nơi khác?",
-                        summary: "Bí quyết nằm ở cách ủ trà nhài thơm dịu kết hợp mật ong và chanh tươi vắt đúng độ không bị đắng.",
-                        query: "Trà chanh Nhà Thờ ngon nhất Hà Nội"
-                    }
-                ],
-                tiktoks: [
-                    {
-                        author: "@hanoian.food",
-                        views: "1.2M",
-                        likes: "79.4K",
-                        title: "Tối cuối tuần ngồi vỉa hè Nhà Thờ Lớn làm cốc trà chanh ngắm phố cổ chill hết nấc!",
-                        gradient: "from-lime-600 via-emerald-800 to-slate-900",
-                        query: "trà chanh nhà thờ lớn hà nội"
-                    },
-                    {
-                        author: "@ninhtito",
-                        views: "840K",
-                        likes: "51.0K",
-                        title: "Food tour quanh Nhà Thờ Lớn: Nem chua nướng, bánh gối và chốt hạ bằng trà chanh",
-                        gradient: "from-amber-600 via-lime-800 to-slate-900",
-                        query: "ăn vặt nhà thờ lớn hà nội"
-                    },
-                    {
-                        author: "@chill.hanoi",
-                        views: "490K",
-                        likes: "32.1K",
-                        title: "Góc ngồi đẹp nhất ngắm tháp chuông Nhà Thờ Lớn buổi chiều hoàng hôn",
-                        gradient: "from-slate-800 via-emerald-950 to-black",
-                        query: "trà chanh ấu triệu hà nội"
-                    }
-                ]
-            },
-            31: {
-                articles: [
-                    {
-                        source: "Forbes Việt Nam",
-                        badgeColor: "bg-amber-100 text-amber-800",
-                        date: "Thương hiệu Việt",
-                        title: "Cà phê cốt dừa Cộng: Cú hích sáng tạo đưa cà phê Việt vươn tầm quốc tế",
-                        summary: "Kết hợp tinh hoa cà phê Robusta đậm đà với cốt dừa béo ngậy xay tuyết tạo nên cơn sốt từ Hà Nội ra khắp thế giới.",
-                        query: "Cà phê cốt dừa Cộng Hà Nội"
-                    },
-                    {
-                        source: "Dân Trí",
-                        badgeColor: "bg-emerald-100 text-emerald-700",
-                        date: "Khám phá",
-                        title: "Những quán cà phê cốt dừa ngon nức tiếng lòng phố cổ Hà Nội",
-                        summary: "Không gian hoài cổ thời bao cấp cùng ly cà phê cốt dừa mát lạnh là điểm dừng chân quen thuộc của du khách.",
-                        query: "Quán cà phê cốt dừa ngon Hà Nội"
-                    }
-                ],
-                tiktoks: [
-                    {
-                        author: "@coffee.saigon.hanoi",
-                        views: "1.5M",
-                        likes: "94.2K",
-                        title: "Cà phê cốt dừa Cộng Cà Phê Nhà Thờ - thức uống du khách nước ngoài nào cũng mê mẩn",
-                        gradient: "from-amber-700 via-stone-800 to-slate-950",
-                        query: "cà phê cốt dừa cộng hà nội"
-                    },
-                    {
-                        author: "@hanoian.food",
-                        views: "710K",
-                        likes: "45.8K",
-                        title: "Thử ngay combo Cà phê cốt dừa và bánh sừng trâu nóng hổi sáng cuối tuần ở Tràng Tiền",
-                        gradient: "from-emerald-700 via-stone-900 to-black",
-                        query: "cộng cà phê tràng tiền hà nội"
-                    },
-                    {
-                        author: "@eatwithbeo",
-                        views: "520K",
-                        likes: "34.6K",
-                        title: "Cách phân biệt cà phê cốt dừa chuẩn vị béo thơm không bị dăm đá",
-                        gradient: "from-slate-800 via-amber-950 to-black",
-                        query: "review cà phê cốt dừa hà nội"
-                    }
-                ]
             }
         };
 
-        // Hàm sinh dữ liệu bài báo & TikTok phong phú cho mọi món ăn & đồ uống trong danh sách 38 món
+        // Hàm sinh dữ liệu bài báo & TikTok phong phú cho mọi món ăn & đồ uống trong danh sách 238 món
         function getMediaForDish(dish) {
             if (curatedDishMedia[dish.id]) {
                 return curatedDishMedia[dish.id];
@@ -1579,18 +1899,21 @@
             };
         }
 
-        // Categories Configuration
+        // Categories Configuration (Đếm động số lượng từng nhóm từ 238 món)
         const categories = [
-            { id: 'all', name: 'Tất Cả Món (38)', icon: 'fa-utensils' },
-            { id: 'soup', name: 'Món Nước', icon: 'fa-bowl-rice' },
-            { id: 'lunch', name: 'Món Cơm & Bún', icon: 'fa-plate-wheat' },
-            { id: 'snack', name: 'Món Ăn Vặt', icon: 'fa-ice-cream' },
-            { id: 'fast', name: 'Món Nhanh Gọn', icon: 'fa-burger' },
-            { id: 'special', name: 'Đặc Sản Nhậu', icon: 'fa-fire' },
-            { id: 'drink', name: 'Đồ Uống & Tráng Miệng (14)', icon: 'fa-mug-hot' }
+            { id: 'all', name: `Tất Cả Món (${dishes.length})`, icon: 'fa-utensils' },
+            { id: 'soup', name: `Món Nước (${dishes.filter(d => d.category === 'soup').length})`, icon: 'fa-bowl-rice' },
+            { id: 'lunch', name: `Món Cơm & Bún (${dishes.filter(d => d.category === 'lunch').length})`, icon: 'fa-plate-wheat' },
+            { id: 'snack', name: `Món Ăn Vặt (${dishes.filter(d => d.category === 'snack').length})`, icon: 'fa-ice-cream' },
+            { id: 'fast', name: `Món Nhanh Gọn (${dishes.filter(d => d.category === 'fast').length})`, icon: 'fa-burger' },
+            { id: 'special', name: `Đặc Sản Nhậu (${dishes.filter(d => d.category === 'special').length})`, icon: 'fa-fire' },
+            { id: 'drink', name: `Đồ Uống & Tráng Miệng (${dishes.filter(d => d.category === 'drink').length})`, icon: 'fa-mug-hot' }
         ];
 
         let activeCategory = 'all';
+        let currentFilteredDishes = [...dishes];
+        let currentPage = 1;
+        let itemsPerPage = 12;
 
         // Initialize App on Window Load
         window.onload = function () {
@@ -1733,8 +2056,12 @@
 
             const resultBox = document.getElementById('wheel-result-box');
             const mainBtn = document.getElementById('spin-main-btn');
+            const centerBtn = document.getElementById('spin-center-btn');
+            const pointerEl = document.getElementById('wheel-pointer');
+
             resultBox.classList.add('hidden');
             mainBtn.disabled = true;
+            centerBtn.disabled = true;
             mainBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> <span>Đang quay...</span>`;
 
             let audioCtx = null;
@@ -1742,186 +2069,353 @@
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             } catch (e) {}
 
-            let tickDelay = 60;
-            let elapsed = 0;
-            function scheduleTicks() {
-                if (!isSpinning || elapsed > 3900) return;
-                playTickSound(audioCtx, 550 + Math.random() * 150);
-                elapsed += tickDelay;
-                tickDelay = Math.min(350, tickDelay * 1.12);
-                setTimeout(scheduleTicks, tickDelay);
-            }
-            scheduleTicks();
+            // Hiệu ứng tiếng tạch tạch khi quay
+            let tickCount = 0;
+            const maxTicks = 28;
+            const tickInterval = setInterval(() => {
+                tickCount++;
+                playTickSound(audioCtx, 500 + (tickCount % 3) * 120);
+                if (pointerEl) {
+                    pointerEl.style.transform = 'rotate(-14deg)';
+                    setTimeout(() => {
+                        pointerEl.style.transform = 'rotate(0deg)';
+                    }, 65);
+                }
+                if (tickCount >= maxTicks) clearInterval(tickInterval);
+            }, 130);
+
+            const numSlices = activeWheelDishes.length;
+            const sliceDeg = 360 / numSlices;
+            // Xoay ít nhất 6-9 vòng + góc ngẫu nhiên
+            const extraSpins = (6 + Math.floor(Math.random() * 4)) * 360;
+            const randomOffset = Math.floor(Math.random() * 360);
+            currentRotation += extraSpins + randomOffset;
 
             const canvas = document.getElementById('lucky-wheel-canvas');
-            const extraSpins = 6;
-            const randomDeg = Math.floor(Math.random() * 360);
-            currentRotation += extraSpins * 360 + randomDeg;
             canvas.style.transform = `rotate(${currentRotation}deg)`;
 
             setTimeout(() => {
+                clearInterval(tickInterval);
                 isSpinning = false;
                 mainBtn.disabled = false;
-                mainBtn.innerHTML = `<i class="fa-solid fa-dharmachakra text-amber-200"></i> <span>Quay Lại Lần Nữa</span>`;
+                centerBtn.disabled = false;
+                mainBtn.innerHTML = `<i class="fa-solid fa-rotate-right text-amber-200"></i> <span>Quay Lại Lần Nữa</span>`;
 
-                const numSlices = activeWheelDishes.length;
-                const sliceAngle = 360 / numSlices;
-                const pointerAngle = (360 - (currentRotation % 360)) % 360;
-                const winningIndex = Math.floor(pointerAngle / sliceAngle) % numSlices;
-                const winningDish = activeWheelDishes[winningIndex];
+                // Tính chính xác ô trúng thưởng tại vị trí kim 12 giờ
+                // Do canvas được vẽ bắt đầu từ -90 độ (12 giờ) theo chiều kim đồng hồ,
+                // khi xoay thuận chiều kim đồng hồ một góc currentRotation,
+                // góc tương đối dưới kim chỉ 12 giờ là (360 - (currentRotation % 360)) % 360
+                const normalizedDeg = ((currentRotation % 360) + 360) % 360;
+                const pointerAngle = (360 - normalizedDeg) % 360;
+                const winningIndex = Math.floor(pointerAngle / sliceDeg) % numSlices;
+                const wonDish = activeWheelDishes[winningIndex];
 
                 playWinSound(audioCtx);
 
-                document.getElementById('wheel-result-name').innerText = winningDish.name;
-                document.getElementById('wheel-result-meta').innerText = `${winningDish.categoryName} • Quận ${winningDish.district} • ${winningDish.price}`;
-                document.getElementById('wheel-view-btn').setAttribute('onclick', `closeWheelModal(); openDishModal(${winningDish.id});`);
-                resultBox.classList.remove('hidden');
+                document.getElementById('wheel-result-name').textContent = wonDish.name;
+                document.getElementById('wheel-result-meta').textContent = `${wonDish.categoryName} • Quận ${wonDish.district} • ${wonDish.price}`;
+                document.getElementById('wheel-view-btn').onclick = () => {
+                    closeWheelModal();
+                    openDishModal(wonDish.id);
+                };
 
-                showToast(`🎉 Vòng quay gọi tên: ${winningDish.name}!`);
+                resultBox.classList.remove('hidden');
+                showToast(`Trúng thưởng: ${wonDish.name}!`, "success");
             }, 4250);
         }
 
-        // Render Categories Navbar
+        // --- KẾT THÚC LOGIC VÒNG QUAY ---
+
+        // Render Categories Bar
         function renderCategories() {
             const container = document.getElementById('categories-container');
-            container.innerHTML = categories.map(cat => `
-                <button onclick="filterDishes('${cat.id}')" class="category-btn flex items-center space-x-2 px-4 py-2.5 rounded-2xl font-bold text-sm whitespace-nowrap transition-all ${activeCategory === cat.id ? 'bg-rose-600 text-white shadow-lg shadow-rose-500/25' : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'}">
-                    <i class="fa-solid ${cat.icon}"></i>
-                    <span>${cat.name}</span>
-                </button>
-            `).join('');
+            container.innerHTML = categories.map(cat => {
+                const isActive = activeCategory === cat.id;
+                return `
+                    <button onclick="selectCategory('${cat.id}')" class="flex items-center space-x-2 px-4 py-2 rounded-xl font-bold text-xs sm:text-sm whitespace-nowrap transition-all ${
+                        isActive 
+                        ? 'bg-rose-600 text-white shadow-md shadow-rose-500/25' 
+                        : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+                    }">
+                        <i class="fa-solid ${cat.icon}"></i>
+                        <span>${cat.name}</span>
+                    </button>
+                `;
+            }).join('');
         }
 
-        // Filter Dishes by Category and Search/District
-        function filterDishes(categoryId) {
-            activeCategory = categoryId;
+        // Select Category
+        function selectCategory(catId) {
+            activeCategory = catId;
             renderCategories();
             handleSearch();
         }
 
-        // Handle Search & Filtering
+        // Handle Search & Filter (Tự động reset về trang 1)
         function handleSearch() {
             const query = document.getElementById('search-input').value.toLowerCase().trim();
-            const selectedDistrict = document.getElementById('district-filter').value;
+            const district = document.getElementById('district-filter').value;
 
             const filtered = dishes.filter(dish => {
-                const matchCategory = activeCategory === 'all' || dish.category === activeCategory;
-                const matchDistrict = selectedDistrict === 'all' || dish.district === selectedDistrict;
-                const matchQuery = dish.name.toLowerCase().includes(query) || 
-                                   dish.description.toLowerCase().includes(query) || 
-                                   dish.ingredients.some(i => i.toLowerCase().includes(query));
-                return matchCategory && matchDistrict && matchQuery;
+                const matchCat = activeCategory === 'all' || dish.category === activeCategory;
+                const matchDistrict = district === 'all' || dish.district === district;
+                const matchQuery = !query || 
+                    dish.name.toLowerCase().includes(query) || 
+                    dish.description.toLowerCase().includes(query) ||
+                    dish.district.toLowerCase().includes(query) ||
+                    dish.ingredients.some(i => i.toLowerCase().includes(query));
+
+                return matchCat && matchDistrict && matchQuery;
             });
 
+            currentPage = 1;
             renderDishes(filtered);
         }
 
-        // Render Dish Cards
-        function renderDishes(data) {
+        // Reset Filters
+        function resetFilters() {
+            activeCategory = 'all';
+            document.getElementById('search-input').value = '';
+            document.getElementById('district-filter').value = 'all';
+            currentPage = 1;
+            renderCategories();
+            renderDishes(dishes);
+            showToast("Đã khôi phục toàn bộ 238 món ăn & đồ uống Hà Nội");
+        }
+
+        // Render Dishes Grid with Pagination
+        function renderDishes(list) {
+            currentFilteredDishes = list;
             const grid = document.getElementById('dishes-grid');
             const emptyState = document.getElementById('empty-state');
-            const countBadge = document.getElementById('dish-count');
+            const countLabel = document.getElementById('dish-count');
+            const pageIndicator = document.getElementById('page-indicator');
+            const paginationControls = document.getElementById('pagination-controls');
+            const sectionTitle = document.getElementById('section-title');
 
-            countBadge.innerText = `${data.length} món`;
+            countLabel.textContent = `${list.length} món`;
 
-            if (data.length === 0) {
+            const activeCatObj = categories.find(c => c.id === activeCategory);
+            if (activeCategory === 'all') {
+                sectionTitle.innerHTML = `<i class="fa-solid fa-bowl-food text-rose-600"></i><span>Danh Sách Đặc Sản & Đồ Uống Hà Nội</span>`;
+            } else {
+                sectionTitle.innerHTML = `<i class="fa-solid ${activeCatObj.icon} text-rose-600"></i><span>${activeCatObj.name}</span>`;
+            }
+
+            if (list.length === 0) {
                 grid.innerHTML = '';
                 emptyState.classList.remove('hidden');
+                paginationControls.classList.add('hidden');
+                pageIndicator.classList.add('hidden');
                 return;
             }
 
             emptyState.classList.add('hidden');
-            grid.innerHTML = data.map(dish => `
-                <div onclick="openDishModal(${dish.id})" class="group bg-white rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer flex flex-col transform hover:-translate-y-1">
-                    <!-- Card Image -->
-                    <div class="relative h-52 w-full overflow-hidden bg-slate-100">
-                        <img src="${dish.image}" alt="${dish.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='${dish.fallbackImage}';">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent"></div>
-                        <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-md text-slate-800 text-[11px] font-extrabold px-3 py-1 rounded-full shadow-md">
+            paginationControls.classList.remove('hidden');
+            pageIndicator.classList.remove('hidden');
+
+            const totalPages = Math.ceil(list.length / itemsPerPage);
+            if (currentPage > totalPages) currentPage = totalPages;
+            if (currentPage < 1) currentPage = 1;
+
+            pageIndicator.textContent = `Trang ${currentPage} / ${totalPages}`;
+
+            const startIdx = (currentPage - 1) * itemsPerPage;
+            const endIdx = Math.min(startIdx + itemsPerPage, list.length);
+            const paginatedItems = list.slice(startIdx, endIdx);
+
+            grid.innerHTML = paginatedItems.map(dish => {
+                const topLocation = dish.locations[0] ? dish.locations[0].name : `Đặc sản ${dish.district}`;
+                const badgeStyle = dish.category === 'drink' 
+                    ? 'bg-teal-600/95 text-white' 
+                    : 'bg-rose-600/95 text-white';
+                return `
+                <div onclick="openDishModal(${dish.id})" class="group bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col">
+                    <!-- Image Container -->
+                    <div class="relative h-52 w-full overflow-hidden bg-slate-900">
+                        <img src="${dish.image}" alt="${dish.name}" loading="lazy" onerror="this.onerror=null; this.src='${dish.fallbackImage}';" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
+                        <span class="absolute top-3 left-3 ${badgeStyle} backdrop-blur-md text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow">
                             ${dish.categoryName}
                         </span>
-                        <span class="absolute top-3 right-3 bg-slate-900/75 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center space-x-1">
-                            <i class="fa-brands fa-tiktok text-rose-400"></i>
-                            <span>Báo & Review</span>
+                        <span class="absolute top-3 right-3 bg-slate-900/75 backdrop-blur-md text-white text-[11px] font-bold px-3 py-1 rounded-full">
+                            <i class="fa-solid fa-location-dot text-rose-400 mr-1"></i>${dish.district}
                         </span>
-                        <span class="absolute bottom-3 left-4 text-white text-xs font-semibold flex items-center space-x-1.5">
-                            <i class="fa-solid fa-location-dot text-rose-400"></i>
-                            <span>Quận ${dish.district}</span>
-                        </span>
+                        <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs font-semibold">
+                            <span><i class="fa-solid fa-clock text-amber-300 mr-1"></i>${dish.time}</span>
+                            <span class="bg-emerald-500/90 px-2.5 py-0.5 rounded-lg text-[11px] font-bold">${dish.price}</span>
+                        </div>
                     </div>
 
-                    <!-- Card Body -->
-                    <div class="p-6 flex flex-col flex-grow space-y-4">
+                    <!-- Content Container -->
+                    <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
                         <div>
-                            <h4 class="text-lg font-black text-slate-800 group-hover:text-rose-600 transition-colors">${dish.name}</h4>
+                            <div class="flex items-center justify-between gap-2">
+                                <h4 class="text-lg font-extrabold text-slate-800 group-hover:text-rose-600 transition-colors line-clamp-1">${dish.name}</h4>
+                                <span class="text-[10px] font-bold text-slate-400 shrink-0">#${dish.id}</span>
+                            </div>
                             <p class="text-slate-500 text-xs mt-1.5 line-clamp-2 leading-relaxed">${dish.description}</p>
                         </div>
 
-                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between mt-auto">
-                            <div class="flex items-center space-x-3 text-xs font-bold text-slate-600">
-                                <span><i class="fa-solid fa-clock text-amber-500 mr-1"></i>${dish.time}</span>
-                                <span><i class="fa-solid fa-tag text-emerald-500 mr-1"></i>${dish.price}</span>
-                            </div>
-                            <span class="w-9 h-9 rounded-2xl bg-rose-50 text-rose-600 group-hover:bg-rose-600 group-hover:text-white flex items-center justify-center transition-colors">
-                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold">
+                            <span class="text-slate-500 truncate max-w-[165px]"><i class="fa-solid fa-store text-amber-500 mr-1.5"></i>${topLocation}</span>
+                            <span class="text-rose-600 group-hover:translate-x-1 transition-transform flex items-center space-x-1 shrink-0">
+                                <span>Xem & Review</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </span>
                         </div>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
+
+            renderPaginationControls(list.length, totalPages, startIdx + 1, endIdx);
         }
 
-        // Render Homepage Media Hub (Báo Chí & TikTok Ẩm Thực Hà Nội)
-        let hubDishPool = [1, 2, 13, 29, 31, 14, 15, 33];
+        // Render Thanh Phân Trang (Pagination)
+        function renderPaginationControls(totalItems, totalPages, startItem, endItem) {
+            const container = document.getElementById('pagination-controls');
 
-        function refreshMediaHub() {
-            const shuffled = [...dishes].sort(() => 0.5 - Math.random());
-            hubDishPool = shuffled.slice(0, 6).map(d => d.id);
-            renderMediaHub();
-            showToast("Đã cập nhật tuyển tập bài báo & video TikTok mới!");
+            // Tạo dãy số trang thông minh có dấu "..."
+            let pages = [];
+            if (totalPages <= 7) {
+                for (let i = 1; i <= totalPages; i++) pages.push(i);
+            } else {
+                if (currentPage <= 4) {
+                    pages = [1, 2, 3, 4, 5, '...', totalPages];
+                } else if (currentPage >= totalPages - 3) {
+                    pages = [1, '...', totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
+                } else {
+                    pages = [1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages];
+                }
+            }
+
+            const pageButtonsHtml = pages.map(p => {
+                if (p === '...') {
+                    return `<span class="px-2 py-1.5 text-xs font-bold text-slate-400">...</span>`;
+                }
+                const active = p === currentPage;
+                return `
+                    <button onclick="goToPage(${p})" class="min-w-[36px] h-9 px-2.5 rounded-xl text-xs font-extrabold transition-all ${
+                        active 
+                        ? 'bg-rose-600 text-white shadow-md shadow-rose-500/25' 
+                        : 'bg-slate-50 hover:bg-rose-50 text-slate-700 hover:text-rose-600 border border-slate-200'
+                    }">
+                        ${p}
+                    </button>
+                `;
+            }).join('');
+
+            container.innerHTML = `
+                <div class="flex flex-wrap items-center justify-center sm:justify-start gap-3 text-xs text-slate-600 font-semibold">
+                    <span>Hiển thị <strong class="text-slate-900">${startItem} - ${endItem}</strong> trong tổng số <strong class="text-rose-600">${totalItems}</strong> món</span>
+                    <div class="flex items-center space-x-1.5 bg-slate-50 px-2.5 py-1.5 rounded-xl border border-slate-200">
+                        <label for="per-page-select" class="text-[11px] text-slate-500">Mỗi trang:</label>
+                        <select id="per-page-select" onchange="changeItemsPerPage(this.value)" class="bg-transparent font-extrabold text-slate-800 outline-none cursor-pointer">
+                            <option value="9" ${itemsPerPage === 9 ? 'selected' : ''}>9 món</option>
+                            <option value="12" ${itemsPerPage === 12 ? 'selected' : ''}>12 món</option>
+                            <option value="18" ${itemsPerPage === 18 ? 'selected' : ''}>18 món</option>
+                            <option value="24" ${itemsPerPage === 24 ? 'selected' : ''}>24 món</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="flex items-center flex-wrap justify-center gap-1.5">
+                    <button onclick="goToPage(1)" ${currentPage === 1 ? 'disabled' : ''} title="Trang đầu" class="h-9 px-3 rounded-xl text-xs font-bold border border-slate-200 transition-colors ${
+                        currentPage === 1 ? 'bg-slate-50 text-slate-300 cursor-not-allowed' : 'bg-white hover:bg-slate-100 text-slate-700'
+                    }">
+                        <i class="fa-solid fa-angles-left"></i>
+                        <span class="hidden md:inline ml-1">Đầu</span>
+                    </button>
+
+                    <button onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''} title="Trang trước" class="h-9 px-3 rounded-xl text-xs font-bold border border-slate-200 transition-colors ${
+                        currentPage === 1 ? 'bg-slate-50 text-slate-300 cursor-not-allowed' : 'bg-white hover:bg-slate-100 text-slate-700'
+                    }">
+                        <i class="fa-solid fa-chevron-left"></i>
+                        <span class="hidden sm:inline ml-1">Trước</span>
+                    </button>
+
+                    <div class="flex items-center gap-1">
+                        ${pageButtonsHtml}
+                    </div>
+
+                    <button onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''} title="Trang sau" class="h-9 px-3 rounded-xl text-xs font-bold border border-slate-200 transition-colors ${
+                        currentPage === totalPages ? 'bg-slate-50 text-slate-300 cursor-not-allowed' : 'bg-white hover:bg-slate-100 text-slate-700'
+                    }">
+                        <span class="hidden sm:inline mr-1">Sau</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+                    <button onclick="goToPage(${totalPages})" ${currentPage === totalPages ? 'disabled' : ''} title="Trang cuối" class="h-9 px-3 rounded-xl text-xs font-bold border border-slate-200 transition-colors ${
+                        currentPage === totalPages ? 'bg-slate-50 text-slate-300 cursor-not-allowed' : 'bg-white hover:bg-slate-100 text-slate-700'
+                    }">
+                        <span class="hidden md:inline mr-1">Cuối</span>
+                        <i class="fa-solid fa-angles-right"></i>
+                    </button>
+                </div>
+            `;
         }
 
+        function goToPage(page) {
+            const totalPages = Math.ceil(currentFilteredDishes.length / itemsPerPage);
+            if (page < 1 || page > totalPages) return;
+            currentPage = page;
+            renderDishes(currentFilteredDishes);
+            const section = document.getElementById('dishes-section');
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function changeItemsPerPage(val) {
+            itemsPerPage = parseInt(val, 10) || 12;
+            currentPage = 1;
+            renderDishes(currentFilteredDishes);
+        }
+
+        // Render Góc Báo Chí & TikTok Ẩm Thực Hà Nội
         function renderMediaHub() {
+            const shuffled = [...dishes].sort(() => 0.5 - Math.random());
+            const tiktokPicks = shuffled.slice(0, 4);
+            const articlePicks = shuffled.slice(4, 7);
+
             const tiktokGrid = document.getElementById('hub-tiktok-grid');
-            const articlesGrid = document.getElementById('hub-articles-grid');
-
-            const selectedDishes = hubDishPool.map(id => dishes.find(d => d.id === id)).filter(Boolean);
-
-            // Render 4 TikTok Cards
-            const tiktokCardsHtml = selectedDishes.slice(0, 4).map(dish => {
+            tiktokGrid.innerHTML = tiktokPicks.map(dish => {
                 const media = getMediaForDish(dish);
-                const tt = media.tiktoks[0];
-                const tiktokSearchUrl = `https://www.tiktok.com/search?q=${encodeURIComponent(tt.query)}`;
-
+                const tk = media.tiktoks[0];
+                const tiktokUrl = `https://www.tiktok.com/search?q=${encodeURIComponent(tk.query)}`;
                 return `
                     <div class="group relative rounded-3xl overflow-hidden bg-slate-900 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-80 border border-slate-200">
-                        <img src="${dish.image}" alt="${dish.name}" class="absolute inset-0 w-full h-full object-cover opacity-55 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='${dish.fallbackImage}';">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/50 to-slate-900/20"></div>
-
-                        <!-- Top badges -->
+                        <img src="${dish.image}" alt="${dish.name}" loading="lazy" onerror="this.onerror=null; this.src='${dish.fallbackImage}';" class="absolute inset-0 w-full h-full object-cover opacity-55 group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t ${tk.gradient} opacity-80"></div>
+                        
+                        <!-- Top Badges -->
                         <div class="relative z-10 p-4 flex items-center justify-between">
-                            <span class="bg-black/60 backdrop-blur-md text-white text-[11px] font-bold px-2.5 py-1 rounded-full flex items-center space-x-1.5 border border-white/15">
+                            <span class="inline-flex items-center space-x-1.5 bg-black/50 backdrop-blur-md text-white text-[11px] font-bold px-2.5 py-1 rounded-full">
                                 <i class="fa-brands fa-tiktok text-rose-400"></i>
-                                <span>${tt.author}</span>
+                                <span>${tk.author}</span>
                             </span>
-                            <span class="bg-rose-600/90 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full">
-                                <i class="fa-solid fa-play mr-1"></i>${tt.views}
+                            <span class="bg-white/20 backdrop-blur-md text-white text-[11px] font-extrabold px-2.5 py-1 rounded-full">
+                                <i class="fa-solid fa-play text-[9px] mr-1"></i>${tk.views}
                             </span>
                         </div>
 
-                        <!-- Bottom content -->
-                        <div class="relative z-10 p-4 space-y-3">
-                            <span onclick="openDishModal(${dish.id})" class="inline-block cursor-pointer text-[11px] font-extrabold text-amber-300 hover:underline">
-                                # ${dish.name}
-                            </span>
-                            <p class="text-white font-bold text-sm line-clamp-2 leading-snug">${tt.title}</p>
-                            <div class="flex items-center justify-between pt-2 border-t border-white/15">
-                                <button onclick="openDishModal(${dish.id})" class="text-xs font-bold text-slate-200 hover:text-white transition-colors">
-                                    Chi tiết món
+                        <!-- Center Play Icon -->
+                        <div onclick="openDishModal(${dish.id})" class="relative z-10 flex items-center justify-center cursor-pointer">
+                            <div class="w-12 h-12 rounded-full bg-white/25 backdrop-blur-md border border-white/40 text-white flex items-center justify-center group-hover:scale-110 group-hover:bg-rose-600 transition-all shadow-lg">
+                                <i class="fa-solid fa-play text-base ml-0.5"></i>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Info -->
+                        <div class="relative z-10 p-4 space-y-2.5 text-white">
+                            <p onclick="openDishModal(${dish.id})" class="text-xs font-bold leading-snug line-clamp-2 cursor-pointer hover:text-amber-300 transition-colors">${tk.title}</p>
+                            <div class="flex items-center justify-between pt-2 border-t border-white/15 text-[11px]">
+                                <button onclick="openDishModal(${dish.id})" class="font-extrabold text-amber-300 hover:underline truncate max-w-[130px]">
+                                    <i class="fa-solid fa-utensils mr-1"></i>${dish.name}
                                 </button>
-                                <a href="${tiktokSearchUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-1.5 bg-white text-slate-900 hover:bg-rose-500 hover:text-white text-xs font-extrabold px-3 py-1.5 rounded-xl transition-colors shadow">
-                                    <i class="fa-brands fa-tiktok"></i>
-                                    <span>Xem TikTok</span>
+                                <a href="${tiktokUrl}" target="_blank" rel="noopener noreferrer" class="bg-white text-slate-900 hover:bg-amber-300 font-extrabold px-2.5 py-1 rounded-lg transition-colors flex items-center space-x-1 shrink-0">
+                                    <span>Mở TikTok</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
                                 </a>
                             </div>
                         </div>
@@ -1929,40 +2423,51 @@
                 `;
             }).join('');
 
-            tiktokGrid.innerHTML = tiktokCardsHtml;
-
-            // Render 3 Featured Press Articles
-            const articleCardsHtml = selectedDishes.slice(0, 3).map((dish, idx) => {
+            const articlesGrid = document.getElementById('hub-articles-grid');
+            articlesGrid.innerHTML = articlePicks.map(dish => {
                 const media = getMediaForDish(dish);
-                const art = media.articles[idx % media.articles.length];
-                const articleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(art.query)}`;
-
+                const art = media.articles[0];
+                const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(art.query)}`;
                 return `
-                    <article class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between space-y-4">
-                        <div class="space-y-3">
-                            <div class="flex items-center justify-between">
-                                <span class="text-[11px] font-extrabold px-3 py-1 rounded-full ${art.badgeColor}">${art.source}</span>
-                                <span class="text-xs font-semibold text-slate-400">${art.date}</span>
+                    <article class="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="relative h-44 overflow-hidden cursor-pointer bg-slate-900" onclick="openDishModal(${dish.id})">
+                                <img src="${dish.image}" alt="${dish.name}" loading="lazy" onerror="this.onerror=null; this.src='${dish.fallbackImage}';" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                                <span class="absolute top-3 left-3 ${art.badgeColor} text-[11px] font-extrabold px-3 py-1 rounded-full shadow-sm">
+                                    ${art.source}
+                                </span>
                             </div>
-                            <h5 class="text-base font-black text-slate-800 leading-snug line-clamp-2">${art.title}</h5>
-                            <p class="text-xs text-slate-500 leading-relaxed line-clamp-3">${art.summary}</p>
+                            <div class="p-5 space-y-2.5">
+                                <div class="flex items-center justify-between text-[11px] font-bold text-slate-400">
+                                    <span>${art.date}</span>
+                                    <span class="text-rose-600"><i class="fa-solid fa-location-dot mr-1"></i>${dish.district}</span>
+                                </div>
+                                <h5 onclick="openDishModal(${dish.id})" class="text-base font-extrabold text-slate-800 hover:text-rose-600 cursor-pointer leading-snug line-clamp-2">
+                                    ${art.title}
+                                </h5>
+                                <p class="text-xs text-slate-500 leading-relaxed line-clamp-3">
+                                    ${art.summary}
+                                </p>
+                            </div>
                         </div>
-
-                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-                            <button onclick="openDishModal(${dish.id})" class="text-xs font-extrabold text-rose-600 hover:text-rose-700 flex items-center space-x-1">
-                                <i class="fa-solid fa-utensils"></i>
-                                <span>Xem: ${dish.name}</span>
+                        <div class="px-5 pb-5 pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+                            <button onclick="openDishModal(${dish.id})" class="text-xs font-extrabold text-slate-700 hover:text-rose-600 flex items-center space-x-1">
+                                <i class="fa-solid fa-bowl-food text-rose-500"></i>
+                                <span>Chi tiết món</span>
                             </button>
-                            <a href="${articleSearchUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-1.5 bg-slate-100 hover:bg-slate-800 text-slate-700 hover:text-white text-xs font-bold px-3.5 py-2 rounded-xl transition-colors">
-                                <span>Đọc báo</span>
+                            <a href="${searchUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-1.5 bg-rose-50 hover:bg-rose-600 text-rose-700 hover:text-white text-xs font-bold px-3.5 py-2 rounded-xl transition-colors">
+                                <span>Đọc bài báo</span>
                                 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                             </a>
                         </div>
                     </article>
                 `;
             }).join('');
+        }
 
-            articlesGrid.innerHTML = articleCardsHtml;
+        function refreshMediaHub() {
+            renderMediaHub();
+            showToast("Đã cập nhật bài báo & video TikTok mới nhất!");
         }
 
         // Open Dish Detail Modal
@@ -1970,134 +2475,122 @@
             const dish = dishes.find(d => d.id === dishId);
             if (!dish) return;
 
-            document.getElementById('modal-image').src = dish.image;
-            document.getElementById('modal-image').onerror = function() { this.src = dish.fallbackImage; };
-            document.getElementById('modal-category').innerText = dish.categoryName;
-            document.getElementById('modal-name').innerText = dish.name;
-            document.getElementById('modal-time').innerText = dish.time;
-            document.getElementById('modal-price').innerText = dish.price;
-            document.getElementById('modal-desc').innerText = dish.description;
+            const modalImg = document.getElementById('modal-image');
+            modalImg.onerror = function() {
+                this.onerror = null;
+                this.src = dish.fallbackImage;
+            };
+            modalImg.src = dish.image;
 
-            // Flavor metrics
-            const flavorsContainer = document.getElementById('modal-flavors');
-            const flavorLabels = { sweet: { name: 'Độ Ngọt/Đậm', color: 'bg-rose-500' }, rich: { name: 'Độ Béo/Ngậy', color: 'bg-amber-500' }, spicy: { name: 'Độ Cay', color: 'bg-orange-500' }, fresh: { name: 'Độ Tươi Mát', color: 'bg-emerald-500' } };
-            
-            flavorsContainer.innerHTML = Object.entries(dish.flavors).map(([key, val]) => `
-                <div class="bg-slate-50 p-3 rounded-2xl border border-slate-100 space-y-1.5">
-                    <div class="flex justify-between text-xs font-bold text-slate-600">
-                        <span>${flavorLabels[key].name}</span>
-                        <span>${val}%</span>
+            document.getElementById('modal-category').textContent = `${dish.categoryName} • Quận ${dish.district}`;
+            document.getElementById('modal-name').textContent = dish.name;
+            document.getElementById('modal-time').textContent = dish.time;
+            document.getElementById('modal-price').textContent = dish.price;
+            document.getElementById('modal-desc').textContent = dish.description;
+
+            // Render Flavor Metrics
+            const flavorMap = [
+                { label: 'Vị Ngọt Thanh', value: dish.flavors.sweet, color: 'bg-amber-500' },
+                { label: 'Độ Béo Ngậy', value: dish.flavors.rich, color: 'bg-rose-500' },
+                { label: 'Độ Cay Nồng', value: dish.flavors.spicy, color: 'bg-red-600' },
+                { label: 'Độ Tươi Mát', value: dish.flavors.fresh, color: 'bg-emerald-500' }
+            ];
+            document.getElementById('modal-flavors').innerHTML = flavorMap.map(f => `
+                <div class="bg-slate-50 p-3 rounded-2xl border border-slate-100">
+                    <div class="flex justify-between items-center text-xs font-bold text-slate-600 mb-1.5">
+                        <span>${f.label}</span>
+                        <span>${f.value}%</span>
                     </div>
                     <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
-                        <div class="${flavorLabels[key].color} h-full rounded-full" style="width: ${val}%"></div>
+                        <div class="${f.color} h-full rounded-full" style="width: ${f.value}%"></div>
                     </div>
                 </div>
             `).join('');
 
-            // Ingredients
+            // Render Ingredients
             document.getElementById('modal-ingredients').innerHTML = dish.ingredients.map(ing => `
-                <span class="bg-slate-100 text-slate-700 text-xs font-bold px-3 py-1.5 rounded-xl border border-slate-200/60">${ing}</span>
+                <span class="bg-rose-50 text-rose-700 border border-rose-100 text-xs font-bold px-3 py-1.5 rounded-xl">
+                    ${ing}
+                </span>
             `).join('');
 
-            // Render Bài Báo Giới Thiệu Món Ăn & TikTok Liên Quan
-            const dishMedia = getMediaForDish(dish);
-
-            document.getElementById('modal-articles').innerHTML = dishMedia.articles.map(art => {
-                const articleUrl = `https://www.google.com/search?q=${encodeURIComponent(art.query)}`;
+            // Render Bài Báo & Review Ẩm Thực
+            const mediaData = getMediaForDish(dish);
+            document.getElementById('modal-articles').innerHTML = mediaData.articles.map(art => {
+                const articleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(art.query)}`;
                 return `
-                    <div class="bg-slate-50 hover:bg-rose-50/40 p-4 rounded-2xl border border-slate-200/80 transition-colors flex flex-col justify-between space-y-3">
+                    <div class="bg-slate-50 hover:bg-white p-4 rounded-2xl border border-slate-200/80 hover:border-rose-200 hover:shadow-md transition-all flex flex-col justify-between space-y-3">
                         <div class="space-y-2">
                             <div class="flex items-center justify-between">
-                                <span class="text-[10px] font-extrabold px-2.5 py-0.5 rounded-full ${art.badgeColor}">${art.source}</span>
+                                <span class="${art.badgeColor} text-[11px] font-extrabold px-2.5 py-0.5 rounded-full">${art.source}</span>
                                 <span class="text-[11px] font-semibold text-slate-400">${art.date}</span>
                             </div>
-                            <h5 class="font-extrabold text-slate-800 text-sm leading-snug">${art.title}</h5>
-                            <p class="text-xs text-slate-600 leading-relaxed">${art.summary}</p>
+                            <h5 class="text-sm font-extrabold text-slate-800 leading-snug">${art.title}</h5>
+                            <p class="text-xs text-slate-500 leading-relaxed">${art.summary}</p>
                         </div>
-                        <div class="pt-2 flex justify-end">
-                            <a href="${articleUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-1.5 text-xs font-extrabold text-rose-600 hover:text-rose-700 bg-white px-3 py-1.5 rounded-xl border border-rose-200 shadow-sm transition-colors">
-                                <i class="fa-solid fa-book-open"></i>
-                                <span>Đọc bài báo</span>
-                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                            </a>
-                        </div>
+                        <a href="${articleSearchUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-1.5 text-xs font-extrabold text-rose-600 hover:text-rose-700 pt-1">
+                            <span>Đọc bài viết đầy đủ</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
                     </div>
                 `;
             }).join('');
 
+            // Render Bài Đăng & Video TikTok Liên Quan
             document.getElementById('modal-tiktok-all-link').href = `https://www.tiktok.com/search?q=${encodeURIComponent(dish.name + ' Hà Nội')}`;
-
-            document.getElementById('modal-tiktoks').innerHTML = dishMedia.tiktoks.map(tt => {
-                const ttUrl = `https://www.tiktok.com/search?q=${encodeURIComponent(tt.query)}`;
+            document.getElementById('modal-tiktoks').innerHTML = mediaData.tiktoks.map(tk => {
+                const tkUrl = `https://www.tiktok.com/search?q=${encodeURIComponent(tk.query)}`;
                 return `
-                    <a href="${ttUrl}" target="_blank" rel="noopener noreferrer" class="group relative rounded-2xl overflow-hidden bg-gradient-to-br ${tt.gradient} p-4 text-white flex flex-col justify-between min-h-[190px] shadow-md hover:shadow-xl transition-all transform hover:-translate-y-0.5">
-                        <img src="${dish.image}" alt="${dish.name}" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none';">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                    <a href="${tkUrl}" target="_blank" rel="noopener noreferrer" class="group relative rounded-2xl overflow-hidden bg-slate-900 h-52 p-4 flex flex-col justify-between text-white shadow-sm hover:shadow-lg transition-all">
+                        <img src="${dish.image}" alt="${dish.name}" loading="lazy" onerror="this.onerror=null; this.src='${dish.fallbackImage}';" class="absolute inset-0 w-full h-full object-cover opacity-45 group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t ${tk.gradient} opacity-85"></div>
+                        
+                        <div class="relative z-10 flex items-center justify-between text-[11px]">
+                            <span class="font-bold text-amber-300">${tk.author}</span>
+                            <span class="bg-black/40 px-2 py-0.5 rounded-full font-bold"><i class="fa-solid fa-heart text-rose-400 mr-1"></i>${tk.likes}</span>
+                        </div>
 
-                        <div class="relative z-10 flex items-center justify-between">
-                            <span class="bg-black/50 backdrop-blur-sm text-[11px] font-bold px-2.5 py-1 rounded-full flex items-center space-x-1 border border-white/15">
-                                <i class="fa-brands fa-tiktok text-rose-400"></i>
-                                <span>${tt.author}</span>
-                            </span>
-                            <span class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm group-hover:bg-rose-600 flex items-center justify-center transition-colors">
-                                <i class="fa-solid fa-play text-xs"></i>
+                        <div class="relative z-10 my-auto flex justify-center">
+                            <span class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/40 flex items-center justify-center group-hover:bg-rose-600 group-hover:scale-110 transition-all">
+                                <i class="fa-brands fa-tiktok text-sm"></i>
                             </span>
                         </div>
 
-                        <div class="relative z-10 space-y-2 mt-4">
-                            <p class="text-xs font-bold leading-snug line-clamp-3">${tt.title}</p>
-                            <div class="flex items-center justify-between text-[11px] text-slate-300 pt-2 border-t border-white/15">
-                                <span><i class="fa-solid fa-eye mr-1"></i>${tt.views}</span>
-                                <span><i class="fa-solid fa-heart text-rose-400 mr-1"></i>${tt.likes}</span>
-                            </div>
+                        <div class="relative z-10 space-y-1">
+                            <p class="text-xs font-bold leading-snug line-clamp-2 group-hover:text-amber-200 transition-colors">${tk.title}</p>
+                            <span class="inline-flex items-center space-x-1 text-[10px] font-extrabold text-slate-300">
+                                <i class="fa-solid fa-play text-[8px]"></i>
+                                <span>${tk.views} lượt xem • Xem trên TikTok</span>
+                            </span>
                         </div>
                     </a>
                 `;
             }).join('');
 
-            // Locations & Route Guidance
-            const origin = document.getElementById('user-location-input').value.trim() || 'Hồ Hoàn Kiếm, Hà Nội';
-            const locContainer = document.getElementById('modal-locations');
-            
-            locContainer.innerHTML = dish.locations.map((loc) => {
-                const routeStats = estimateRouteStats(origin, loc.address);
-                const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(loc.address)}`;
-                const embedMapUrl = `https://maps.google.com/maps?q=${encodeURIComponent(loc.address)}&output=embed`;
-
-                return `
-                    <div class="bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                            <div>
-                                <h5 class="font-black text-slate-800 text-base">${loc.name}</h5>
-                                <p class="text-slate-500 text-xs mt-0.5"><i class="fa-solid fa-location-dot text-rose-500 mr-1"></i>${loc.address}</p>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-1 rounded-lg">
-                                    <i class="fa-solid fa-star text-amber-500 mr-1"></i>${loc.rating}
-                                </span>
-                                <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-lg">${loc.price}</span>
-                            </div>
+            // Render Locations & Maps Action
+            document.getElementById('modal-locations').innerHTML = dish.locations.map(loc => `
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="space-y-1">
+                        <div class="flex items-center space-x-2">
+                            <h5 class="font-extrabold text-slate-800 text-base">${loc.name}</h5>
+                            <span class="bg-amber-100 text-amber-800 text-xs font-extrabold px-2 py-0.5 rounded-lg flex items-center space-x-1">
+                                <i class="fa-solid fa-star text-amber-500 text-[10px]"></i>
+                                <span>${loc.rating}</span>
+                            </span>
                         </div>
-
-                        <!-- Distance & Route Stats -->
-                        <div class="flex items-center justify-between bg-white px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600">
-                            <div class="flex items-center space-x-3">
-                                <span><i class="fa-solid fa-road text-rose-600 mr-1"></i>Cách khoảng: <b>${routeStats.distance}</b></span>
-                                <span><i class="fa-solid fa-motorcycle text-indigo-600 mr-1"></i>Đi xe máy: <b>${routeStats.duration}</b></span>
-                            </div>
-                            <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="bg-rose-600 hover:bg-rose-700 text-white font-bold px-3 py-1.5 rounded-lg shadow transition-colors flex items-center space-x-1">
-                                <i class="fa-solid fa-diamond-turn-right"></i>
-                                <span>Chỉ Đường</span>
-                            </a>
-                        </div>
-
-                        <!-- Embedded Map -->
-                        <div class="w-full h-40 rounded-xl overflow-hidden border border-slate-200 relative">
-                            <iframe width="100%" height="100%" frameborder="0" style="border:0" src="${embedMapUrl}" allowfullscreen></iframe>
+                        <p class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-location-dot text-rose-500 mr-1.5"></i>${loc.address}</p>
+                        <div class="flex items-center space-x-4 text-xs text-slate-500 pt-1">
+                            <span><i class="fa-regular fa-clock mr-1"></i>${loc.hours}</span>
+                            <span><i class="fa-solid fa-money-bill-wave text-emerald-600 mr-1"></i>${loc.price}</span>
                         </div>
                     </div>
-                `;
-            }).join('');
+
+                    <button onclick="openGoogleMaps('${loc.name.replace(/'/g, "\\'")}', '${loc.address.replace(/'/g, "\\'")}')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-4 py-3 rounded-xl shadow-md shadow-emerald-500/20 transition-all flex items-center justify-center space-x-2 whitespace-nowrap">
+                        <i class="fa-solid fa-diamond-turn-right text-sm"></i>
+                        <span>Chỉ Đường Maps</span>
+                    </button>
+                </div>
+            `).join('');
 
             const modal = document.getElementById('dish-modal');
             modal.classList.remove('hidden');
@@ -2119,279 +2612,128 @@
             }, 200);
         }
 
-        // GPS Current Location Helper
-        function getCurrentLocation() {
-            const input = document.getElementById('user-location-input');
-            if (!navigator.geolocation) {
-                showToast("Trình duyệt không hỗ trợ định vị GPS.", "error");
-                return;
-            }
-            showToast("Đang xác định tọa độ GPS của bạn...");
-            navigator.geolocation.getCurrentPosition(
-                (pos) => {
-                    const lat = pos.coords.latitude.toFixed(4);
-                    const lng = pos.coords.longitude.toFixed(4);
-                    input.value = `${lat}, ${lng} (Vị trí hiện tại)`;
-                    showToast("Đã cập nhật vị trí GPS thành công!");
-                },
-                () => {
-                    input.value = "Hồ Hoàn Kiếm, Hà Nội";
-                    showToast("Không thể truy cập GPS, sử dụng mặc định Hồ Hoàn Kiếm.", "error");
-                }
-            );
+        // Open Google Maps Direction
+        function openGoogleMaps(name, address) {
+            const origin = encodeURIComponent(document.getElementById('user-location-input').value || "Hà Nội");
+            const destination = encodeURIComponent(`${name}, ${address}`);
+            const url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}&travelmode=driving`;
+            window.open(url, '_blank');
         }
 
-        // AI Chef Modal Functions
+        // Get GPS Location
+        function getCurrentLocation() {
+            if ("geolocation" in navigator) {
+                showToast("Đang định vị tọa độ GPS của bạn...");
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const lat = position.coords.latitude.toFixed(5);
+                        const lng = position.coords.longitude.toFixed(5);
+                        document.getElementById('user-location-input').value = `${lat}, ${lng}`;
+                        showToast("Đã cập nhật vị trí GPS chính xác!");
+                    },
+                    () => {
+                        showToast("Không thể truy cập GPS, mặc định Hồ Hoàn Kiếm.", "error");
+                    }
+                );
+            } else {
+                showToast("Trình duyệt không hỗ trợ định vị GPS.", "error");
+            }
+        }
+
+        // AI Chef Modal Controls
         function openAiModal() {
-            document.getElementById('ai-modal').classList.remove('hidden');
-            document.getElementById('ai-modal').classList.add('flex');
-            document.getElementById('ai-result').classList.add('hidden');
-            document.getElementById('ai-prompt').value = '';
+            const modal = document.getElementById('ai-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
         }
 
         function closeAiModal() {
-            document.getElementById('ai-modal').classList.remove('flex');
-            document.getElementById('ai-modal').classList.add('hidden');
+            const modal = document.getElementById('ai-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
         }
 
         function setAiPrompt(text) {
             document.getElementById('ai-prompt').value = text;
         }
 
-        let lastAiDishId = null;
-
         function askAiChef() {
-            const prompt = document.getElementById('ai-prompt').value.trim();
+            const prompt = document.getElementById('ai-prompt').value.toLowerCase().trim();
             if (!prompt) {
-                showToast("Vui lòng nhập tâm trạng, thời tiết hoặc món bạn muốn nhé!", "error");
+                showToast("Vui lòng nhập tâm trạng hoặc món bạn đang nghĩ tới!", "error");
                 return;
             }
 
             const btn = document.getElementById('ai-submit-btn');
-            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-2"></i> Đầu Bếp AI đang phân tích vị giác...`;
+            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> <span>Đầu bếp AI đang phân tích 238 món...</span>`;
             btn.disabled = true;
 
             setTimeout(() => {
-                const normalize = (str) => str.toLowerCase()
-                    .normalize("NFD").replace(/[̀-ͯ]/g, "")
-                    .replace(/đ/g, "d");
+                let candidatePool = [];
+                let reason = "";
 
-                const rawPrompt = prompt.toLowerCase();
-                const normPrompt = normalize(prompt);
-                const tokens = normPrompt.split(/[\s,.\-!?&]+/).filter(w => w.length >= 2);
-
-                // Bộ quy tắc chấm điểm thông minh (Ưu tiên tên món/từ khóa cụ thể trước, sau đó đến thời tiết/tâm trạng)
-                const keywordRules = [
-                    { keys: ['thit cho', 'gia cay', 'nhua man', 'cho met'], dishIds: [13], score: 150 },
-                    { keys: ['cha ca', 'la vong', 'ca lang'], dishIds: [14], score: 150 },
-                    { keys: ['lau rieu', 'lau'], dishIds: [25], score: 140 },
-                    { keys: ['pho bo', 'tai chin'], dishIds: [1], score: 150 },
-                    { keys: ['pho cuon', 'ngu xa'], dishIds: [16], score: 150 },
-                    { keys: ['bun cha', 'quat than'], dishIds: [2], score: 150 },
-                    { keys: ['bun dau', 'mam tom'], dishIds: [3], score: 150 },
-                    { keys: ['bun rieu', 'suon sun'], dishIds: [4], score: 150 },
-                    { keys: ['bun thang'], dishIds: [15], score: 150 },
-                    { keys: ['bun ca'], dishIds: [18], score: 150 },
-                    { keys: ['bun bo nam bo', 'bun tron'], dishIds: [22], score: 150 },
-                    { keys: ['mi van than', 'sui cao'], dishIds: [7], score: 150 },
-                    { keys: ['banh mi chao', 'hoa ma'], dishIds: [5], score: 150 },
-                    { keys: ['banh mi sot vang', 'sot vang'], dishIds: [27], score: 150 },
-                    { keys: ['banh mi'], dishIds: [19, 5, 27], score: 110 },
-                    { keys: ['com tam', 'suon bi cha'], dishIds: [6], score: 150 },
-                    { keys: ['banh cuon', 'cha que'], dishIds: [8], score: 150 },
-                    { keys: ['xoi xeo', 'xoi'], dishIds: [9], score: 150 },
-                    { keys: ['nem chua ran', 'khoai lac'], dishIds: [10], score: 150 },
-                    { keys: ['chao suon', 'quay gion'], dishIds: [11], score: 150 },
-                    { keys: ['banh tom', 'ho tay'], dishIds: [17], score: 150 },
-                    { keys: ['nom bo kho', 'nom'], dishIds: [20], score: 150 },
-                    { keys: ['banh gio'], dishIds: [21], score: 150 },
-                    { keys: ['nem lui', 'banh xeo'], dishIds: [26], score: 150 },
-                    { keys: ['ca phe trung', 'giang'], dishIds: [12], score: 150 },
-                    { keys: ['kem trang tien', 'kem'], dishIds: [23], score: 150 },
-                    { keys: ['banh troi tau', 'tau hu'], dishIds: [24], score: 150 },
-                    { keys: ['che khuc bach', 'khuc bach', 'che'], dishIds: [28], score: 150 },
-                    { keys: ['tra chanh', 'nha tho'], dishIds: [29], score: 150 },
-                    { keys: ['nuoc sau', 'sau ngam', 'sau'], dishIds: [30], score: 150 },
-                    { keys: ['ca phe cot dua', 'cot dua', 'cong'], dishIds: [31], score: 150 },
-                    { keys: ['tra sen', 'tay ho'], dishIds: [32], score: 150 },
-                    { keys: ['sua chua danh da', 'sua chua'], dishIds: [33], score: 150 },
-                    { keys: ['nuoc mia', 'tran chau'], dishIds: [34], score: 150 },
-                    { keys: ['tao pho', 'thach gang'], dishIds: [35], score: 150 },
-                    { keys: ['bia hoi', 'bia', 'lac luoc'], dishIds: [36], score: 150 },
-                    { keys: ['tra dao', 'cam sa'], dishIds: [37], score: 150 },
-                    { keys: ['nuoc mo', 'mo ngam'], dishIds: [38], score: 150 }
-                ];
-
-                const intentRules = [
-                    {
-                        keys: ['nhau', 'lai rai', 'ban be', 'cuoi tuan', 'dac san nhau'],
-                        categories: ['special'],
-                        bonus: 65
-                    },
-                    {
-                        keys: ['khat', 'do uong', 'uong', 'giai nhiet', 'tra', 'ca phe', 'nuoc'],
-                        categories: ['drink'],
-                        bonus: 65
-                    },
-                    {
-                        keys: ['thanh dam', 'it dau mo', 'nhe nhang', 'healthy', 'rau', 'mat'],
-                        categories: ['drink'],
-                        dishIds: [16, 20, 15, 22, 28, 32, 35],
-                        bonus: 60
-                    },
-                    {
-                        keys: ['lanh', 'mua', 'am bung', 'nong hoi', 'gio mua', 'mua dong', 'suoi am'],
-                        categories: ['soup', 'special'],
-                        dishIds: [27, 24, 11, 25, 1, 13],
-                        bonus: 45
-                    },
-                    {
-                        keys: ['nang', 'nong buc', 'oi buc', 'mua he', 'giai khat'],
-                        categories: ['drink'],
-                        dishIds: [29, 30, 33, 34, 35, 36, 37, 38, 23],
-                        bonus: 55
-                    },
-                    {
-                        keys: ['doi', 'no', 'bua chinh', 'an trua', 'an toi', 'com', 'chac bung'],
-                        categories: ['lunch', 'soup'],
-                        bonus: 50
-                    },
-                    {
-                        keys: ['an vat', 'buon mieng', 'buoi chieu', 'xe chieu', 'an choi', 'gion'],
-                        categories: ['snack'],
-                        bonus: 55
-                    },
-                    {
-                        keys: ['nhanh', 'buoi sang', 'an sang', 'di lam', 'di hoc', 'voi', 'tien'],
-                        categories: ['fast', 'soup'],
-                        bonus: 50
-                    }
-                ];
-
-                const scoredDishes = dishes.map(dish => {
-                    let score = 0;
-                    const normName = normalize(dish.name);
-                    const normDesc = normalize(dish.description);
-                    const normIng = normalize(dish.ingredients.join(' '));
-                    const normDist = normalize(dish.district);
-
-                    // 1. Khớp trực tiếp tên món
-                    if (normPrompt.includes(normName) || rawPrompt.includes(dish.name.toLowerCase())) {
-                        score += 180;
-                    }
-
-                    // 2. Khớp từ khóa định danh món cụ thể (thịt chó, phở, trà chanh...)
-                    keywordRules.forEach(rule => {
-                        if (rule.keys.some(k => normPrompt.includes(k)) && rule.dishIds.includes(dish.id)) {
-                            score += rule.score;
-                        }
-                    });
-
-                    // 3. Khớp ngữ cảnh thời tiết / tâm trạng / danh mục
-                    intentRules.forEach(rule => {
-                        if (rule.keys.some(k => normPrompt.includes(k))) {
-                            if (rule.categories && rule.categories.includes(dish.category)) {
-                                score += rule.bonus;
-                            }
-                            if (rule.dishIds && rule.dishIds.includes(dish.id)) {
-                                score += rule.bonus;
-                            }
-                        }
-                    });
-
-                    // 4. Khớp từng từ đơn lẻ trong tên, nguyên liệu, quận, mô tả
-                    tokens.forEach(token => {
-                        if (normName.includes(token)) score += 15;
-                        if (normIng.includes(token)) score += 10;
-                        if (normDist.includes(token)) score += 15;
-                        if (normDesc.includes(token)) score += 4;
-                    });
-
-                    // Tránh lặp lại đúng món vừa gợi ý ở lần bấm ngay trước đó
-                    if (dish.id === lastAiDishId) {
-                        score -= 40;
-                    }
-
-                    return { dish, score };
-                });
-
-                scoredDishes.sort((a, b) => b.score - a.score);
-
-                const topScore = scoredDishes[0].score;
-                let match;
-                if (topScore > 0) {
-                    const topCandidates = scoredDishes.filter(item => item.score >= topScore - 15).slice(0, 3);
-                    match = topCandidates[Math.floor(Math.random() * topCandidates.length)].dish;
+                if (prompt.includes("uống") || prompt.includes("khát") || prompt.includes("trà") || prompt.includes("cà phê") || prompt.includes("giải nhiệt") || prompt.includes("chè") || prompt.includes("nước")) {
+                    candidatePool = dishes.filter(d => d.category === 'drink');
+                    reason = "Để giải khát sảng khoái hoặc nhâm nhi thư giãn chuẩn gu người Hà Nội, Đầu Bếp AI gợi ý bạn thử ngay thức uống này:";
+                } else if (prompt.includes("lạnh") || prompt.includes("nhậu") || prompt.includes("lẩu") || prompt.includes("nướng") || prompt.includes("bia")) {
+                    candidatePool = dishes.filter(d => d.category === 'special' || d.category === 'soup');
+                    reason = "Thời tiết này cực kỳ lý tưởng để quây quần bên món nóng hổi, đậm đà thơm lừng gia vị:";
+                } else if (prompt.includes("đói") || prompt.includes("cơm") || prompt.includes("no")) {
+                    candidatePool = dishes.filter(d => d.category === 'lunch');
+                    reason = "Để nạp đầy năng lượng cho chiếc bụng đang đói meo, đây là lựa chọn chắc bụng và chuẩn vị nhất:";
+                } else if (prompt.includes("thanh") || prompt.includes("nhẹ") || prompt.includes("ít dầu")) {
+                    candidatePool = dishes.filter(d => d.flavors.fresh >= 90);
+                    reason = "Một lựa chọn thanh tao, nhẹ bụng nhưng vẫn trọn vẹn hương vị tinh tế của ẩm thực Hà Thành:";
+                } else if (prompt.includes("vặt") || prompt.includes("chiều") || prompt.includes("ăn chơi")) {
+                    candidatePool = dishes.filter(d => d.category === 'snack');
+                    reason = "Buổi chiều lai rai đồ ăn vặt phố cổ thì món này chắc chắn làm bạn hài lòng:";
                 } else {
-                    const fallbackPool = dishes.filter(d => d.id !== lastAiDishId);
-                    match = fallbackPool[Math.floor(Math.random() * fallbackPool.length)];
+                    candidatePool = [...dishes];
+                    reason = "Dựa trên kho 238 đặc sản & đồ uống Hà Nội, Đầu Bếp AI chọn riêng cho bạn cực phẩm sau:";
                 }
 
-                lastAiDishId = match.id;
+                const recommendedDish = candidatePool[Math.floor(Math.random() * candidatePool.length)] || dishes[0];
 
                 const resultBox = document.getElementById('ai-result');
-                const resultContent = document.getElementById('ai-result-content');
-
-                resultContent.innerHTML = `
-                    <p>Dựa trên yêu cầu <b>"${prompt}"</b>, Đầu Bếp AI khuyên bạn thưởng thức ngay:</p>
-                    <div class="bg-white p-4 rounded-xl border border-indigo-200 space-y-2">
-                        <h4 class="font-black text-slate-800 text-base flex items-center justify-between">
-                            <span>${match.name}</span>
-                            <span class="text-xs bg-rose-100 text-rose-700 px-2 py-0.5 rounded">${match.price}</span>
-                        </h4>
-                        <p class="text-xs text-slate-600">${match.description}</p>
-                        <div class="pt-2 flex items-center justify-between gap-2">
-                            <span class="text-xs font-bold text-indigo-600"><i class="fa-solid fa-location-dot mr-1"></i>Gợi ý: ${match.locations[0].name}</span>
-                            <button onclick="closeAiModal(); openDishModal(${match.id});" class="text-xs bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-3 py-1.5 rounded-lg shadow transition-colors shrink-0">
-                                Xem chi tiết, TikTok & Chỉ đường
-                            </button>
+                const content = document.getElementById('ai-result-content');
+                
+                content.innerHTML = `
+                    <p>${reason}</p>
+                    <div class="bg-white p-4 rounded-xl border border-indigo-100 flex items-center justify-between gap-4 mt-2 shadow-sm">
+                        <div class="flex items-center space-x-3">
+                            <img src="${recommendedDish.image}" onerror="this.onerror=null; this.src='${recommendedDish.fallbackImage}';" class="w-16 h-16 rounded-xl object-cover">
+                            <div>
+                                <h5 class="font-extrabold text-slate-900 text-base">${recommendedDish.name}</h5>
+                                <p class="text-xs text-slate-500">${recommendedDish.categoryName} • Quận ${recommendedDish.district} • ${recommendedDish.price}</p>
+                            </div>
                         </div>
+                        <button onclick="closeAiModal(); openDishModal(${recommendedDish.id})" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold px-3.5 py-2.5 rounded-xl transition-colors whitespace-nowrap">
+                            Xem Ngay
+                        </button>
                     </div>
                 `;
 
                 resultBox.classList.remove('hidden');
-                btn.innerHTML = `<i class="fa-solid fa-sparkles text-amber-300 mr-2"></i> AI Gợi Ý Ngay`;
+                btn.innerHTML = `<i class="fa-solid fa-sparkles text-amber-300"></i> <span>Gợi Ý Món Khác</span>`;
                 btn.disabled = false;
-            }, 500);
-        }
-
-        // Helper: Estimate Route Stats
-        function estimateRouteStats(origin, destination) {
-            const hash = (origin.length + destination.length) % 55;
-            const distKm = (1.2 + (hash % 10) * 0.5).toFixed(1);
-            const durationMin = Math.round(distKm * 3.5 + 4);
-            return {
-                distance: `${distKm} km`,
-                duration: `${durationMin} phút`
-            };
+            }, 650);
         }
 
         // Toast Notification Helper
-        function showToast(msg, type = 'success') {
+        function showToast(msg, type = "success") {
             const toast = document.getElementById('toast');
             const toastMsg = document.getElementById('toast-msg');
             const toastIcon = document.getElementById('toast-icon');
 
-            toastMsg.innerText = msg;
-            if (type === 'error') {
-                toastIcon.className = 'fa-solid fa-circle-exclamation text-rose-400';
-            } else {
-                toastIcon.className = 'fa-solid fa-circle-check text-emerald-400';
-            }
+            toastMsg.textContent = msg;
+            toastIcon.className = type === "error" 
+                ? "fa-solid fa-circle-exclamation text-rose-400" 
+                : "fa-solid fa-circle-check text-emerald-400";
 
             toast.classList.remove('translate-y-20', 'opacity-0');
-            toast.classList.add('translate-y-0', 'opacity-100');
-
             setTimeout(() => {
-                toast.classList.remove('translate-y-0', 'opacity-100');
                 toast.classList.add('translate-y-20', 'opacity-0');
             }, 3000);
-        }
-
-        function resetFilters() {
-            document.getElementById('search-input').value = '';
-            document.getElementById('district-filter').value = 'all';
-            filterDishes('all');
         }
     </script>
 </body>
